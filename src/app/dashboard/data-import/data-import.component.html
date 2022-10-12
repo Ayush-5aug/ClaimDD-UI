@@ -1,0 +1,102 @@
+<div class=" main-card-heading" style="z-index: 2;">
+  <div style=" display: inline"></div>
+  <div class="row">
+    <div class = "fixSize" style="min-width: 1000px">
+      <h5 class="h5-heading label-color" class=" card-header">IMPORT : {{selectedPage}} - {{selectedHead}}</h5>
+    </div>
+</div>
+</div><br>
+
+<div class="main-card card gf">
+  <!-- body elements -->
+  <div style="margin: 10px">
+ 
+      <div class="divHStick" style = "min-width: 800px">
+        <div class = "row">
+          <div class = "columnGF">
+            <div class = "btn btn-outline-warning" style="width: 520px;">
+            <input class = "fileUL" style="width: 500px" type="file" multiple="false" id = "fileInput" (change)="onFileChange($event, showHeaderModal)" (click)="clear($event)">
+            </div>
+          </div>
+          <div class = "columnGF">
+            <button (click)="onClickBack()" type="button" class="btn btn-outline-danger btn-sm float-right" >EXIT IMPORT</button><br>
+          </div>
+        </div>
+        <div class = "row">
+          <div class = "columnGF">
+            <label class = "label-H1" >Data in the File</label> <br>
+            <label *ngIf = "isFileUploaded && (selectedConfig.config === 'date' || selectedConfig.config === 'monthlyDate')" for="inputEmail4" class = "label-H2" >Select a desire data month to import</label>
+            <input *ngIf= "isFileUploaded && (selectedConfig.config === 'date' || selectedConfig.config === 'monthlyDate')" type="month" id="bdaymonth" name="bdaymonth"
+            (change)="onSelectedMonthChange($event)" style="margin-left: 10px; margin-top: 10px;">
+          </div>
+          <div class = "columnGF">
+            <button *ngIf = "isFileUploaded" type="button" class="btn btn-success" (click)="importData()" style="margin-left: 50px; margin-top: 0px;">Finish Import</button>  
+          </div>
+        </div>
+      </div>
+      
+      
+      <div *ngIf = "isFileUploaded">
+     
+       <!-- table -->
+        <div class="search-table-outter tableHCFix">
+          <table class=" table table-borderless" style="background-color: white; border:2px #305496 solid;">
+            <tbody>
+              <tr *ngFor="let row of ViewmodifiedFinalArray; let i = index" [ngStyle]="{'background-color' : i==0 ? '#fbb335' : i%2==1 ? 'white' : '#effbfb'}">
+                <td class="smallCol cBorder" >
+                  {{i}}
+                  </td>
+
+                <td class = "cBorder" *ngFor="let cell of row">
+                  <div>
+                    {{cell}}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>
+</div>
+
+
+<!-- modal start here  -->
+<ng-template #showHeaderModal let-modal>
+  <div class="modal-header" style="background-color:#fbb335; color: white">
+    <h4 class="modal-title" id="modal-basic-title">Mapping Column Headers</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body" style="background-color:#305496; color: #fbb335;">
+    <div class="mb-3">
+      <div class="row">
+        <div class="col">
+          Desired Headings
+          </div>
+          <div class="col">
+            Select Equivalent Headings
+          </div>
+        </div><br>
+      <ng-container *ngFor="let headers of selectedConfig.headers">
+        <div class="row">
+          <div class="col">
+        <label class="form-label">"{{headers}}"</label>
+        </div>
+        <div class="col">
+        <select [(ngModel)]="selectedHeaderIndex[headers]" class="form-select">
+          <option *ngFor="let header of removeDateHeader" value="{{header.index}}">{{header.header}}</option>
+        </select>
+        </div>
+        </div><br>
+
+      </ng-container>
+
+    </div>
+    <button (click)="onSelectTableHeaderSubmit()" type="button" class="btn btn-secondary mr-2">Map It</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Close</button>
+
+  </div>
+
+</ng-template>

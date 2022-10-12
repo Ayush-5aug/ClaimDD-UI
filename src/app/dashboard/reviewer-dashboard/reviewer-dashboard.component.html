@@ -1,0 +1,31 @@
+<div class=" main-card-heading" style="z-index: 2;">
+  <div style=" display: inline"></div>
+  <div class="row">
+    <div class="col-12">
+      <h5 class="h5-heading label-color" class=" card-header">REVIEWER</h5>
+    </div>
+</div>
+</div><br>
+
+                    
+<div class="table-responsive  tableHCFix"><br>
+  <table class="table table-borderless" style="border:2px #305496 solid;">
+      <thead style="color: white; background-color: #fbb335;border:2px #305496 solid;">
+          <th></th>
+          <th>Claim Name</th>
+          <th>Project</th>
+          <th>Claimant</th>
+          <th>Controls</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of reviewerData; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{data['claim']}}</td>
+              <td>{{data['projectName']}}</td>
+              <td>{{data['claimantName']}}</td>
+              <td><button type="button" class="btn btn-outline-success" (click)="openClaim(i)">View</button></td>
+        </tr>
+
+      </tbody>
+  </table>
+</div>

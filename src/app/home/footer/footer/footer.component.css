@@ -1,0 +1,32 @@
+/* Height for devices larger than 576px */
+@media (min-width: 992px) {
+  #intro {
+    margin-top: 0px;
+  }
+}
+
+.footer {
+  background: #104a90;
+  padding: 20px !important;
+  float: left;
+  width: 100%;
+}
+
+.footer h5 {
+  color: #fbb335;
+  font-size: 16px;
+}
+
+.footer p {
+  color: white;
+  font-size: 16px;
+}
+
+.footer .mp {
+  margin: 0px;
+  padding: 0px;
+}
+.footer .input_fields {
+  border-radius: 0px;
+  /* border: none; */
+}

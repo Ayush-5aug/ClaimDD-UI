@@ -1,0 +1,238 @@
+<div class=" main-card-heading" style="z-index: 2;">
+  <div style=" display: inline"></div>
+  <div class="row">
+    <div>
+      <h5 class="h5-heading label-color" class=" card-header">MANAGER</h5>
+    </div>
+</div>
+</div><br>
+
+
+<div class="main-card card gf">
+    <div class = "text-b-gf">
+    <p>Current plan details are found below in <b> Current Plan.</b> To update the <b>Validity of Current Plan</b>, select the desired period and then click <b>"UPDATE THE VALIDITY"</b>.</p>
+    <p>Instead of to <b>modify the plan</b>, enter a new plan number of projects and project value limit under <b>New Plan</b>, it shall show the <b>monthly price for various period</b>. </p>
+    <p>The plan <b>starting date</b> is always 1st day of the month. Thus, you must enter the <b>Starting Month</b> for the New Plan. Please be noted that as the ClaimDD can be used for the past </p>
+    <p>Enter the <b>Discount Code</b>, if any applicable. Please be noted that <b>available credit</b>, if any, will be shown automatically.</p>
+    <p>Then click the <b>UPGRADE</b> to pay the payment to upgrade the plan.</p>
+    </div>
+
+    <!--<h5 style="margin-left: 840px;">Currency => {{licenseData['currency']}}</h5>-->
+
+    <table class="table table-borderless table-bgB-gf fixHeader">
+      <tbody>
+        <tr>
+          <td style="width:5%"></td>
+          <td style="width:44.5%"></td>
+          <td  style="width:1%"></td>
+          <td style="width:2.5%"></td>
+          <td colspan="4"  class="table-cell-bOr-gf" style="width:1%">CURRENCY</td>
+          <td  colspan="4" class="table-cell-bOr-gf" style="width:1%">{{licenseData['currency']}}</td>
+        </tr>
+        <tr ><td colspan="12"></td></tr>
+        <tr><td colspan="12"></td></tr>
+        <tr >
+          <th colspan="3" style="text-align: left; padding-left: 15px">DETAILS</th>
+          <th style="width:2.5%" ></th>
+          <th colspan="3" style="text-align: center;" >CURRENT PLAN</th>
+          <th style="width:2.5%" ></th>
+          <th colspan="3"  style="text-align: center;" >NEW PLAN</th>
+          <th style="width:2.5%" ></th>
+        </tr>
+       
+        <tr class="fixRow">
+          <td class="table-cell-bgBtxtOrBUL-gf" colspan="3"><b><ins>PROJECT</ins></b></td>
+          <td colspan="1"></td>
+          <td colspan="3" class="table-cell-bgLBtxtB-gf"></td>
+          <td colspan="1"></td>
+          <td colspan="3" class="table-cell-bgLBtxtB-gf"></td>
+          <td colspan="1" class="table-bgOr-gf"></td>
+        </tr>
+       
+        <tr>
+          <td></td>
+          <td>PROJECT LOCATION</td>
+          <td ></td>
+          <td rowspan="37"></td>
+          <td rowspan="37" class="table-cell-bgLBtxtB-gf"></td>
+          <td style="width:20%" class="table-cell-bgLBtxtB-gf">{{licenseData['region']}}</td>
+          <td rowspan="37" class="table-cell-bgLBtxtB-gf"></td>
+          <td rowspan="37"></td>
+          <td rowspan="37" class="table-cell-bgLBtxtB-gf"></td>
+          <td style="width:20%" class="table-cell-bgLBtxtB-gf">{{licenseData['region']}}</td>
+          <td rowspan="37" class="table-cell-bgLBtxtB-gf"></td>
+          <td rowspan="37" class="table-bgOr-gf"></td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr>
+          <td></td>
+          <td>NUMBER OF PROJECTS</td>
+          <td></td>
+          <td class="table-cell-bgLBtxtB-gf">{{formatNumberNoDecimal(licenseData['activeProjects'])}}</td>
+          <td class="table-cell-bgWtxtB-gf"><input style="text-align: center" type="number" name="newPlanProjectNumber" [(ngModel)]="newPlanProjectNumber" (keyup)="getPricesForNewPlan()"></td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr>
+          <td></td>
+          <td>PROJECTS VALUE LIMIT</td>
+          <td></td>
+          <td class="table-cell-bgLBtxtB-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(licenseData['projectValueLimit'])}}</td>
+          <td class="table-cell-bgWtxtB-gf"><input style="text-align: center" type="number" name="newPlanProjectLimit" [(ngModel)]="newPlanProjectLimit" (keyup)="getPricesForNewPlan()"></td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr class="fixRow">
+          <td class="table-cell-bgBtxtOrBUL-gf"  colspan="2">SELECT MONTHLY PRICE AND PAYMENT PERIOD</td>
+          <td colspan="2"></td>
+          <td class="table-cell-bgLBtxtB-gf"></td>
+          <td class="table-cell-bgLBtxtB-gf"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><label for="vehicle1" style="font-size: medium; font-weight: bold;">MONTHLY PRICE, IF PAID MONTHLY</label>
+              <input type="radio" id="html" name="fav_language" value="HTML" style="margin-left: 20px;" [checked]="isMonthly" (click)="setIsMonthly()"><br></td>
+              <td></td>
+              <td class="table-cell-bgLBtxtB-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(FinalPriceMonth)}}</td>
+        <td  class="table-cell-bgBtxtOr-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(newFinalPriceMonth)}}</td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr>
+          <td></td>
+          <td><label for="vehicle1" style="font-size: medium; font-weight: bold;">MONTHLY PRICE, IF PAID QUARTERLY</label>
+              <input type="radio" id="html" name="fav_language" value="HTML" style="margin-left: 20px;" (click)="setQuaterly()"><br></td>
+              <td></td>
+              <td class="table-cell-bgLBtxtB-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(FinalPriceQtr)}}</td>
+              <td  class="table-cell-bgBtxtOr-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(newFinalPriceQtr)}}</td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr>
+          <td></td>
+          <td><label for="vehicle1" style="font-size: medium; font-weight: bold;">MONTHLY PRICE, IF PAID HALF-YEARLY</label>
+              <input type="radio" id="html" name="fav_language" value="HTML" style="margin-left: 8px;" (click)="setHalfYearly()"><br></td>
+              <td></td>
+              <td class="table-cell-bgLBtxtB-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(FinalPricehalfYearly)}}</td>
+              <td  class="table-cell-bgBtxtOr-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(newFinalPricehalfYearly)}}</td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr>
+          <td></td>
+          <td><label for="vehicle1" style="font-size: medium; font-weight: bold;">MONTHLY PRICE, IF PAID ANNUALLY</label>
+              <input type="radio" id="html" name="fav_language" value="HTML" style="margin-left: 20px;" (click)="setAnnually()"><br></td>
+              <td></td>
+              <td class="table-cell-bgLBtxtB-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(FinalPriceAnnually)}}</td>
+              <td  class="table-cell-bgBtxtOr-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(newFinalPriceAnnually)}}</td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr  class="fixRow">
+          <td class="table-cell-bgBtxtOrBUL-gf"  colspan="2">VALIDITY</td>
+          <td colspan="2"></td>
+          <td class="table-cell-bgLBtxtB-gf"></td>
+          <td class="table-cell-bgLBtxtB-gf"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>STARTING  MONTH</td>
+          <td></td>
+          <td class="table-cell-bgLBtxtB-gf">{{formatDate(licenseData['licenseStartDate'])}}</td>
+          <td class="table-cell-bgWtxtB-gf"><input style="text-align: center"  type="month" class="form-control" id="bdaymonth" name="newPlanstartDate" [(ngModel)]="newPlanstartDate" (change)="setNewPlanValidtiy()"></td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr>
+          <td></td>
+          <td>EXISTING VALIDITY DATE</td>
+          <td></td>
+          <td class="table-cell-bgLBtxtB-gf">{{formatDate(licenseData['validity'])}}</td>
+          <td class="table-cell-bgLBtxtB-gf">NA</td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr>
+          <td></td>
+          <td>TO BE VALID</td>
+          <td></td>
+          <td class="table-cell-bgBtxtOr-gf">{{formatDate(toBeValid)}}</td>
+          <td class="table-cell-bgBtxtOr-gf">{{formatDate(newPlanValidity)}}</td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr class="fixRow">
+          <td class="table-cell-bgBtxtOrBUL-gf"  colspan="2">MISCELLANEOUS</td>
+          <td colspan="2"></td>
+          <td class="table-cell-bgLBtxtB-gf"></td>
+          <td class="table-cell-bgLBtxtB-gf"></td>
+        </tr>
+      
+        <tr>
+        <!-- 
+          <td></td>
+          <td > SPECIAL DISCOUNT, IF APPLICABLE</td>
+          <td></td>
+          <td  class="table-cell-bgWtxtB-gf"><input type="text"></td>
+          <td  class="table-cell-bgWtxtB-gf"><input type="text"></td>
+        -->
+
+        </tr>
+        
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr>
+          <td></td>
+          <td>AVAILABLE CREDIT, IF ANY</td>
+          <td></td>
+          <td  class="table-cell-bgLBtxtB-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(licenseData['credit'])}}</td>
+          <td  class="table-cell-bgLBtxtB-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(licenseData['credit'])}}</td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr class="fixRow">
+          <td class="table-cell-bgBtxtOrBUL-gf"  colspan="2">TOTAL BILL AMOUNT</td>
+          <td></td>
+          <td  class="table-cell-bgBtxtOr-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(newPrice)}}</td>
+          <td  class="table-cell-bgBtxtOr-gf">{{licenseData['currency']}} {{formatNumberNoDecimal(newPlanNewPrice)}}</td>
+        </tr>
+        <tr style="height: 50px"><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        
+        <tr>
+          <td colspan="4"></td>
+          <td class="table-cell-bgLBtxtB-gf"></td>
+          <td colspan="1" class="gfError">{{errorMsg}}</td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+
+        <!-- SPINNER -->
+        <div *ngIf="showSpinner" class="d-flex align-items-center">
+          <strong>Please Wait...</strong>
+          <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+        </div>
+
+        <tr class="fixRow">
+          <td class="table-cell-bgBtxtOrBUL-gf"  colspan="2">UPDATE / UPGRADE </td>
+          <td colspan="2"></td>
+          <td class="table-cell-bgLBtxtB-gf"></td>
+          <td class="table-cell-bgLBtxtB-gf"></td>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="2" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr>
+          <td></td>
+          <td colspan="2">To update the Current Plan to New Plan, click "UPGRADE THE PLAN"</td>
+          <td class="table-cell-bgLBtxtB-gf"></td>
+          <td class="table-cell-bgLBtxtB-gf"><button style="text-align: center;" type="button" class="btn btn-secondary" [disabled]="disabledUpgradeButton" (click)="upgradePlan()">UPGRADE THE PLAN</button></td>
+          
+        </tr>
+        <tr><td colspan="4"></td><td colspan="1" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+
+        <tr>
+          <td></td>
+          <td colspan="2">To update the validity of the Current Plan for the selected period, click "UPDATE THE VALIDITY"</td>
+          <td colspan="2" class="table-cell-bgLBtxtB-gf"><button style="text-align: center;" type="button" class="btn btn-secondary" (click)="updatevalidity()">UPDATE THE VALIDITY</button></td>
+          <td class="table-cell-bgLBtxtB-gf"></td>
+        </tr>
+        
+        <tr><td colspan="4"></td><td colspan="1" class="table-cell-bgLBtxtB-gf"></td><td class="table-cell-bgLBtxtB-gf"></td></tr>
+        <tr>
+          <th colspan="12"  style="text-align: left"></th>
+        </tr>
+        <tr>
+          <th colspan="12"  style="text-align: left"></th>
+        </tr>
+        <tr><td colspan="4"></td><td colspan="1" ></td><td></td></tr>
+        <tr><td colspan="4"></td><td colspan="1" ></td><td></td></tr>
+        
+      </tbody>
+    </table>
+  </div>    

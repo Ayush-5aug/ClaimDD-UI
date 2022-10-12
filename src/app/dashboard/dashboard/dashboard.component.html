@@ -1,0 +1,383 @@
+<div class=" main-card-heading" style="z-index: 2;">
+  <div style=" display: inline"></div>
+  <div class="row">
+    <div>
+      <h5 class="h5-heading label-color" class=" card-header">GET STARTED</h5>
+    </div>
+</div>
+</div><br>
+
+<div class="main-card card gf">
+    <!-- body elements -->
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"
+        (click)="claimantAndProject= true; settings= false" [ngStyle]="{'background-color': claimantAndProject ? '#305496' : '#fbb335', 'color': claimantAndProject ? '#fc9803' : '#305496'}">CLAIMANT & PROJECT</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"
+        (click)="settings = true; claimantAndProject= false" [ngStyle]="{'background-color': settings ? '#305496' : '#fbb335', 'color': settings ? '#fc9803' : '#305496'}">SETTINGS</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="main-card card">
+          <div class="main-card-body card-body">
+        <div class="row">
+          <form>
+            <div class="form-row">
+              <div class="col czzz">
+                <label for="inputEmail4" class = "label-H3">Select a Claimant</label>
+                <div class="input-group mb-3">
+                  <select [disabled]="!isClaimantUnlocked" [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="selectedClaimant" (ngModelChange)="onSelectedClaimantChange()" class="form-control input-text"
+                    id="exampleFormControlSelect1">
+                    <option value="">No Claimant Selected</option>
+                    <ng-container *ngIf="claimantList?.length >0">
+                      <option *ngFor="let claimant of claimantList" value="{{claimant._id}}">{{claimant.name}}</option>
+                    </ng-container>
+                  </select>
+                  <div class="input-group-append ">
+                    <div *ngIf="!isClaimantUnlocked">
+                      <button (click)="onClickClaimantUnlock()" class="input-group-text lock-unlock" id="basic-addon2"><i
+                          i-bs name="lock"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                            <path
+                              d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z">
+                            </path>
+                          </svg></i></button>
+                    </div>
+                    <div *ngIf="isClaimantUnlocked">
+                      <button (click)="onClickClaimantUnlock()" class="input-group-text lock-unlock" id="basic-addon2"><i
+                          i-bs class="bi bi-unlock" name="unlock"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+                            <path
+                              d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z" />
+                          </svg></i></button>
+                    </div>
+                  </div>
+                </div>
+                <!--<div class="row" style="margin-top: 15px; padding-left: 2px;" *ngIf="isManager">
+                  <div class=" col-sm-3 ">
+                    <button (click)="onAddClaimant(claimantModalData)" type="button" class="btn btn-success">Add</button>
+                  </div>
+                  <div class="col-sm-3 ">
+                    <button (click)="onEditClaimant(claimantModalData)" type="button" class="btn btn-success">Edit</button>
+                  </div>
+                  <div class="col-sm-3 ">
+                    <button (click)="onDeleteClaimant()" type="button" class="btn btn-success">Delete</button>
+                  </div>
+                </div>-->
+    
+    
+              </div>
+              <div class="col czzz">
+                <label for="inputEmail4"  class = "label-H3">Select a Project</label>
+    
+                <div class="input-group mb-3">
+    
+                  <!-- no default claimant -->
+                  <select [disabled]="!isProjectUnlocked" [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="selectedProject" (ngModelChange)="onSelectedProjectChange()" class="form-control input-text"
+                    id="exampleFormControlSelect1">
+                    <option value="">No Project Selected</option>
+                    <ng-container *ngIf="projectList?.length >0">
+                      <option *ngFor="let project of projectList" value="{{project._id}}">{{project.name}}</option>
+                    </ng-container>
+                  </select>
+                  <div class="input-group-append ">
+                    <div *ngIf="!isProjectUnlocked">
+                      <button (click)="onClickProjectUnlock()" class="input-group-text lock-unlock" id="basic-addon2"><i
+                          i-bs name="lock"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                            <path
+                              d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z">
+                            </path>
+                          </svg></i></button>
+                    </div>
+                    <div *ngIf="isProjectUnlocked">
+                      <button (click)="onClickProjectUnlock()" class="input-group-text lock-unlock" id="basic-addon2"><i
+                          i-bs class="bi bi-unlock" name="unlock"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+                            <path
+                              d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z" />
+                          </svg></i></button>
+                    </div>
+                  </div>
+                </div>
+                <!-- add edit buttons -->
+                <!--<div *ngIf="isProjectUnlocked && isManager" class="row" style="margin-top: 15px; padding-left: 2px;">
+                  <div class=" col-sm-3 ">
+                    <button (click)="onAddProject(projectModalData)" type="button" class="btn btn-success">Add</button>
+                  </div>
+                  <div class="col-sm-3 ">
+                    <button (click)="onEditProject(projectModalData)" type="button" class="btn btn-success">Edit</button>
+                  </div>
+                  <div class="col-sm-3 ">
+                    <button (click)="onDeleteProject()" type="button" class="btn btn-success">Delete</button>
+                  </div>
+                </div>-->
+    
+    
+              </div>
+            </div>
+          </form>
+        </div>
+        <br>
+        <div *ngIf="licenseData" style="color:#fbb335">
+          <h6 style="font-weight: bolder">The license assigned to the Project is:</h6>
+        License Key: {{licenseData['licenseKey']}} <br>
+        <div *ngIf="licenseData['licenseKeyStartDate']"> License Start Date: {{formatDate(licenseData['licenseKeyStartDate'])}} <br></div>
+          <div *ngIf="!licenseData['licenseKeyStartDate']"> License Start Date: {{formatDate(licenseData['trialLicenseStartDate'])}} <br></div>
+        License Validity: {{formatDate(licenseData['validity'])}} <br>
+        Value Limit: {{licenseData['currency']}} {{formatNumber(licenseData['projectValue'])}} <br>
+        License Status: {{licenseData['licenseStatus']}} <br>
+        </div>
+        <div *ngIf="!licenseData && selectedProject" style="color:#fbb335">
+          <h6>This is a Trial Project</h6>
+          </div>
+        </div>
+        </div>
+      </div>
+
+
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <form [formGroup]="setForm" (ngSubmit)="onSetFormSubmit()">
+          
+          <div class = "divHStick"><label class="label-H1"><h5 class="h5-heading label-H2">FORMAT</h5></label></div>   
+          <br>
+          <button type="submit" class="btn btn-secondary SaveStick"  [disabled]="userData['isManager']">Save</button><br><br>
+
+          <!--<form>-->
+            <div class="form-row">
+              <div class="col set-inputs">
+                <label for="inputEmail4">Region</label>
+                <div class="input-group mb-3">
+                  <select formControlName="regionFormat" class="form-control input-text" (change)="runFormat()">
+                    <option value="en-US">US</option>
+                    <option value="en-GB">UK</option>
+                    <option value="en-IN">India</option>
+                    <option value="en-IT">Italy</option>
+                    <option value="en-CA">Canada (French)</option>
+                    <option value="en-DE">German</option>
+                    <option value="en-fi">Finnish</option>
+                    <option value="en-ES">Spanish (Spain)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col set-inputs">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Decimal Places</label>
+                  <select formControlName="decimalPlaces" class="form-control input-text" (change)="runFormat()">
+                    <option value="0">Null</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <!--
+                  <div class="row input-group mb-3" style="margin-top: 100px;">
+                    <label class = "forSH">Eg.</label>
+                    <input formControlName="currExample" class="form-control input-text" style="margin-left:15px;" [readonly]=true>
+                  </div>
+                  -->
+                </div>
+              </div>
+
+              <div class= "col set-inputs">
+                <label for="inputEmail4">Date Format</label>
+                <div class= "col input-group mb-3">
+                  <label class = "forSH">Day</label> 
+                  <select formControlName="dayFormat" class="form-control input-text" (change)="runFormat()" style="margin-left:30px;">
+                    <option value="numeric">1-Digit [eg.: 1]</option>
+                    <option value="2-digit">2-Digit [eg.: 01]</option>
+                    
+                  </select>
+                </div>
+                <div class="col input-group mb-3">
+                  <label class = "forSH">Month</label>
+                  <select formControlName="monthFormat" class="form-control input-text" (change)="runFormat()" style="margin-left:10px;">
+                    <option value="numeric">1-Digit [eg.: 1]</option>
+                    <option value="2-digit">2-Digit [eg.: 01]</option>
+                    <option value="short">Short [eg.: Jan]</option>
+                    <option value="long">Long [eg.: January]</option>
+                  </select>
+                  </div>
+                  <div class="col input-group mb-3">
+                    <label class = "forSH">Year</label>
+                  <select formControlName="yearFormat" class="form-control input-text" (change)="runFormat()" style="margin-left:30px;">
+                    <option value="2-digit">2-Digit [eg.: 22]</option>
+                    <option value="numeric">4-Digit [eg.: 2022]</option>                    
+                  </select>
+                </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col set-DNFormat">                
+                <div class="row input-group mb-3">
+                  <label class = "forSH">Example of Formatted Data</label>
+                  <input formControlName="currExample" class="form-control input-text" style="margin-left:15px;" [readonly]=true>
+                  <input formControlName="example" class="form-control input-text" style="margin-left:35px;" [readonly]=true>
+                </div>
+                </div>
+              </div>
+                
+            
+
+            <!--</form>-->
+
+            <div class = "divHStick"><label class="label-H1"><h5 class="h5-heading label-H2">Sepcific Terms</h5></label></div>   
+            <br>
+ 
+            <div class="form-row">
+              <div class="col set-inputs">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Contract As</label>
+                  <select formControlName="contractAsSelected" class="form-control input-text">
+                    <option value="Contract">Contract</option>
+                    <option value="Subcontract">Subcontract</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <input *ngIf="setForm.get('contractAsSelected').value === 'Other'" style="margin-top: 10px;" type="text"
+                    class="form-control input-text" formControlName="contractAsValue" placeholder="Other">
+                </div>
+              </div>
+      
+              <div class="col set-inputs">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Claimant As</label>
+                  <select formControlName="claimantAsSelected" class="form-control input-text">
+                    <option value="Claimant">Claimant</option>
+                    <option value="Defendant">Defendant</option>
+                    <option value="Client">Client</option>
+                    <option value="Employer">Employer</option>
+                    <option value="Contractor">Contractor</option>
+                    <option value="Main Contractor">Main Contractor</option>
+                    <option value="Subcontractor">Subcontractor</option>
+                    <option value="Supplier">Supplier</option>
+                    <option value="1st Party">1st Party</option>
+                    <option value="2nd Party">2nd Party</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <input formControlName="claimantAsValue" *ngIf="setForm.get('claimantAsSelected').value === 'Other'"
+                    style="margin-top: 10px;" type="text" class="form-control input-text" placeholder="Other">
+                </div>
+              </div>
+      
+              <div class="col set-inputs">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Defendant As</label>
+                  <select formControlName="defendentAsSelected" class="form-control input-text">
+                    <option value="Defendant">Defendant</option>
+                    <option value="Client">Client</option>
+                    <option value="Employer">Employer</option>
+                    <option value="Contractor">Contractor</option>
+                    <option value="Main Contractor">Main Contractor</option>
+                    <option value="Subcontractor">Subcontractor</option>
+                    <option value="Supplier">Supplier</option>
+                    <option value="1st Party">1st Party</option>
+                    <option value="2nd Party">2nd Party</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <input formControlName="defendentAsValue" *ngIf="setForm.get('defendentAsSelected').value === 'Other'"
+                    style="margin-top: 10px;" type="text" class="form-control" placeholder="Other" class="form-control input-text">
+                </div>
+              </div>
+      
+            </div>
+            <br>
+            <!--<button type="submit" class="btn btn-secondary SaveStick">Save</button><br><br>-->
+               
+        
+            <div class = "divHStick"><label class="label-H1"><h5 class="h5-heading label-H2">Photo</h5></label></div>   
+            <div class="mb-3" style="margin-left: 30px">
+             <label for="formFile" class="form-label" style="margin-top: 20px">Change Photo</label>
+             <input class="form-control input-text" style="width: 700px" type="file"  name="image" (change)="selectImage($event)">
+             <button class="btn btn-outline-success" style="margin-top: 10px; margin-left:575px;"(click)="onUploadImage()">Update Photo</button>
+           </div>
+          
+           <img *ngIf="!imagePath" src=" /assets/images/overview-banner-img.jpg" id="icon" alt="User Icon"
+                     style="margin: 7px 0px  0px  30px; height: 600px; width: 1000px; ">
+           <img *ngIf="imagePath" src="https://claimdd-wa.herokuapp.com/api/projects/getImage/{{imagePath}}" id="icon" alt="User Icon"
+                     style="margin: 7px 0px  0px  30px; height: 600px; width: 1000px; ">
+          
+         </form>
+         </div>
+       </div>
+  
+
+
+
+
+    
+    <!-- Claimant modal  -->
+    <ng-template #claimantModalData let-modal>
+      <div class="modal-header">
+        <h4 *ngIf="!isEditingClaimant" class="modal-title" id="modal-basic-title">Add Claimant</h4>
+        <h4 *ngIf="isEditingClaimant" class="modal-title" id="modal-basic-title">Edit Claimant</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addClaimantForm" (ngSubmit)="onAddClaimantSubmit()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input formControlName="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+            <div *ngIf="
+                  !addClaimantForm.get('name').valid &&
+                  addClaimantForm.get('name').touched
+                " class="text-danger">
+              Please choose a name.
+            </div>
+          </div>
+          <button *ngIf="!isEditingClaimant" type="submit" class="btn btn-primary mr-2">Submit</button>
+          <button *ngIf="isEditingClaimant" (click)="onClaimantEditSubmit()" type="button"
+            class="btn btn-primary mr-2">Update</button>
+
+          <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+
+        </form>
+      </div>
+
+    </ng-template>
+    <!-- Claimant modal end  -->
+
+    <!-- Project modal  -->
+    <ng-template #projectModalData let-modal>
+      <div class="modal-header">
+        <h4 *ngIf="!isEditingProject" class="modal-title" id="modal-basic-title">Add Project</h4>
+        <h4 *ngIf="isEditingProject" class="modal-title" id="modal-basic-title">Edit Project</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addProjectForm" (ngSubmit)="onAddProjectSubmit()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input formControlName="name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+            <div *ngIf="
+                  !addProjectForm.get('name').valid &&
+                  addProjectForm.get('name').touched
+                " class="text-danger">
+              Please choose a name.
+            </div>
+          </div>
+          <button *ngIf="!isEditingProject" type="submit" class="btn btn-primary mr-2">Submit</button>
+          <button *ngIf="isEditingProject" (click)="onProjectEditSubmit()" type="button"
+            class="btn btn-primary mr-2">Update</button>
+
+          <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+
+        </form>
+      </div>
+
+    </ng-template>
+    <!-- Project modal end  -->
+ 
+
+  </div>
+
+

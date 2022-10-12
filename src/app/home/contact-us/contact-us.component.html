@@ -1,0 +1,113 @@
+<!-- Background image-->
+<div id="intro" class="bg-image shadow-2-strong">
+    <div class="mask" style="background-color: rgba(48, 84, 150, 0.8);">
+        <div class="container d-flex align-items-center justify-content-center text-center h-100">
+        <div class="text-white" style="font-weight: bolder">
+            <br>
+            <br>
+            <br>
+            <h1 class="mb-3">CONTACTS</h1>
+            <br>
+            <br>
+            <p style = "font-size: 25px;">Dubai, UAE.</p>
+            <br>
+            <p style = "font-size: 25px; color:#fbb335">Our communication hours are from 2 am to 6 pm (UTC).</p>
+            <br>
+            <br>
+            <!--<a class="btn btn-outline-light btn-lg m-2" href="https://www.youtube.com/watch?v=c9B4TPnak1A" role="button"
+            rel="nofollow" target="_blank">Start tutorial</a>
+            <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank"
+            role="button">Download MDB UI KIT</a> -->
+        </div>
+        </div>
+    </div>
+</div>
+
+<main class="mt-5">
+    <!--Section: Content 1-->
+    <div class="mask" style="background-color: rgba(48, 84, 150, 0);">
+    <section>
+      <div class="row">
+        <div class="col-md-5 gx-5 mb-4">
+          <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5 CA1" data-mdb-ripple-color="light">
+            <img src="../../../assets/images/contact-img-1.jpg" class="img-fluid" />
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-7 gx-5 mb-4 CA1" style = "color: #104a90; max-width: auto;">
+          <div class="form-area">
+            <h2 class="text-white" ><strong>EMAIL US</strong></h2>
+            <form [formGroup]="contactForm" (ngSubmit)="onMessageSubmit()">
+                <div class="col-lg-10" style="max-width: 90%;">
+                    <div class="form-group">
+                        <input type="text" formControlName="companyName" class="form-control input_fields" id="usrCompany" placeholder="Your Company*">
+                    </div>
+                </div>
+                <div class="col-lg-10" style="max-width: 90%;">
+                    <div class="form-group">
+                        <input type="text" formControlName="name" class="form-control input_fields" id="usrName" placeholder="Your Name*">
+                    </div>
+                </div>
+                <div class="col-lg-10" style="max-width: 90%;">
+                    <div class="form-group">
+                        <input type="email" formControlName="email" class="form-control input_fields" id="usrEmail" placeholder="Your Email*">
+                    </div>
+                </div>
+                <div class="col-lg-10" style="max-width: 90%;">
+                    <div class="form-group">
+                        <input type="text" formControlName="country" class="form-control input_fields" id="usrLocation" placeholder="Your Location*">
+                    </div>
+                </div>
+                <div class="col-lg-10" style="max-width: 90%;">
+                    <div class="form-group">
+                        <textarea name="" id="msg" class="form-control input_fields" style="height: 200px;" placeholder="Your Message"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-4" style="max-width: 90%;">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary submit_btn" id="usr" value="SUBMIT">
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+      <!--Section: Content 2-->
+      <div class="mask" style="background-color: rgba(48, 84, 150, 0.1);">
+        <section>
+        
+          <div class="row">
+            <div class="col-md-7 gx-5 mb-4 CA1" style = "color: #104a90;">
+              <h2><strong>REACH US:</strong></h2>
+              <div style="margin-left: 50px">
+              <p><span>Mobile:</span> +971 – 55 368 8580</p>
+              <p><span>India Mobile:</span> +91 – 7737626628</p>
+              <p><span>WhatsApp:</span> +971 – 55 368 8580</p>
+              <p><span>Landline:</span>  +971 – 4 – 349 6860</p>
+              <p><span>Email:</span> GF@GoodFaith.llc</p>
+              <p>Mail: PO Box 319159, Dubai, UAE.</p>
+              <p><span>Face-to-face: </span>  No.313, 3rd Floor, Al Qusais Plaza, Damascus Street, Dubai, UAE</p>
+              
+              </div>
+          </div>
+       
+          <div class="col-md-5 gx-5 mb-4">
+              <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5 CA1" data-mdb-ripple-color="light">
+                <img src="../../../assets/images/contact-img-2.jpg" class="img-fluid" />
+                <a href="#!">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+              </div>
+          </div>
+        </div>
+     
+      </section>
+      </div>
+  
+</main>
+

@@ -1,0 +1,163 @@
+<div class="main-card card">
+  <div class="white-line" style="z-index: 2;">
+  </div>
+  <div class=" main-card-heading" style="z-index: 2;">
+    <div style=" display: inline"></div>
+    <h5 class=" card-header">preview and edit - rates</h5>
+  </div>
+  <div class="main-card-body card-body">
+    <div>
+      <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm-8">
+          <button type="button" class="btn btn-primary btn" style="color: #fbb335; background-color: #305496;">Add
+            &nbsp;
+            <i i-bs name="plus-circle"></i></button>
+        </div>
+
+        <!-- search button -->
+        <div class="col-sm">
+          <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+
+
+        <div class="col-sm-1" style="text-align: right;">
+
+          <button type="button" class="btn btn-primary btn" style="color: #305496; background-color: #fbb335;">Export
+          </button>
+        </div>
+      </div>
+      <table class=" table table-bordered" style="background-color: white;">
+        <thead style="color: #305496;">
+          <tr>
+            <th scope="col">Field 1</th>
+            <th scope="col">Field 2</th>
+            <th scope="col">Field 3</th>
+            <th scope="col">Field 4</th>
+            <th scope="col">Field 5</th>
+            <th scope="col">Field 6</th>
+            <th scope="col">Field 7</th>
+            <th scope="col">Field 8</th>
+            <th scope="col">Field 9</th>
+            <th scope="col">Field 10</th>
+            <th scope="col" style="max-width: 30px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+
+            <td style="max-width: 30px;"> <i i-bs name="pencil-square" class="edit-icon"></i>&nbsp;&nbsp;&nbsp;
+              <i i-bs name="archive-fill" class="delete-icon"></i>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+
+            <td style="max-width: 30px;"> <i i-bs name="pencil-square" class="edit-icon"></i>&nbsp;&nbsp;&nbsp;
+              <i i-bs name="archive-fill" class="delete-icon"></i>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+
+            <td style="max-width: 30px;"> <i i-bs name="pencil-square" class="edit-icon"></i>&nbsp;&nbsp;&nbsp;
+              <i i-bs name="archive-fill" class="delete-icon"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-secondary float-right">Done</button>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<!--add new rate -->
+<ng-template #content let-c="close" let-d="dismiss" class="cardShadow">
+
+
+  <div class="modal-header ">
+    <h5 class="modal-title" id="modal-basic-title">Add Review</h5>
+  </div>
+
+  <div class="modal-body">
+
+    <form>
+      <input type="hidden" name="companyId">
+
+      <div class="form-group">
+        <div class="form-inline">
+          <label for="exampleFormControlSelect1">Are You a Current or Former Employee?<div>
+              <label class="validation-message" style="margin-left: 7px;">*</label>
+            </div></label>
+        </div>
+        <select class="form-control" id="exampleFormControlSelect1" name="emp_state" required>
+          <option value="" selected disabled>Please select</option>
+          <option>Current Employee</option>
+          <option>Former Employee</option>
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <div class="form-inline">
+          <label for="exampleFormControlInput1">Your Job Title <div>
+              <label class="validation-message" style="margin-left: 7px;">*</label>
+            </div></label>
+        </div>
+        <input type="email" class="form-control" id="email" name="job_title" required>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" id="test" class="btn btn-outline-dark " (click)="c()">Cancel</button>
+        <button type="button" class="btn btn-primary " type="submit">Publish</button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- show success message -->
+  <!-- <div class="success" *ngIf="showSuccessMessage">
+    Review added successfully!
+  </div> -->
+
+  <!-- show error message -->
+  <!-- <div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+  </div> -->
+</ng-template>

@@ -1,0 +1,326 @@
+<div class=" main-card-heading" style="z-index: 2;">
+  <div style=" display: inline"></div>
+  <div class="row">
+    <div>
+      <h5 class="h5-heading label-color" class=" card-header">EVENTS</h5>
+    </div>
+</div>
+</div><br>
+
+<div class="main-card card gf tableHCFix">
+
+    <div style="margin-left: 20px">    
+      <div class="row" style="margin-bottom: 20px;">
+        <div class="col-sm">
+          <button type="button" class="btn btn-outline-success"
+            (click)="open(mymodal)">Add
+            Event&nbsp;
+            <i i-bs name="plus-circle"></i></button>
+            <button (click)="onExport()" type="button" class="btn btn-outline-warning" style="margin-left: 20px;">Export</button>
+            <!--<button type="button" (click)="onNext()" class="btn btn-outline-primary" style="margin-left: 20px;">Next</button>-->
+        </div>
+      </div>
+
+      <div style="width:98%; min-height: calc(100vh - 190px)">
+        <table class="table table-borderless" style="border:2px #305496 solid; width: 2300px">
+          <thead style="color: white; background-color: #fbb335; border:2px #305496 solid">
+            <tr style="vertical-align: top;">
+              <th class="align-top" scope="col"  style="width: 100px;">Event ID</th>
+              <th class="align-top" scope="col"  style="width: 150px">Event Type</th>
+              <th class="align-top" scope="col"  style="width: 200px">Event Description</th>
+              <th class="align-top" scope="col"  style="width: 150px">Impact Start Date</th>
+              <th class="align-top" scope="col"  style="width: 150px">Impact End Date</th>
+              <th class="align-top" scope="col"  style="width: 150px">Impacted Days on Completion</th>
+              <th class="align-top" scope="col"  style="width: 150px">Extended Contract Duration before the event in Days</th>
+              <th class="align-top" scope="col"  style="width: 150px">Planned Earned Value at Start in Currency</th>
+              <th class="align-top" scope="col"  style="width: 150px">Actual Earned Value at Start in Currency</th>
+              <th class="align-top" scope="col"  style="width: 150px">Planned Earned Value at End Currency</th>
+              <th class="align-top" scope="col"  style="width: 150px">Actual Earned Value at End in Currency</th>
+              <th class="align-top" scope="col"  style="width: 150px">Cost Claimable</th>
+              <th class="align-top" scope="col"  style="width: 150px">Time Claim Reference</th>
+              <th class="align-top" scope="col"  style="width: 100px">Added By</th>
+              <th class="align-top" scope="col"  style="width: 100px">Added On</th>
+              <th class="align-top" >Controls</th>
+            
+  
+            </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let event of eventsList; let i = index" [ngStyle]="{'background-color': i%2==0 ? 'white' : '#effbfb'}">
+            <td class="align-top" >{{event.eventID}}</td>
+            <td class="align-top" >{{event.type}}</td>
+            <td class="align-top" >{{event.description}}</td>
+            <td class="align-top" >{{event.startDate}}</td>
+            <td class="align-top" >{{event.endDate}}</td>
+            <td class="align-top" >{{event.daysOnCompletion}}</td>
+            <td class="align-top" >{{event.extendedContractDuaration}}</td>
+            <td class="align-top" >{{event.pevAtStart}}</td>
+            <td class="align-top" >{{event.pevAtEnd}}</td>
+            <td class="align-top" >{{event.aevAtStart}}</td>
+            <td class="align-top" >{{event.aevAtEnd}}</td>
+            <td class="align-top" >{{event.costClaimable}}</td>
+            <td class="align-top" >{{event.timeClaimReference}}</td>
+            <td class="align-top" >{{event.addedBy}}</td>
+            <td class="align-top" >{{event.addedOn}}</td>
+            <td class="align-top" ><button type="button" class="btn btn-outline-warning btn-sm m-1" (click)="onEditEvent(editModal, i)"  [disabled]="userData['isManager']">Edit</button>
+            <button type="button" class="btn btn-outline-danger btn-sm m-1" (click)="onDeleteEvent(i)"  [disabled]="userData['isManager']">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+     
+    </div>
+  </div> 
+
+
+  <!-- model for add new events -->
+  <ng-template #mymodal let-modal>
+    <div class="modal-header" style="background-color:#fbb335; color: white;">
+      <h4 class="modal-title" id="modal-basic-title">ADD NEW EVENT</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <form [formGroup]="submitForm" (ngSubmit)="onSubmitForm()" style="background-color:#305496; color:#fbb335;">
+
+      <div class="modal-body">
+
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputEmail4">Event ID</label>
+            <input formControlName="eventID" type="text" placeholder="ID" class="form-control" id="inputEmail4"
+              name="eventID">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Event Type</label>
+            <select formControlName="type" class="form-control" name="type">
+              <option value="" disabled selected hidden></option>
+              <option [ngValue]="'Delay'">Delay</option>
+              <option [ngValue]="'Delay and Disruption'">Delay and Disruption</option>
+              <option [ngValue]="'Disruption'">Disruption</option>
+              <option [ngValue]="'Demobilisation'">Demobilisation</option>
+              <option [ngValue]="'Escalation'">Escalation</option>
+              <option [ngValue]="'Financial Charge'">Financial Charge</option>
+              <option [ngValue]="'Financial Charge on Delayed Profit'">Financial Charge on Delayed Profit</option>
+              <option [ngValue]="'Head Office Overhead'">Head Office Overhead</option>
+              <option [ngValue]="'Loss of Profit'">Loss of Profit</option>
+              <option [ngValue]="'HOOH & Loss of Profit'">HOOH & Loss of Profit</option>
+              <option [ngValue]="'Other Damages'">Other Damages</option>
+              <option [ngValue]="'Remobilisation'">Remobilisation</option>
+              <option [ngValue]="'Subcontractor Claims'">Subcontractor Claims</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Event Description</label>
+            <input formControlName="description" type="text" placeholder="Description" class="form-control"
+              id="inputPassword4" name="description">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Impact Start Date</label>
+            <input formControlName="startDate" type="date" placeholder="Start Date" class="form-control"
+              id="inputPassword4" name="startDate">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Impact End Date</label>
+            <input formControlName="endDate" type="date" placeholder="End Date" class="form-control" id="inputEmail4"
+              name="endDate">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Impacted Days on Completion &nbsp; &nbsp; </label>
+            <input formControlName="daysOnCompletion" type="number" placeholder="Impacted Days" class="form-control"
+              id="inputPassword4" name="daysOnCompletion">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Extended Contract Duration before the event in Days</label>
+            <input formControlName="extendedContractDuaration" type="number" placeholder="Extended Contract Duration"
+              class="form-control" id="inputEmail4" name="extendedContractDuaration">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Planned Earned Value at Start in Currency</label>
+            <input formControlName="pevAtStart" type="number" placeholder="Planned Earned Value" class="form-control"
+              id="inputPassword4" name="pevAtStart">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Actual Earned Value at Start in Currency</label>
+            <input formControlName="aevAtStart" type="number" placeholder="Actual Earned Value" class="form-control"
+              id="inputEmail4" name="aevAtStart">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Planned Earned Value at End in Currency</label>
+            <input formControlName="pevAtEnd" type="number" placeholder="Planned Earned Value" class="form-control"
+              id="inputPassword4" name="pevAtEnd">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Actual Earned Value at End in Currency</label>
+            <input formControlName="aevAtEnd" type="number" placeholder="Actual Earned Value" class="form-control"
+              id="inputEmail4" name="aevAtEnd">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Cost Claimable</label>
+            <select formControlName="costClaimable" class="form-control" name="costClaimable">
+              <option value="" disabled selected hidden></option>
+              <option [ngValue]="'Yes'">Yes</option>
+              <option [ngValue]="'No'">No</option>
+              <option [ngValue]="'Unknown'">Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Time Claim Reference</label>
+            <input formControlName="timeClaimReference" type="text" placeholder="Time Claim Reference"
+              class="form-control" id="inputPassword4" name="timeClaimReference">
+          </div>
+        </div>
+
+        <div  *ngIf = "DataVisible" class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Added By</label>
+            <input formControlName="addedBy" type="text" placeholder="Created By" class="form-control"
+              id="inputPassword4" name="addedBy" [readonly] = true>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Added On</label>
+            <input formControlName="addedOn" type="text"
+              class="form-control" id="inputPassword4" name="addedOn" [readonly]=true>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" style="margin-right: 250px;">Add Event</button>
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')" style="margin-right: 50px;">Exit</button>
+      </div>
+    </form>
+
+  </ng-template>
+
+
+ <!-- Edit modal start here  -->
+ <ng-template #editModal let-modal>
+  <div class="modal-header" style="background-color:#fbb335; color: white;">
+    <h4 class="modal-title" id="modal-basic-title">Edit Event</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body" style="background-color:#305496; color:#fbb335;">
+    <div class="mb-3">
+      <ng-container>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+                <label class="form-label">Event ID</label>
+                <input type="text" class="form-control" id="eventEdit0" value="{{eventsList[selectedEventRow]['eventID']}}" [readonly] = "true">
+          </div>
+        </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label class="form-label">Event Type</label>
+                <select id="eventEdit2" class="form-control" value="{{eventsList[selectedEventRow]['type']}}">
+                  <option value="Delay">Delay</option>
+                  <option value="Delay and Disruption">Delay and Disruption</option>
+                  <option value="Disruption">Disruption</option>
+                  <option value="Demobilisation">Demobilisation</option>
+                  <option value="Escalation">Escalation</option>
+                  <option value="Financial Charge">Financial Charge</option>
+                  <option value="Financial Charge on Delayed Profit">Financial Charge on Delayed Profit</option>
+                  <option value="Head Office Overhead">Head Office Overhead</option>
+                  <option value="Loss of Profit">Loss of Profit</option>
+                  <option value="HOOH & Loss of Profit">Loss of Profit</option>
+                  <option value="Other Damages">Other Damages</option>
+                  <option value="Remobilisation">Remobilisation</option>
+                  <option value="Subcontractor Claims">Subcontractor Claims</option>
+                </select><br>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label">Event Description</label>
+                <input type="text" class="form-control" id="eventEdit1" value="{{eventsList[selectedEventRow]['description']}}">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label class="form-label">Impact Start Date</label>
+                <input type="date" class="form-control" id="eventEdit3" value="{{formatDatetoDatePciker(eventsList[selectedEventRow]['startDate'])}}">
+              </div>
+              <div class="form-group col-md-6">
+
+                <label class="form-label">Impact End Date</label>
+                <input type="date" class="form-control" id="eventEdit4" value="{{formatDatetoDatePciker(eventsList[selectedEventRow]['endDate'])}}">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">  
+                <label class="form-label">Impacted Days on Completion  &nbsp; &nbsp; </label>
+                <input type="number" class="form-control" id="eventEdit5" value="{{ removeComma(eventsList[selectedEventRow]['daysOnCompletion'])}}">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label">Extended Contract Duration before the event in Days</label>
+                <input type="number" class="form-control" id="eventEdit6" value="{{removeComma(eventsList[selectedEventRow]['extendedContractDuaration'])}}">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">  
+                <label class="form-label">Planned Earned Value at Start in Currency</label>
+                <input type="number" class="form-control" id="eventEdit7" value="{{removeComma(eventsList[selectedEventRow]['pevAtStart'])}}">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label">Actual Earned Value at Start in Currency</label>
+                <input type="number" class="form-control" id="eventEdit8" value="{{removeComma(eventsList[selectedEventRow]['aevAtStart'])}}">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">  
+                <label class="form-label">Planned Earned Value at End Currency</label>
+                <input type="number" class="form-control" id="eventEdit9" value="{{removeComma(eventsList[selectedEventRow]['pevAtEnd'])}}">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label">Actual Earned Value at End in Currency</label>
+                <input type="number" class="form-control" id="eventEdit10" value="{{removeComma(eventsList[selectedEventRow]['aevAtEnd'])}}">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">  
+                <label class="form-label">Cost Claimable</label>
+                <select id="eventEdit11" class="form-control">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="Unknown">Unknown</option>
+                </select><br>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label">Time Claim Reference</label>
+                <input type="text" class="form-control" id="eventEdit12" value="{{eventsList[selectedEventRow]['timeClaimReference']}}">
+              </div>
+            </div>
+                <div  *ngIf = "DataVisible" >
+                <label class="form-label">Added By</label>
+                <input type="text" class="form-control" id="eventEdit13" value="{{eventsList[selectedEventRow]['addedBy']}}" [readonly]=true>
+                <label class="form-label">Added On</label>
+                <input type="text" class="form-control" id="eventEdit14" value="{{eventsList[selectedEventRow]['addedOn']}}" [readonly]=true>
+              </div>
+      </ng-container>
+    </div>
+    <button (click)="onEditRow()" type="button" class="btn btn-secondary" style="margin-right: 200px;">Update Event</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')" style="margin-right: 50px;">Exit</button>
+
+  </div>
+
+</ng-template>
+</div>

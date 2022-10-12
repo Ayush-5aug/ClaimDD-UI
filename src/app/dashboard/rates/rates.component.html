@@ -1,0 +1,78 @@
+<div class=" main-card-heading" style="z-index: 2;">
+  <div style=" display: inline"></div>
+  <div class="row">
+    <div class="col-10">
+      <h5 class="h5-heading label-color" class=" card-header">RATES</h5>
+    </div>
+    <!--<div class="col-2">
+      <button class="btn btn-outline-warning btn-sm float-right">Help</button>
+    </div>-->
+</div>
+</div><br>
+
+<div class="main-card card gf">
+    <!-- body elements -->
+    <div style="margin-left: 20px; margin-right: 20px;">
+      <div>
+        <div class="row" style="margin-bottom: 30px; ">
+          <div class="col-sm">
+            <button (click)="onImport()" type="button" class="btn btn-info btn-mg"  [disabled]="userData['isManager']">IMPORT</button>
+            <button (click)="onSeeTemplate()" type="button" class="btn btn-info btn-mg" style="margin-left: 40px;">Download
+              TEMPLATE</button>
+            <button (click)="onPreview()" type="button" class="btn btn-info btn-mg"
+              style="margin-left: 40px;">PREVIEW</button>
+          </div>
+          <div class="col-sm-2" style="text-align: right;">
+            <!--<button (click)="onExport()" type="button" class="btn btn-info btn-mg">EXPORT</button> -->
+          </div>
+          <div class="col-sm-1">
+
+          </div>
+        </div>
+      </div>
+      <div><mark>Tips: Desired heading should be selected to perform the above functions.</mark><br></div>
+      <br>
+      
+      <div>
+        <div class="row">
+          <div class="col-sm">
+            <h5 class="label-H3">PROJECT RATES</h5>
+            <button (click)="selected = 'projectRatesContractCommitments'" type="button"
+              class="btn btn-primary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Rates of such as Bonds and Insurances">Contract Commitments</button><br><br>
+            <button (click)="selected = 'projectRatesSiteFacilities'" type="button" class="btn btn-primary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Rates of such as site offices ">Site
+              Facilities</button><br><br>
+            <button (click)="selected = 'projectRatesSiteAdministrationStaff'" type="button"
+              class="btn btn-primary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Rates of such as Project Manager and Engineers">Site Administration Staff</button><br><br>
+            <button (click)="selected = 'projectRatesEquipmentTransport'" type="button" class="btn btn-primary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Rates of such as Crane, and Bus">
+              Equipment & Transport
+            </button><br><br>
+            <button (click)="selected = 'projectRatesUtilities'" type=" button"
+              class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Rates of such as Water, Electricity">Utilities</button><br>
+
+          </div>
+          <div class="col-sm" style="padding-right: 0;">
+            <div class=" col-sm">
+              <h5 class="label-H3">CONTRACT RATES</h5>
+              <button (click)="selected = 'tenderRatesMaterial'" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Rates of such as Sand and Cement">Material</button><br><br>
+              <button (click)="selected = 'tenderRatesLabour'" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Rates of such as Mason and Helper">Labour</button><br>
+            </div>
+            <div class="col-sm" style="margin-top: 40px;">
+              <h5 class="label-H3">ACTUAL RATES</h5>
+
+              <button (click)="selected = 'actualRatesLabour'" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Applicable for Escalation and Productivity">Labour </button><br>
+            </div>
+           <!--<button type="submit" (click) = "onNext()" class="btn btn-secondary float-right">Next</button>--> 
+
+          </div>
+
+          <div class="col-sm-1" style="margin-top: 30px;">
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <br>
+    </div>
+</div>

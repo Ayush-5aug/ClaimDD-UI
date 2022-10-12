@@ -1,0 +1,1497 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ngx-toastr/toastr";
+
+
+/* Printing style */
+@media print {
+
+	body {
+        font: 12pt Calibri;
+		line-height: 1.5;
+		color: #203764;
+		margin: 0;
+		background-color: aqua;
+		counter-reset: CM;
+		counter-reset: PM;
+		counter-reset: PgN;
+	}
+
+		
+	@page {
+		size: A4;
+		margin: 0pt 30pt 25pt 40pt;
+		page-break-inside: always;
+	}
+
+	@page WordRF {
+		size: portrait;
+		margin: 0pt 0pt 25pt 0pt;
+		page-break-inside: always;
+	}
+	
+	@page WordR {
+		size: portrait;
+		margin: 0pt 0pt 25pt 40pt;
+		page-break-inside: always;
+
+	}
+
+	@page PorF {
+		page-break-inside: always;
+		size: portrait;
+		margin: 0pt -170pt 25pt 0pt;
+    }
+
+	@page Por {
+		page-break-inside: always;
+		size: portrait;
+		margin: 0pt 0pt 25pt 45pt;
+    }
+
+	@page LS {
+		page-break-inside: always;
+		size: landscape;	
+		margin: 0pt 0pt 30pt 28pt;			/* margin should be fixed carefully */
+
+    }
+
+	@page LSF {								/* for sirst page */
+		page-break-inside: always;
+		size: landscape;	
+		margin: 0pt 0pt 25pt 0pt;			/* margin should be fixed carefully */
+
+    }
+
+			
+	@page Auto {
+		size: A4 Auto;
+		margin: 0pt 30pt 25pt 40pt;
+		page-break-inside: always;
+	}
+
+
+
+		/* tables based  orientation */
+
+		
+		.PPorRF{
+			page: WordRF;
+			page-break-after: always;
+			width: 100vw;
+		}
+
+		.PPorR{
+			page: WordR;
+			page-break-after: always;
+			width: 100vw;
+		}
+	
+		.PPor{
+			page: Por;
+			page-break-after: always;
+			width: calc(100vw - 250pt);
+		}
+	
+		
+		.PPorF{
+			page: PorF;
+			page-break-after: always;
+			width: calc(100vw - 170pt)
+		}
+
+
+		.PLSF{
+			page: LSF;
+			page-break-after: always;
+			width: calc(100vw);
+			}
+
+		.PLS{
+			page: LS;
+			page-break-after: always;
+			width: calc(100vw);
+			}
+
+		.PLSOnly{
+			page: LS;
+			page-break-after: always;
+			width: calc(100vw - 60pt);
+			}
+
+
+			.PAuto{
+				page: Auto;
+				page-break-after: always;
+				width: calc(100vw - 60pt);
+			}
+	
+	
+		.FooterHtPor {
+			height: 20pt;  
+			page-break-inside: avoid;
+			page-break-before: avoid;  
+	
+		}
+	
+		.FooterHtLS {
+			height: 20pt;  
+			page-break-inside: avoid;
+			page-break-before: avoid;  
+			  
+		}
+			
+
+	.dummyHeader {
+		position:fixed;
+		bottom: 0pt;
+		page-break-inside: avoid;
+		page-break-after: always;
+	}
+
+	.forTDummyHeader tr td:first-child {
+		background-color: #305496;
+	}
+
+	.forTDummyHeader tr td:last-child {
+		background-color: #fbb335;
+	}
+
+	.HeadLogo {							/*claimant*/
+		width: 50%;
+		height: 30pt;
+		float: left;
+		page-break-inside: avoid;
+		page-break-before: avoid;
+		color: #203764;
+		font-size: 10pt;
+		text-align: left; 
+		font-weight: normal;		
+	}
+
+	.HeadTextRight1 {					/*defendant*/
+		width: 48%;
+		height: 15pt;
+		float: right;
+		text-align: right;
+		font-weight: normal;	
+	}	
+
+	.HeadTextRight2 {					/*project*/
+		width: 48%;
+		height: 15pt;
+		float: right;
+		text-align: right;
+		font-weight: normal;	
+	}	
+	
+	
+	.HeadTextRight3 {					/*ref*/
+		width: 48%;
+		float: right;
+		text-align: right;
+		font-weight: normal;	
+		height: 15pt;
+	}	
+	
+
+	.HeadTextLeft {							/*app heading*/
+		width: 48%;
+		float: left;
+		text-align: left;
+		page-break-inside: avoid;
+		page-break-before: avoid;  
+	}
+	.HeadLogo,
+	.HeadTextRight1,
+	.HeadTextRight2{
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+
+	.FootTextLeft {
+		width: 48%;
+		float: left;
+		text-align: left;
+		page-break-inside: avoid;
+		page-break-before: avoid;  
+	}
+
+	.FootTextRight {
+		width: 48%;
+		float: right;
+		text-align: left;
+	}
+
+	.HeadTextLeft,
+	.FootTextLeft {
+		color: #203764;
+		font-size: 12pt;
+	}
+
+	.HeadTextRight2{
+		color: #203764;
+		font-size: 10pt;
+	}
+
+	.HeadTextRight1,
+	.HeadTextRight3{
+		color: #fbb335;
+		font-size: 10pt;
+	}
+
+	.FootTextRight {
+		color: #fbb335;
+		font-size: 12pt;
+	}
+
+	.Currency {
+		width: 100%;
+		float: right;
+		text-align: right;
+		vertical-align: text-top;
+		margin-top: 0;
+		color: #fbb335;
+		font-size: 12pt;
+		height: 15pt;
+		font-weight: normal;	
+	}
+	.AbbText {
+		width: 100%;
+		float: left;
+		text-align: left;
+		color: #203764;
+		font-size: 12pt;
+		font-weight: normal;
+	}
+
+
+	table {
+		table-layout: fixed;
+		border-collapse: collapse;
+		font-family: "Calibri";
+		white-space: normal;
+		bottom: 0;
+		}
+
+		table th,
+		table td {
+			white-space: normal;		
+			padding: 2pt;
+			vertical-align: text-top;
+			text-align:justify;	
+			overflow-wrap: break-word;
+			word-wrap: break-word;
+		}
+		
+
+		thead {display: table-header-group;}
+		tfoot {display: table-footer-group;}
+
+
+
+	/* Front Cover Page  for Word & Excel Report refer Excel Sheet */ 
+	.forFCPTable {	
+		position: relative;
+		top: 0pt;
+		height: calc(100vh); 		/* height shoud be fixed for the print media such as 100vh */
+	
+		color: #203764;
+		page-break-after: always;	
+		page-break-inside: avoid;
+		}
+
+	
+	
+		.forFCPTable td:first-child, 
+		.forFCPTable td:nth-child(2), 
+		.forFCPTable td:nth-child(5), 
+		.forFCPTable td:nth-child(6) {
+			width: 60pt;
+		}
+
+		.forFCPTable td:nth-child(4) {
+			width: 150pt;
+		}
+
+		
+		.forFCPTable tr:nth-child(7) td:nth-child(1) {
+			background-color: #305496;
+		}
+
+		.forFCPTable tr td:first-child {
+			background-color: #305496;
+		}
+
+		.forFCPTable tr:first-child {
+			background-color: #305496;
+			height: 50pt;
+		}
+		.forFCPTable tr:first-child td:last-child{
+			background-color: #fbb335
+		}
+		.forFCPTable tr:nth-child(4),
+		.forFCPTable tr:nth-child(17){
+			color: #203764;
+			font-size: 20pt;
+			font-weight: bolder;
+			vertical-align: bottom;
+			height: 30pt;
+		}
+
+	
+		.forFCPTable tr:nth-child(9) td:nth-child(3),
+		.forFCPTable tr:nth-child(12) td:nth-child(3){
+			vertical-align: top;
+		}
+
+		.forFCPTable tr:nth-child(4) td:nth-child(3),
+		.forFCPTable tr:nth-child(8) td:nth-child(3),
+		.forFCPTable tr:nth-child(11) td:nth-child(3),
+		.forFCPTable tr:nth-child(17) td:nth-child(3){
+			vertical-align: bottom;
+		}
+
+		.forFCPTable tr:nth-child(5) td:nth-child(3),
+		.forFCPTable tr:nth-child(5) td:nth-child(4),
+		.forFCPTable tr:nth-child(5) td:nth-child(5) {
+			background-color:#fbb335;
+			color: white;
+			font-size: 16pt;
+			font-weight: bolder;
+			vertical-align: text-top;
+			height: 30pt;
+		}
+
+		.forFCPTable tr:nth-child(7) td:nth-child(3), 
+		.forFCPTable tr:nth-child(10) td:nth-child(3), 
+		.forFCPTable tr:nth-child(13) td:nth-child(3), 
+		.forFCPTable tr:nth-child(15) td:nth-child(3), 
+		.forFCPTable tr:nth-child(22) td:nth-child(3){
+			color: #fbb335;
+			font-size: 11pt;
+			vertical-align: middle;
+		}
+
+		.forFCPTable tr:nth-child(8){
+			color: #203764;
+			font-size: 16pt;
+			font-weight: bolder;
+			height: 30pt;
+			vertical-align: bottom;	
+		}
+
+		.forFCPTable tr:nth-child(9){
+			color:#fbb335;
+			font-size: 12pt;
+			height: fit-content;
+			vertical-align: top;
+		}
+		
+		.forFCPTable tr:nth-child(11){
+			color: #fbb335;
+			font-size: 16pt;	
+			font-weight: bolder;	
+			height: fit-content;	
+			vertical-align: bottom;
+		}
+		.forFCPTable tr:nth-child(12){
+			color: #203764;
+			font-size: 12pt;	
+			height: fit-content;
+			vertical-align: top;	
+		}
+
+		.forFCPTable tr:nth-child(14){
+			color: #203764;
+			font-size: 16pt;	
+		}
+
+		.forFCPTable tr:nth-child(18) td:nth-child(2),
+		.forFCPTable tr:nth-child(18) td:nth-child(3) {
+			background-color:  #305496;
+			color: white;
+			font-size: 16pt;
+			font-weight: bolder;
+			vertical-align: text-top;
+			height: 30pt;
+		}
+		.forFCPTable tr:nth-child(21){
+			color: #203764;
+			font-size: 11pt;
+			height: 30pt;
+		}
+		.forFCPTable tr:nth-child(21)td:nth-child(4){
+			text-align: right;
+		}
+
+		.forFCPTable tr:nth-child(2),
+		.forFCPTable tr:nth-child(3),
+		.forFCPTable tr:nth-child(6),
+		.forFCPTable tr:nth-child(14)
+		.forFCPTable tr:nth-child(16),
+		.forFCPTable tr:nth-child(19),
+		.forFCPTable tr:nth-child(20),
+		.forFCPTable tr:nth-child(22) {
+			height: 20pt; 
+		}
+
+		.forFCPTable tr:last-child {
+			background-color: #fbb335;
+			page-break-after: always;
+			height: 50pt;
+		}
+		
+		/*
+		.forFCPTable tr {
+			height: 44pt;
+		}*/
+		
+
+	
+		/* repetative header - refer Excel Print Evalaution note - first rows is dummy row for the alignment*/ 
+	.forExcelTable {
+		position: static;
+		vertical-align: text-top;
+		color: #203764;
+		font-weight: normal;
+		page-break-before: always;
+		page-break-inside: auto;
+		table-layout: fixed;
+		}
+		
+		.forExcelTable thead {	
+			vertical-align: text-top;
+			font-weight: normal;
+			page-break-inside: avoid;
+			max-height: 200pt;
+		}
+		
+		.forExcelTable thead tr:first-child th:first-child {
+			width: 35pt;
+		}
+	
+	
+		.forExcelTable thead tr:nth-child(2) th:last-child {
+				text-align: right;		
+				font-weight: normal;		
+			}
+
+		.forExcelTable thead tr:nth-child(3) th:last-child {
+			text-align: right;		
+			font-weight: normal;		
+		}
+
+		.forExcelTable thead tr:nth-child(3) {
+			border-bottom: 4pt solid #305496;
+		}
+
+		.forExcelTable thead tr:nth-child(4) {				/* Event header*/
+			text-align: left;	
+			color: #fbb335;
+			font-size: 12pt;
+			font-weight: normal;	
+		}
+
+		.forExcelTable thead tr:nth-child(5) {
+			text-align: left;	
+			background: #305496;
+			color: white;
+			border: 2pt solid #305496
+			
+		}
+
+		.forExcelTable thead tr:nth-child(5) {
+			border-bottom: 4pt solid white;
+		}
+		.forExcelTable thead tr:nth-child(7) th {
+			max-height: 80pt;
+		}
+
+		.forExcelTable thead tr:nth-child(7) {
+			border: 2pt solid #305496;			
+		}
+	
+		.forExcelTable thead tr:nth-child(7) th {
+			background-color: #305496;
+			color: white;
+			font-weight: bolder;
+			border: 1pt solid white;			
+		}
+
+		.forExcelTable thead tr:nth-child(5) th:nth-child(1){			
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+			
+			/* repetative footer*/
+		.forExcelTable tfoot {	
+			vertical-align: text-bottom;
+			page-break-inside: avoid;
+			page-break-before: avoid;
+		}
+
+		.forExcelTable tfoot tr:first-child {	
+			height: 5pt;
+			border-bottom: 4pt solid #305496;
+		}
+
+
+		.forExcelTable tfoot tr:nth-child(2) {	
+			vertical-align: text-bottom;
+			page-break-inside: avoid;
+			page-break-after: avoid;
+			page-break-before: avoid;
+		}
+
+		
+		.forExcelTable tfoot tr td:first-child {
+				text-align: left;
+			}
+
+		.forExcelTable tfoot tr td:last-child {
+				text-align: center;
+		}
+		/*header & footer coloring */
+		.forExcelTable thead tr:nth-child(2) th:first-child,
+		.forExcelTable thead tr:nth-child(3) th:last-child{
+			color: #fbb335;
+			font-weight: bolder;
+			font-size: 12pt;
+		}
+
+		.forExcelTable thead tr:nth-child(2) th:last-child,
+		.forExcelTable thead tr:nth-child(3) th:first-child{
+			color:#305496;
+			font-weight: bolder;
+			font-size: 12pt;
+		}
+
+		.forExcelTable tfoot tr:nth-child(2) td:last-child{
+			color: #fbb335;
+			font-size: 12pt;
+		}
+
+		.forExcelTable tfoot tr:nth-child(2) td:first-child{
+			color:#305496;
+			font-size: 12pt;
+		}
+	
+			/* formating body of data*/
+		.forExcelTable tbody tr,
+		.forExcelTable tbody tr td{
+			border: 1pt solid #305496;
+			color:#203764;
+			font-weight: normal;
+		}
+
+
+		.forNotationRow tbody tr:first-child td{								/* top notation row */
+			background-color: #305496;
+			color: #fbb335;
+			font-weight: bolder;
+			border: 1pt solid white;
+		}
+	
+	
+		.forTotalRow tbody tr:last-child td {								/* total row */
+			background-color: #305496;
+			color: white;
+			font-weight: bolder;
+		}
+
+
+		.forExcelTable tbody{
+			border: 2pt solid #305496;
+		}
+
+			
+		.forSHRow  {							/* formatting sub headings in summary table */
+			font-weight: bolder;
+			color: #203764;
+			font-size: 12pt;
+		}
+
+
+		.fornotSHRow {					/* as finalcial total is getting formated due to THead it is added*/
+			font-weight: normal;
+			color: #203764;
+			font-size: 12pt;
+		}
+
+
+    /* for creating table format based on Appendix numbers */
+
+	
+	.tFAbb thead tr th,
+	.tFAbb tbody tr td {
+        text-align: left;
+	}
+
+
+	.tFAbb thead tr th:nth-child(3),
+	.tFAbb tbody tr td:nth-child(3) {
+		width: 70%
+	}
+
+	.tF0 tbody tr:first-child td{
+		font-weight: bolder;
+	  }
+
+	.tF0 thead tr th:nth-child(3),
+	.tF0 tbody tr td:nth-child(3) {
+        text-align: right;
+	}
+
+	.tF0 thead tr th:nth-child(2),
+	.tF0 tbody tr td:nth-child(2) {
+        width: 50%;
+	}
+	  
+    .tF1 thead tr th:nth-child(3),
+    .tF1 thead tr th:nth-child(5),
+    .tF1 thead tr th:nth-child(6),
+    .tF1 tbody tr td:nth-child(3),
+    .tF1 tbody tr td:nth-child(5),
+    .tF1 tbody tr td:nth-child(6){
+        text-align: right;
+    }
+	
+	
+	.tF1 thead tr th:nth-child(2),
+	.tF1 tbody tr td:nth-child(2) {
+        width: 33;
+	}
+	.tF1 thead tr th:nth-child(4),
+	.tF1 tbody tr td:nth-child(4) {
+        width: 10%;
+	}
+	.tF1 thead tr th:nth-child(6),
+	.tF1 tbody tr td:nth-child(6) {
+        width: 23%;
+	}
+
+
+
+    .tF2A tr th:nth-child(3),
+    .tF2A tr th:nth-child(5),
+    .tF2A tr th:nth-child(6),
+    .tF2A tr th:nth-child(7),
+    .tF2A tr td:nth-child(3),
+    .tF2A tr td:nth-child(5),
+    .tF2A tr td:nth-child(6),
+    .tF2A tr td:nth-child(7){
+        text-align: right;
+    }
+
+	.tF2A thead tr th:nth-child(2),
+	.tF2A tbody tr td:nth-child(2) {
+        width: 32%;
+	}
+
+	.tF2A thead tr th:nth-child(4),
+	.tF2A tbody tr td:nth-child(4) {
+        width: 9%;
+	}
+
+	.tF2A thead tr th:nth-child(5),
+	.tF2A tbody tr td:nth-child(5) {
+        width: 9%;
+	}
+
+	.tF2A thead tr th:nth-child(7),
+	.tF2A tbody tr td:nth-child(7) {
+        width: 20%;
+	}
+
+
+    .tF2B1  tr th,
+    .tF2B1  tr td{
+        text-align: right;
+    }
+    .tF2B1  tr th:first-child,
+	.tF2B1  tr td:first-child,
+	.tF2B1  tr th:nth-child(2),
+    .tF2B1  tr td:nth-child(2){
+        text-align: left;
+    }
+
+	.tF2B1  thead tr th:nth-child(2),
+	.tF2B1  tbody tr td:nth-child(2){
+		width: 150pt
+	}
+
+	.tF2B1  thead tr th:last-child,
+	.tF2B1  tbody tr td:last-child{
+		width: 50pt
+	}
+	
+
+    .tF2B2  tr th:nth-child(1),
+    .tF2B2  tr th:nth-child(2),
+    .tF2B2  tr td:nth-child(1),
+    .tF2B2  tr td:nth-child(2){
+        text-align: left;
+    }
+
+	.tF4B1  tr th,
+    .tF4B1  tr td{
+        text-align: right;
+    }
+
+	
+    .tF4B1  tr th:nth-child(1),
+    .tF4B1  tr th:nth-child(2),
+    .tF4B1  tr th:nth-child(3),
+    .tF4B1  tr td:nth-child(1),
+    .tF4B1  tr td:nth-child(2),
+    .tF4B1  tr td:nth-child(3){
+        text-align: left;
+    }
+
+	.tF4B1  thead tr th:nth-child(2),
+	.tF4B1  tbody tr td:nth-child(2){
+		width: 175pt
+	}
+
+
+	.tF4B2  tr th,
+    .tF4B2  tr td{
+        text-align: right;
+    }
+
+    .tF4B2  tr th:nth-child(1),
+    .tF4B2  tr th:nth-child(2),
+    .tF4B2  tr th:nth-child(3),
+    .tF4B2  tr td:nth-child(1),
+    .tF4B2  tr td:nth-child(2),
+    .tF4B2  tr td:nth-child(3){
+        text-align: left;
+    }
+
+    .tF7 tr th:nth-child(4),
+    .tF7 tr th:nth-child(6),
+    .tF7 tr th:nth-child(7),
+    .tF7 tr th:nth-child(8),
+    .tF7 tr th:nth-child(9),
+    .tF7 tr td:nth-child(4),
+    .tF7 tr td:nth-child(6),
+    .tF7 tr td:nth-child(7),
+    .tF7 tr td:nth-child(8),
+    .tF7 tr td:nth-child(9){
+        text-align: right;
+    }
+
+	.tF7 thead tr th:nth-child(2),
+	.tF7 tbody tr td:nth-child(2) {
+		width: 11%;
+	}
+	.tF7 thead tr th:nth-child(3),
+	.tF7 tbody tr td:nth-child(3){
+		width: 17%;
+	}
+	.tF7 thead tr th:nth-child(5),
+	.tF7 tbody tr td:nth-child(5) {
+		width: 7%;
+	}
+	.tF7 thead tr th:nth-child(9),
+	.tF7 tbody tr td:nth-child(9) {
+		width: 12%;
+	}
+
+	.tF8A tr th,
+    .tF8A tr td{
+        text-align: right;
+    }
+
+    .tF8A tr th:nth-child(1),
+	.tF8A tr th:nth-child(2),
+	.tF8A tr th:nth-child(3),
+	.tF8A tr th:nth-child(5),
+	.tF8A tr td:nth-child(1),
+    .tF8A tr td:nth-child(2),
+	.tF8A tr td:nth-child(3),
+	.tF8A tr td:nth-child(5){
+        text-align: left;
+    }
+	
+	.tF8A thead tr th:nth-child(2),
+	.tF8A tbody tr td:nth-child(2) {
+		width: 18%;
+	}
+	
+	.tF8A thead tr th:nth-child(3),
+	.tF8A tbody tr td:nth-child(3) {
+		width: 14%;
+	}
+
+	.tF8A thead tr th:nth-child(5),
+	.tF8A tbody tr td:nth-child(5) {
+		width: 7%;
+	}
+
+	.tF8A thead tr th:nth-child(9),
+	.tF8A tbody tr td:nth-child(9) {
+		width: 14%;
+	}
+
+
+	.tF8B2  tr th,
+    .tF8B2  tr td{
+        text-align: right;
+    }
+
+    .tF8B2  tr th:nth-child(1),
+    .tF8B2  tr th:nth-child(2),
+    .tF8B2  tr th:nth-child(3),
+    .tF8B2  tr td:nth-child(1),
+    .tF8B2  tr td:nth-child(2),
+    .tF8B2  tr td:nth-child(3){
+        text-align: left;
+    }
+
+	.tF8B2 thead tr th:nth-child(2),
+	.tF8B2 tbody tr td:nth-child(2) {
+		width: 110pt;
+	}
+	
+	.tF8B2 thead tr th:nth-child(3),
+	.tF8B2 tbody tr td:nth-child(3) {
+		width: 80pt;
+	}
+
+	.tF8B2 thead tr th:last-child,
+	.tF8B2 tbody tr td:last-child {
+		width: 70pt;
+	}
+
+	.tF9A  tr th,
+    .tF9A  tr td{
+		text-align: right;
+	}
+
+    .tF9A  tr th:nth-child(1),
+    .tF9A  tr th:nth-child(2),
+    .tF9A  tr th:nth-child(3),
+    .tF9A  tr th:nth-child(4),
+    .tF9A  tr td:nth-child(1),
+    .tF9A  tr td:nth-child(2),
+    .tF9A  tr td:nth-child(3),
+    .tF9A  tr td:nth-child(4){
+        text-align: left;
+    }
+
+	.tF9A thead tr th:nth-child(2),
+	.tF9A tbody tr td:nth-child(2) {
+		width: 10%;
+	}
+
+	.tF9A thead tr th:nth-child(3),
+	.tF9A tbody tr td:nth-child(3) {
+		width: 10%;
+	}
+
+	.tF9A thead tr th:nth-child(4),
+	.tF9A tbody tr td:nth-child(4) {
+		width: 7%;
+	}
+
+	.tF9A thead tr th:last-child,
+	.tF9A tbody tr td:last-child {
+		width: 9%;
+	}
+
+	.tF9B  tr th,
+    .tF9B  tr td{
+        text-align: right;
+    }
+
+    .tF9B  tr th:nth-child(1),
+    .tF9B  tr th:nth-child(2),
+    .tF9B  tr th:nth-child(3),
+    .tF9B  tr td:nth-child(1),
+    .tF9B  tr td:nth-child(2),
+    .tF9B  tr td:nth-child(3){
+        text-align: left;
+    }
+
+	.tF9B thead tr th:nth-child(2),
+	.tF9B tbody tr td:nth-child(2) {
+		width: 100pt;
+	}
+	
+	.tF9B thead tr th:nth-child(3),
+	.tF9B tbody tr td:nth-child(3) {
+		width: 80pt;
+	}
+
+	.tF9B thead tr th:nth-child(4),
+	.tF9B tbody tr td:nth-child(4) {
+		width: 60pt;
+	}
+
+	.tF9B thead tr th:nth-last-child(1),
+	.tF9B tbody tr td:nth-last-child(1) {
+		width: 70pt;
+	}
+
+
+
+	.tF9C  tr th,
+    .tF9C  tr td{
+		text-align: right;
+	}
+
+    .tF9C  tr th:nth-child(1),
+    .tF9C  tr th:nth-child(2),
+    .tF9C  tr th:nth-child(3),
+    .tF9C  tr th:nth-child(4),
+    .tF9C  tr td:nth-child(1),
+    .tF9C  tr td:nth-child(2),
+    .tF9C  tr td:nth-child(3),
+    .tF9C  tr td:nth-child(4){
+        text-align: left;
+    }
+	.tF9C thead tr th:nth-child(2),
+	.tF9C tbody tr td:nth-child(2) {
+		width: 30%;
+	}
+
+	.tF9C thead tr th:nth-child(3),
+	.tF9C tbody tr td:nth-child(3) {
+		width: 20%;
+	}
+
+	.tF9C thead tr th:nth-child(4),
+	.tF9C tbody tr td:nth-child(4) {
+		width: 10%;
+	}
+
+    .tF10 tr th:nth-child(3),
+    .tF10 tr th:nth-child(4),
+    .tF10 tr th:nth-child(6),
+    .tF10 tr th:nth-child(7),
+    .tF10 tr td:nth-child(3),
+    .tF10 tr td:nth-child(4),
+    .tF10 tr td:nth-child(6),
+    .tF10 tr td:nth-child(7){
+        text-align: right;
+    }
+	.tF10 thead tr th:nth-child(2),
+	.tF10 tbody tr td:nth-child(2) {
+		width: 22%;
+	}
+
+	.tF10 thead tr th:nth-child(3),
+	.tF10 tbody tr td:nth-child(3) {
+		width: 15%;
+	}
+
+	.tF10 thead tr th:nth-child(5),
+	.tF10 tbody tr td:nth-child(5) {
+		width: 10%;
+	}
+	.tF10 thead tr th:nth-child(7),
+	.tF10 tbody tr td:nth-child(7) {
+		width: 16%;
+	}
+	
+	.tF12 tr th:nth-child(3),
+	.tF12 tr td:nth-child(3) {
+		text-align: right;
+	}
+
+	.tF12 thead tr th:nth-child(2),
+	.tF12 tbody tr td:nth-child(2) {
+		width: 75%;
+	}
+
+	.tF14 tr th:nth-child(3),
+	.tF14 tr td:nth-child(3) {
+		text-align: right;
+	}
+
+	.tF14 thead tr th:nth-child(2),
+	.tF14 tbody tr td:nth-child(2) {
+		width: 50%;
+	}
+
+    .tF16 tr th:nth-child(4),
+    .tF16 tr td:nth-child(4){
+        text-align: right;
+    }	
+
+	.tF16 thead tr th:nth-child(3),
+	.tF16 tbody tr td:nth-child(3) {
+		width: 50%;
+	}
+
+    .tF18  tr th:nth-child(3),
+	.tF18  tr td:nth-child(3),
+    .tF18  tr th:nth-child(6),
+	.tF18  tr td:nth-child(6),
+	.tF18  tr th:nth-child(8),
+    .tF18  tr td:nth-child(8){
+        text-align: right
+    }
+
+	.tF18  thead tr th:nth-child(2),
+	.tF18  tbody tr td:nth-child(2){
+		width: 150pt
+	}
+
+	.tF18  thead tr th:nth-child(4),
+	.tF18  tbody tr td:nth-child(4){
+		width: 90pt
+	}
+
+	.tF18  thead tr th:nth-child(5),
+	.tF18  tbody tr td:nth-child(5){
+		width: 90pt
+	}
+
+	.tF18  thead tr th:nth-child(6),
+	.tF18  tbody tr td:nth-child(6){
+		width: 60pt
+	}
+
+	.tF18  thead tr th:nth-child(8),
+	.tF18  tbody tr td:nth-child(8){
+		width: 90pt
+	}
+
+
+	/*
+	tr th:first-child,
+    tr th:nth-child(2){
+        text-align: left;
+    } */
+
+
+
+	/* related to Report printing*/
+		/* repetative header - refer Excel Print Evalaution note - first rows is dummy row for the alignment*/ 
+	.forReportTable {	
+		position: static;
+		top: 0pt;
+		vertical-align: text-top;
+		color: #203764;
+		background-color: white;
+		page-break-before: always;			
+	}
+	
+		.forReportTable thead {
+			height: 30pt;
+			vertical-align: text-top;
+			font-weight: normal;
+			page-break-inside: avoid;
+			border-bottom: 4pt solid #305496;
+		}
+		
+		.forReportTable thead tr:first-child td{
+
+			vertical-align: bottom;
+		}
+		.forReportTable thead tr:last-child td{
+			vertical-align: top;
+		}
+
+		.forReportTable thead tr:first-child th{
+			padding-top: 20pt;
+		}
+		
+		.forReportTable thead th:first-child{
+			text-align: left;
+			width: 50%;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		.forReportTable thead th:last-child{
+			text-align: right;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	
+
+
+		/* repetative footer*/
+	
+		.forReportTable tfoot {	
+			vertical-align: text-bottom;
+			page-break-inside: avoid;
+			page-break-before: avoid;
+			border-top: 4pt solid #305496;
+		}
+
+		.forReportTable tfoot tr td:first-child{
+			text-align: left;
+			width: 50%;
+			height: 30pt;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		
+		}
+		.forReportTable tfoot tr td:last-child{
+			text-align: left;
+		}
+
+		.forReportTable thead tr:first-child th:first-child,
+		.forReportTable thead tr:last-child th:last-child,
+		.forReportTable tfoot tr:first-child td:first-child{
+			color: #fbb335;
+			font-weight: bolder;
+			font-size: 12pt;
+		}
+
+		.forReportTable thead tr:first-child th:last-child,
+		.forReportTable thead tr:last-child th:first-child,
+		.forReportTable tfoot tr:first-child td:last-child{
+			color:#203764;
+			font-weight: bolder;
+			font-size: 12pt;
+		}
+
+
+		
+/* Claim Report style start here */
+
+
+.leftContent {
+	width: calc(100vw -170pt);
+	border: none;
+	color:#203764;
+	display: flow-root;
+	page-break-before: always;
+}
+
+.rightContent {
+	width: calc(100vw -170pt);
+	border: none;
+	display: flow-root;
+	color:#203764;
+}
+
+.leftContent h1 {
+	text-transform: uppercase;
+	font-size: 16pt;
+	margin-left: 0px;
+	padding: 8px 10px 0px 10px;
+	font-weight: bolder;
+   	color:#203764;
+	cursor: context-menu;
+
+}
+
+.leftContent h2 {
+  counter-reset: CS;
+  counter-increment: CM;
+	text-transform: uppercase;
+	font-size: 12pt;
+	margin-left: 0px;
+	padding: 10px 8px 10px 10px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-decoration: none;
+  	color:#203764
+}
+
+.leftContent h2::before {
+  content: counter(CM) ".";
+}
+
+
+.leftContent h3 {
+  counter-reset: CT;
+  text-transform: uppercase;
+	font-size: 12pt;
+	margin-left: 23px;
+	padding: 0px 8px 8px 10px;
+	font-weight:normal;
+	cursor: pointer;
+	text-decoration: none;
+  color:#203764
+}
+
+.leftContent h3::before {
+  counter-increment: CS;
+  content: counter(CM) "." counter(CS) ".";
+}
+
+
+.leftContent span {
+	margin-left: 10px;
+}
+
+.leftContent a {
+	text-decoration: none;
+  color:#203764
+}
+
+.rightContent h1 {
+	text-transform: uppercase;
+	font-size: 16pt;
+	margin-left: 0px;
+	padding: 0px;
+	font-weight: bolder;
+	cursor: context-menu;
+	color: #203764;
+}
+
+.rightContent h2 {
+  counter-reset: PS;
+  counter-increment: PM;
+	text-transform: uppercase;
+	font-size: 12pt;
+	margin-left: 0px;
+	padding: 10px 10px 0px 10px;
+	font-weight: bolder;
+	cursor: context-menu;
+	
+	text-decoration: underline;
+	display: flow-root;
+}
+
+.rightContent h2::before {
+  content: counter(PM) ".";
+}
+
+
+.rightContent h3 {
+  counter-reset: PT;
+  text-transform: uppercase;
+	font-size: 12pt;
+	margin-left: 0px;
+	padding: 10px 10px 0px 10px;
+	font-weight: bolder;
+	cursor: context-menu;
+  color:#203764;
+  display: flow-root;
+
+}
+
+.rightContent h3::before {
+  counter-increment: PS;
+  content: counter(PM) "." counter(PS) ".";
+}
+
+.rightContent h4 {
+    font-size: 12pt;
+    margin-left: 0px;
+	padding: 20px 20px 0px 10px;
+    font-weight: bolder;
+    text-indent: 0px;
+    cursor: context-menu;
+    color: #203764
+  }
+
+
+.rightContent p {	
+	font-size: 12pt;
+	margin-left: 0px;
+	padding: 5px 5px 5px 10px;
+	font-weight: normal;
+	line-height: 30px;
+	cursor: context-menu;
+	text-indent: 0px;
+	color:#203764;
+	list-style-position:outside;
+	text-align: justify;
+	text-justify: inter-word;
+	list-style-position: outside;
+}
+
+.rightContent p::before {
+  counter-increment: PT;
+  content: counter(PM) "." counter(PS) "." counter(PT) ".";
+  list-style-position: outside;
+}
+
+.rightContent h5 {	
+	font-size: 12pt;
+	margin-left: 0px;
+	padding: 10px 5px;
+	font-weight: normal;
+	line-height: 30px;
+	cursor: context-menu;
+	padding-left: 10px;
+	text-indent: 0px;
+  color:#203764;
+  list-style-position:outside;
+  text-align: justify;
+  text-justify: inter-word;
+  list-style-position: outside;
+
+}
+
+.rightContent h5::before {
+  counter-increment: PS;
+  content: counter(PM) "." counter(PS) ".";
+}
+
+
+
+.rightContent h2 span {
+	margin-left: 35px;
+}
+
+.rightContent h3 span {
+	margin-left: 23px;
+}
+
+.rightContent h4 span {
+	margin-left: 0px;
+}
+
+.rightContent p span {
+	margin-left:15px;
+}
+.rightContent i {	
+    font-size: 16px;
+    margin-left: 20px;
+    padding: 5px 5px;
+    font-weight: normal;
+    line-height: 30px;
+    cursor: context-menu;
+    padding-left: 10px;
+    text-indent: 20px;
+    color: #305496;
+    list-style-position:inside;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  .rightContent i span {
+    margin-left:20px;
+  }
+  
+
+.rightContent h5 span {
+	margin-left:25px;
+}
+
+
+.rightContent {
+	padding: 0px;
+}
+
+
+.fLiHUA{
+  list-style-type: upper-alpha;
+  margin-left: 90px; 
+  font-weight: bolder;
+  padding-top: 10px
+
+}
+.fLiHUA span{
+  margin-left:15px;
+}
+
+.fLiD{
+  list-style-type:decimal;
+  margin-left: 60px;
+  padding-top: 1px
+
+}
+.fLiD span{
+  margin-left:15px;
+}
+
+.fLiLA{
+  list-style-type:lower-alpha;
+  margin-left: 90px;
+  padding-top: 10px
+
+}
+.fLiLA span{
+  margin-left:15px;
+}
+		/*format table report - note head & foot is not used to avoid conflict with printing repeative head & foot*/
+.ftR {
+	width: calc(100vw - 260pt);
+	border: 2pt solid #305496;
+	margin-left: 10px;
+	padding-right: 10px;
+	font-size: 12pt;
+}
+  
+	.ftR tbody tr td {
+		border-left: 1px #305496 solid;
+		color: #203764;
+		font-size: 12pt;
+		padding: 2pt
+	}
+
+	.ftR tbody tr:first-child td,			/* top & bottom row */
+  	.ftR tbody tr:last-child td{
+	border-left: 1px white solid; 
+	background-color: #305496;
+	color: white;
+	font-weight: bolder;
+	}
+
+	.ftR tbody tr:nth-child(2){					/* start of subheading */
+	font-weight: bolder;
+  	}
+
+	.ftR tbody td:last-child{
+		width: 2vw;
+	}
+
+	.ftR tbody td:nth-child(2){
+		width: 32vw;
+	}
+
+	.ftR tbody td:nth-child(3){
+		width: 14vw;
+	}
+	
+	.ftR tbody td:nth-child(4){
+		width: 12vw;
+	}
+  
+  .ftAnnexure {
+	color:#203764;
+	width: calc(100vw - 260pt);
+	border: 2pt solid #305496;
+	margin-left: 10px;
+	padding-right: 10px;
+
+  }
+  
+	.ftAnnexure tbody tr td{
+	border-left: 1px #305496 solid; 
+	}
+
+	.ftAnnexure tbody tr:first-child td{
+	border-left: 1px white solid; 
+	}
+
+
+	.ftAnnexure tbody tr:first-child{
+	background-color:#305496;
+	color: white;
+	font-weight: bolder;
+	}
+
+	.ftAnnexure tbody td{
+	padding: 2pt
+	}
+
+	.ftAnnexure tbody td{
+		width: 20vw;
+	}
+	   
+	.pageBreak{
+	page-break-before: always;
+	}
+
+	.rtpad{
+		padding: 1;
+	}
+
+}

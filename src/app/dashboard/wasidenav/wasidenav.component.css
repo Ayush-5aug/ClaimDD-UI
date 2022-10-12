@@ -1,0 +1,95 @@
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  left: 0;
+  background-color: #305496;
+  overflow-x: hidden;
+  padding-top: 0px;
+  border-right:#fbb335;
+  border-style:solid;
+  border-width: 10px;
+  border-top: 0px;
+  border-bottom: 0px;
+  border-left: 0px;
+}
+
+.sidenav a {
+  padding: 5px 8px 5px 16px;
+  text-decoration: none;
+  font-size: 13px;
+  color: #fbb335;
+  display: block;
+  /* text-decoration: underline; */
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+hr {
+  border: none;
+  border-top: 3px groove white;
+  color: white;
+  overflow: visible;
+  height: 5px;
+  margin-left:7px;
+  width: 170px
+  
+}
+
+/* next button */
+.btn-secondary {
+  background-color: #fbb335;
+  color: #305496;
+  margin: 7px 0px 0px 0px;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus {
+  background-color: #305496 !important;
+  color: #fbb335 !important;
+  margin: 7px 0px 0px 0px;
+}
+
+
+
+  /* scroll bar design */
+  ::-webkit-scrollbar{
+    width: 5px;
+    height: 12px
+  }
+  ::-webkit-scrollbar-track-piece{
+    box-shadow: inset 0 0 5px #305496;
+    border-radius: 0px;
+  }
+  ::-webkit-scrollbar-thumb:hover{
+    background:#fbb335;
+  }
+
+  .inactive {
+    color: red;
+    pointer-events: none;
+    cursor: default;
+    filter: blur(0.5px);
+    /*-webkit-filter: blur(3px);*/
+  }
+  

@@ -1,0 +1,100 @@
+
+<!-- Footer -->
+<footer class="text-center text-white" style="background-color: #305496">
+    <!-- Grid container -->
+    <div class="container p-4">
+  
+      <!-- Section: Form -->
+      <section class="">
+        <form [formGroup]="subscriptionForm" (ngSubmit)="onSubscribeSubmit()">
+          <!--Grid row-->
+          <div class="row d-flex justify-content-center">
+            <!--Grid column-->
+            <div class="col-auto">
+              <p class="pt-2">
+                <strong>Subscribe for our newsletter</strong>
+              </p>
+            </div>
+            <!--Grid column-->
+  
+            <!--Grid column-->
+            <div class="col-md-3 col-12">
+              <!-- Email input -->
+              <div class="form-group form-outline form-white mb-4" >
+                <input type="text" id="usrName" formControlName="name" class="form-control" style="color: #104a90" placeholder="Enter Name*" />
+              </div>
+            </div>
+            <!--Grid column-->
+            <div class="col-md-4 col-12">
+              <!-- Email input -->
+              <div class="form-group form-outline form-white mb-4" >
+                <input type="email" id="usrEmail" formControlName="email" class="form-control" style="color: #104a90" placeholder="Enter Email ID*" />
+              </div>
+            </div>
+            <!--Grid column-->
+  
+            <!--Grid column-->
+            <div class="col-auto">
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-outline-light mb-4">
+                Subscribe
+              </button>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </form>
+      </section>
+      <!-- Section: Form -->
+  
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row" >
+
+            <!--Grid column-->
+          <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+            
+          </div>
+          <!--Grid column-->
+  
+
+            <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase"><a routerLink="/home/faq" style="color: #fbb355; font-size: 16px; text-decoration: none;">FAQ</a></h5>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase"><a routerLink="/home/terms-of-use" style="color: #fbb355; font-size: 16px; text-decoration: none;">TERMS OF USE</a></h5>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase"><a routerLink="/home/privacy" style="color: #fbb355; font-size: 16px; text-decoration: none;">PRIVACY POLICY</a></h5>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+            
+            </div>
+    
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+    </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright: Good Faith (LLC). All Rights Reserved.
+      <!--<a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>-->
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->

@@ -1,0 +1,125 @@
+.navbar-default {
+  background: white;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  border: none;
+  padding-top: 2px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 0px;
+  color: #2b5dc1;
+}
+
+.navbar-default ul li {
+  font-family: Georgia, serif;
+  padding-top: 14px;
+  transition: 0.4s;
+}
+.navbar-default ul li a {
+  font-family: Georgia, serif;
+  color: #2b5dc1;
+}
+.navbar-default ul .active {
+  color: #2b5dc1;
+  background: transparent;
+}
+
+.logo-img {
+  width: 300px;
+  padding-top: 0px;
+  transition: 0.4s;
+}
+
+.title {
+  font-family: Helvetica;
+  color: #104a90;
+  font-weight: 600;
+  padding-bottom: 0px;
+  transition: 0.4s;
+}
+.desc {
+  font-family: Helvetica;
+  color: #fbb335;
+  margin-top: -10px;
+  margin-left: 5px;
+  transition: 0.4s;
+}
+.navbar-default.shrink {
+  padding-top: 0px;
+  padding-bottom: 15px;
+  transition: 0.4s;
+}
+
+.navbar-default.shrink .nav .dropdown .dropdown-menu {
+  padding: 10px 0px;
+}
+.navbar-default.shrink ul li {
+  padding-top: 0px;
+  transition: 0.4s;
+  padding-bottom: 15px;
+}
+
+.navbar-default.shrink .title {
+  padding-top: 0px;
+  font-size: 14px;
+  transition: 0.4s;
+}
+.navbar-default.shrink .desc {
+  color: #fbb335;
+  margin-top: -10px;
+  margin-left: 2px;
+  font-size: 11px;
+  transition: 0.4s;
+}
+.navbar-default.shrink .logo-img {
+  padding-top: 5px;
+  width: 250px;
+  transition: 0.4s;
+}
+.navbar-default.shrink ul li a {
+  color: black;
+}
+
+.active {
+  color: darkblue !important;
+}
+
+.nav .dropdown:focus {
+  background: transparent !important;
+}
+
+.pr-0 {
+  padding-right: 0px !important;
+}
+.pl-0 {
+  padding-left: 0px !important;
+}
+.pt-0 {
+  padding-top: 0px !important;
+}
+.mt-0 {
+  margin-top: 0px !important;
+}
+.mr-0 {
+  margin-right: 0px !important;
+}
+.ml-0 {
+  margin-left: 0px !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  .title {
+    color: #104a90;
+    font-weight: 600;
+    padding-bottom: 0px;
+    font-size: 20px;
+  }
+  .desc {
+    color: #fbb335;
+    margin-top: -10px;
+    margin-left: 5px;
+  }
+}
+.nav-item {
+  margin: auto;
+}

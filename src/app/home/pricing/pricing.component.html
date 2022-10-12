@@ -1,0 +1,204 @@
+<!-- Background image-->
+<div id="intro" class="bg-image shadow-2-strong">
+    <div class="mask" style="background-color: rgba(48, 84, 150, 0.2);">
+        <div class="container d-flex align-items-center justify-content-center text-center h-100">
+        <div class="text-white" style="font-weight: bolder">
+            <br>
+            <br>
+            <br>
+            <h5 class="mb-4" style = "color: #305496">PRICING</h5>
+            <img src="../../../assets/images/ClaimDD.svg" class="img-fluid" />
+            <p style= "font-size: 25px;">The price is flexible based on the location of the Project ("Region"), number of the Projects, and limit of the Project's value.</p>
+            <br>
+            <!--<p style = "font-size: 25px;">Good Faith's Web Applications (web-based software) helps the professionals to carry out the contract expert tasks.</p>
+            <a class="btn btn-outline-light btn-lg m-2" href="https://www.youtube.com/watch?v=c9B4TPnak1A" role="button"
+            rel="nofollow" target="_blank">Start tutorial</a>
+            <a class="btn btn-outline-light btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank"
+            role="button">Download MDB UI KIT</a> -->
+        </div>
+        </div>
+    </div>
+</div>
+
+<main class="mt-5">
+  <!--Section: Content 1-->
+  <div class="mask" style="background-color: rgba(48, 84, 150, 0);">
+  <section>
+    <div class="row">
+      <!--
+      <div class="col-md-5 gx-5 mb-4">
+        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5 CA1" data-mdb-ripple-color="light">
+          <img src="../../../assets/images/Pricing-img1.jpg" class="img-fluid" />
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+        </div>
+      </div>
+      -->
+      <div class="col-md-2 gx-5 mb-4">
+      </div>
+      <div class="col-md-8 gx-5 mb-4 CA1" style = "color: #104a90; max-width: auto;">
+        <h3>ENTER THE DESIRED PLAN DETAILS</h3>
+        <div class="pricing-form-area">
+          <select class="selectpicker" id = "curr" (click)="currencyChange()">
+            <option value = "AED">AED</option>
+            <option value = "EUR">EUR</option>
+            <option value = "GBP">GBP</option>
+            <option value = "IND">IND</option>
+            <option value = "USD">USD</option>
+          </select>
+           <h3></h3>
+          <p>The <strong>PRICING</strong> is available for <span style="color: #fbb335">Monthly, Quaterly, Half Yearly, and Annually</span> subscription (where you can save upto 20%).</p>
+          <p>Discount shall be automatically applied to the unit price based on the Number of Projects and Projects Value Limit.</p>
+        <div class="form-area">
+          <form class="form-horizontal" action="#">
+            <!--            
+            <div class="form-group" style="margin-left: 17px">
+              <div class="row">
+              <label class="col-sm-6" style="color: #fbb335" for="email">Signed Up Email ID</label>
+              <div class="col-sm-6">
+                <input type="email" class="form-control" style="text-align: center;" id="project" name="email" [(ngModel)]="email">
+              </div>
+              </div>
+            </div>
+            -->
+
+            <div class="form-group" style="margin-left: 17px">
+              <div class="row">
+              <label class="col-sm-6" style="color: #fbb335" for="email">Project Location (Region)</label>
+              <div class="col-sm-6">
+                <select class="form-control rounded" style="text-align: center;" id = "region" (click) = "onRegionChange()">
+                 
+                  <option value = "America (USA)">America (USA)</option>  
+                  <option value = "Asia (excluding Singapore & Hong Kong)">Asia (excluding Singapore & Hong Kong)</option>
+                  <option value = "Australia">Australia</option>
+                  <option value = "Central Africa">Central Africa</option>
+                  <option value = "East Africa">East Africa</option>
+                  <option value = "Europe">UK & Europe</option>
+                  <option value = "Hong Kong">Hong Kong</option>
+                  <option value = "Middle East">Middle East</option>
+                  <option value = "North Africa">North Africa</option>
+                  <option value = "Singapore">Singapore</option>
+                  <option value = "South Africa">South Africa</option>
+                  <option value = "Western Africa">Western Africa</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+              <div class="form-group" style="margin-left: 17px">
+                <div class="row">
+                <label class="col-sm-6" style="color: #fbb335" for="email">Number of the Projects</label>
+                <div class="col-sm-6">
+                  <input type="number" min="1" max="100" class="form-control input_field-1  rounded"  style="text-align: center;" id="numberOfProject" (keyup)="calculateBill()" name="numberOfProjects" [(ngModel)]="numberOfProjects">
+                </div>
+                </div>
+              </div>
+              <div class="form-group" style="margin-left: 17px">
+                <div class="row">
+                <label class="col-sm-6" style="color: #fbb335" for="pwd">Projects Value Limit in {{currency}} {{FormatedPV}}</label>
+                <div class="col-sm-6">          
+                  <input type="number" class="form-control input_field-2  rounded"  style="text-align: center;" id = "PV" placeholder="" (keyup)="calculateBill()" name="projectValue" value="1000000" [(ngModel)]="projectValue">
+                </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <h4>MONTHLY PRICE FOR THE SELECTED PLAN in {{currency}}</h4>
+              </div>
+              <div class="form-group" style="margin-left: 17px">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="card" style="background-color: #fbb335;">
+                      <div class="card-body">
+                        <input type="radio" id="html" name="fav_language" value="HTML" [checked]="isMonthly" (click) = "setIsMonthly()">
+                        <label for="vehicle1" style="margin-left: 20px; font-size: 20px;"> {{formatNumber(FinalPriceMonth)}}</label><br>
+                        <p style="color: #104a90; font-size:medium">If Paid Monthly</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="card" style="background-color: #fbb335;">
+                      <div class="card-body">
+                        <input type="radio" id="html" name="fav_language" value="HTML" (click)="setQuaterly()">
+                        <label for="vehicle1" style="margin-left: 20px;  font-size: 20px;"> {{formatNumber(FinalPriceQtr)}}</label><br>
+                        <p style="color: #104a90; font-size:medium">If Paid Quaterly</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="card" style="background-color: #fbb335;">
+                      <div class="card-body">
+                        <input type="radio" id="html" name="fav_language" value="HTML" (click)="setHalfYearly()">
+                        <label for="vehicle1" style="margin-left: 20px; font-size: 20px;"> {{formatNumber(FinalPricehalfYearly)}}</label><br>
+                        <p style="color: #104a90; font-size:medium">If Paid Half Yearly</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="card" style="background-color: #fbb335;">
+                      <div class="card-body">
+                        <input type="radio" id="html" name="fav_language" value="HTML" (click)="setAnnually()">
+                        <label for="vehicle1" style="margin-left: 20px; font-size: 20px;"> {{formatNumber(FinalPriceAnnually)}}</label><br>
+                        <p style="color: #104a90; font-size:medium">If Paid Annually</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--              // will be used later
+              <div class="form-group" style="margin-left: 17px">
+                <div class="row">
+                <label class="col-sm-6" for="pwd"  style="text-align: right;" >Enter discount code, if any</label>
+                <div class="col-sm-6">          
+                  <input type="text" class="form-control"  style="text-align: center;" placeholder="" name="" value="0">
+                </div>
+                </div>
+              </div>
+              -->
+              <div class="form-group" style="background-color:  #fbb335; margin-left: 17px">
+                <label class="col-sm-12 rounded" for="pwd" style="text-align: center; font-size: 18px ; font-weight: bolder;">Net plan amount is {{currency}} {{formatNumber(newPrice)}} for {{duration}} month(s).</label>
+              </div>
+              <div class="form-group">
+                <p>ClaimDD can be used for the past month. Thus, select the desired start month before buying it. The validity shall be automatically calculated based on the selected payment period.</p>
+              </div>
+              <div class="form-group" style="margin-left: 17px">
+                <div class="row">
+                <label class="col-sm-12" for="email" style="font-size: 18px; font-weight: bolder;">The Plan is valid for {{duration}} months starting from:</label>
+                <label  class="col-sm-6" style="color: #fbb335" for="email" style="text-align: right;">Select a starting month</label>
+                <div class="col-sm-6">
+                  <input type="month" class="form-control"  style="text-align: center;" id="bdaymonth" name="startDate" [(ngModel)]="startDate">
+                </div>
+                </div>
+              </div>
+              <!-- SPINNER -->
+              <div *ngIf="showSpinner" class="d-flex align-items-center">
+                <strong>Please Wait...</strong>
+                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+              </div>
+
+              <div class="form-group" style="background-color:  #fbb335; margin-left: 17px">
+                <label class="col-sm-12"></label>
+              </div>
+          
+              <div class="form-group" style="margin-left: 17px">
+                <div class="row">
+                <label class="col-sm-6" style="color: #fbb335; text-align: right;" for="email">Enter Signed Up Email ID</label>
+                <div class="col-sm-6">
+                  <input type="email" class="form-control" style="text-align: center;" id="project" name="email" [(ngModel)]="email">
+                </div>
+                </div>
+              </div>
+  
+              <div class="form-group">        
+                <div class="col-sm-12" style="text-align: center">
+                  <button type="submit" class="btn btn-info" (click)="buyNow()">Buy Now</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+</main>

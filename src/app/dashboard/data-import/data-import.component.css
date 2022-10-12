@@ -1,0 +1,220 @@
+/* common style */
+.main-card {
+  border: none;
+}
+.white-line {
+  background-color: white;
+  position: sticky;
+  top: 100px;
+  width: 100%;
+  height: 10px;
+}
+.main-card-heading {        /* slight modified */
+  color: white;
+  text-transform: uppercase;
+  background-color: #305496;
+  position: sticky;
+  top: 0px;
+  margin-left: -10px;
+  width: calc (100% + 10px);
+  max-height: 40px;
+}
+
+
+.main-card-body {
+  min-height: 100vh;
+  background-color: white;
+}
+
+/* common style
+
+.search-table-outter {
+  overflow-x: scroll;
+}
+ */
+
+th,
+td {
+  min-width: 100px;
+}
+
+/* next button */
+.btn-secondary {
+  background-color: #fbb335;
+  color: #305496;
+  margin: 7px 0px 0px 0px;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus {
+  background-color: #305496 !important;
+  color: #fbb335 !important;
+  margin: 7px 0px 0px 0px;
+}
+
+
+.smallCol {
+  width: 1px;
+}
+
+/* scroll bar visibility */
+.gf {
+  min-height: calc(100vh - 125px);
+  max-height: calc(100vh - 125px);
+  overflow-x: auto;
+  overflow-y: auto;
+  margin-left: -10px;
+  margin-top: -21px;
+  border-radius: 0px;
+  z-index: 2;
+}
+
+
+/* scroll bar design */
+::-webkit-scrollbar{
+  width: 8px;
+  height: 8px
+}
+::-webkit-scrollbar-track-piece{
+  box-shadow: inset 0 0 5px #305496;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:#fbb335;
+}
+
+ /*Table Header and column fixing added by Sagaya*/
+ .tableHCFix{
+  top:280px;
+  right: 10px;
+  position:sticky;
+  z-index: 10;
+}
+
+.tableHCFix tr:first-child{
+  position: sticky;
+  top: 1px;
+  z-index: 2;
+  color: white;
+  font-weight: bolder;
+  border:2px #305496 solid;
+  box-shadow: 1px 1px #305496, -1px -1px #305496;
+ 
+}
+
+.tableHCFix tr td:nth-child(1) {
+  position:sticky;
+  left:-1px;
+  background-color: #fbb335;
+  color: white;
+  font-weight: bolder;
+  border-bottom:1px white solid;
+  border-left:1px #305496 solid;
+  box-shadow: 1px 1px #305496, -1px -1px #305496;
+}
+
+
+.tableHCFix tr:first-child td:first-child {
+  color:#fbb335;
+  border:1px #305496 solid;
+}
+
+.cBorder{
+  border-left: 1px #305496 solid;
+  box-shadow: 0px 1px #305496;
+}
+
+
+.label-H1{
+  background-color:#fbb335;
+  color: white;
+  margin-left:-30px;
+  width: 550px;
+  max-width: 100%;
+  margin-top: 0px;
+  height: 25px;
+  padding-left: 30px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  
+  }
+
+.label-H2 {
+  color:#fbb335;
+  font-weight: bolder;
+  width: fit-content;
+  border-bottom:#fbb335;
+  border-width: 3px;
+  border-style: double;
+  border-top:0;
+  border-left: 0;
+  border-right: 0;
+  margin-left: -5px;
+  margin-top: 10px;
+  margin-right: 20px;
+  padding-left: 0px;
+  text-transform: uppercase;
+}
+
+/* file upload */
+.fileUL::before {
+  background-color:white;
+  content: 'Select Data File:';
+  color:#305496;
+  border: 2px 2px #fbb335 solid;
+  padding: 5px;
+  cursor: pointer;
+  width: 500px;
+  }
+
+.fileUL:hover::before {
+    background-color:#305496;
+    color:white;
+    border: 2px 2px #fbb335 solid;
+}
+
+.fileUL::-webkit-file-upload-button{
+    visibility: hidden;
+}
+
+.divHStick{
+  position: sticky;
+  margin-left: 10px;
+  z-index: 1;
+}
+
+.columnGF{
+  float: left;
+  width: 50%;
+  padding: 10px
+}
+.row::after{
+  content: "";
+  display: table;
+  clear:both;
+}
+
+/* Import button */
+.btn-success {
+  background-color: #305496;
+  color: #fbb335;
+  margin: 15px 140px 0px 0px;
+}
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success:focus {
+  background-color: #fbb335 !important;
+  color:#305496 !important;
+  margin: 15px 140px 0px 0px;
+}
+
+
+fixSize{
+  min-width: 1000px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}

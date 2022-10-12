@@ -1,0 +1,47 @@
+<div class="sidenav">
+  <div style="position: sticky; top:0; z-index: 2;">
+    <img src=" /assets/images/ClaimDD.jpg" id="icon" alt="User Icon"
+    style="margin: 4px 5px  0px  7px; max-height: 75px; max-width: 180px; position: sticky">
+    <!--<button (click)="onLogout()" type="button" class="btn btn-warning" style="margin: 5px 5px  0px  7px; max-height: 50; width: 180px; max-width: 180px; border-radius: 0px; color: white; text-align: left; font-weight:bolder">USER: {{userData['userName']}}</button>-->
+    <select type="button" id="operations" (click)="operations(savePwd)" style="margin: 5px 5px  0px  7px; max-height: 50; width: 180px; max-width: 180px; border-radius: 0px; text-align: left; font-weight:bolder; background-color: #fbb335; color: white">
+      <option selected value = "">{{userData['userName']}}</option>
+      <option value="pwdChange">Change Password</option>
+      <option value="logout">Logout</option>
+    </select>
+  </div><br>
+  <a *ngIf="isOwner" routerLink="create-manager">MY PAGE</a>
+  <a *ngIf="isManager" routerLink="create-executer">MY PAGE</a>
+  <a [ngClass]="isOwner ? 'inactive' : ''" routerLink={{dashboardUrl}}>GET STARTED</a>
+  <a *ngIf="isManager || isExecuter" routerLink="actual-db">DASHBOARD</a><hr>
+  <a routerLink="contract-particulars" [ngClass]="isOwner || isReviewer ? 'inactive' : ''">CONTRACT PARTICULARS</a>
+  <a routerLink="financial-particulars" [ngClass]="isOwner || isReviewer ? 'inactive' : ''">FINANCIAL PARTICULARS</a><hr>
+  <a routerLink="rates" [ngClass]="isOwner || isReviewer ? 'inactive' : ''">RATES</a>
+  <a routerLink="quantum" [ngClass]="isOwner || isReviewer ? 'inactive' : ''">QUANTUM</a><hr>
+  <a routerLink="events" [ngClass]="isOwner || isReviewer ? 'inactive' : ''">EVENTS</a><hr>
+  <a routerLink="evaluation" [ngClass]="isOwner || isReviewer ? 'inactive' : ''">EVALUATION</a><hr>
+  <a routerLink="claim" [ngClass]="isOwner || isReviewer ? 'inactive' : ''">OPEN CLAIM</a><hr>
+  <!--<a routerLink="contemporary-records">CONTEMPORARY RECORDS</a>-->
+
+
+</div>
+
+
+<ng-template #savePwd let-modal>
+  <div class="modal-header" style="background-color:#fbb335; color: white">
+      <h4>RESET PASSWORD</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body" style="background-color: #305496; color: white">
+    <div class="mb-3">
+      <label for="pdf">New Password</label>
+      <input type="text" class="form-control" id="newPwd"><br>
+      <label for="excel">Confirm Password</label>
+      <input type="text" class="form-control" id="cnfPwd"><br>
+      <button type="button" class="btn btn-secondary mr-2" (click)="changePwd()">RESET</button>
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')" style="margin-left: 5px;">EXIT</button>
+    </div>
+  </div>
+
+</ng-template>

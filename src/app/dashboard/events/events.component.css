@@ -1,0 +1,171 @@
+/* common style */
+.main-card {
+  border: none;
+}
+.white-line {
+  background-color: white;
+  position: sticky;
+  top: 100px;
+  width: 100%;
+  height: 10px;
+}
+.main-card-heading {        /* slight modified */
+  color: white;
+  text-transform: uppercase;
+  background-color: #305496;
+  position: sticky;
+  top: 0px;
+  margin-left: -10px;
+  width: calc (100% + 10px);
+  max-height: 40px;
+}
+
+.main-card-body {
+  min-height: 100vh;
+  background-color: white;
+}
+
+/* common style */
+
+.btn-primary {
+  background-color: #fbb335;
+  color: #305496;
+}
+
+th {
+  font-size: 14px;
+  vertical-align: top;
+}
+
+td {
+  font-size: 14px;
+  float: top;
+  vertical-align: top;
+}
+
+/* next button */
+.btn-secondary {
+  background-color: #fbb335;
+  color: #305496;
+  margin: 7px 0px 0px 0px;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus {
+  background-color: #305496 !important;
+  color: #fbb335 !important;
+  margin: 7px 0px 0px 0px;
+}
+
+/* icon styles */
+.edit-icon {
+  color: green;
+}
+
+.delete-icon {
+  color: red;
+}
+
+
+
+.gf {
+  max-height: calc(100vh - 125px);
+  overflow-x: auto;
+  overflow-y: auto;
+  margin-left: -10px;
+  margin-top: -21px;
+  border-radius: 0px;
+}
+
+
+/* scroll bar design */
+::-webkit-scrollbar{
+  width: 8px;
+  height: 8px
+}
+::-webkit-scrollbar-track-piece{
+  box-shadow: inset 0 0 5px #305496;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:#fbb335;
+}
+
+
+  /*Table Header and column fixing added by Sagaya*/
+  .tableHCFix{
+    top:220px;
+    position:sticky;
+    z-index: 10;
+    vertical-align: top;
+
+  }
+  
+  .tableHCFix thead {
+    position: sticky;
+    top: 0px;
+    color: white;
+    background-color:#fbb335;
+    z-index: 2;
+  }
+
+  /*      not used as doe not looks lgood*/
+
+  .tableHCFix thead th{  
+    resize: both;
+    overflow: auto; 
+  }
+  
+  
+  .tableHCFix th:nth-child(1),
+  .tableHCFix td:nth-child(1) {
+    position:sticky;
+    left:0px;
+    background-color:#fbb335; 
+    color: white;
+    font-weight: bolder;
+  }
+  
+ 
+  
+  .tableHCFix thead th:nth-child(1),
+  .tableHCFix thead th:nth-child(2),
+  .tableHCFix thead th:nth-child(3) {
+    z-index: 2;
+    background-color:#fbb335; 
+    color: white;
+  }
+
+  .tableHCFix thead th:nth-child(6),
+  .tableHCFix thead th:nth-child(7),
+  .tableHCFix thead th:nth-child(8),
+  .tableHCFix thead th:nth-child(9),
+  .tableHCFix thead th:nth-child(10),
+  .tableHCFix thead th:nth-child(11),
+  .tableHCFix tbody td:nth-child(6),
+  .tableHCFix tbody td:nth-child(7),
+  .tableHCFix tbody td:nth-child(8),
+  .tableHCFix tbody td:nth-child(9),
+  .tableHCFix tbody td:nth-child(10),
+  .tableHCFix tbody td:nth-child(11){
+    text-align: right;
+  }
+  
+  
+.tableHCFix tr,
+.tableHCFix th, 
+.tableHCFix td{
+  border-left: 1px #305496 solid;
+  box-shadow: 0px 1px #305496;
+}
+
+
+.butDivStick{
+  position: sticky;
+  top: 30px;
+  left:30px;
+  z-index: 1;
+
+}
+

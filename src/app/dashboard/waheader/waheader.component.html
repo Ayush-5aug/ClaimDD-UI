@@ -1,0 +1,43 @@
+
+
+<nav class="waheader  sticky-top " style="padding-left: 0; background-color:#305496; color:#fbb335; padding-left: 5px; text-transform: uppercase;">
+
+  <div class="row" style="min-width: 900px">
+      <div class="row top-rowEx" *ngIf="isOwner" style="background-color:#305496; color:#fbb335; padding-left: 5px; text-transform: uppercase;">
+          <div class="col-3 text-nowrap">LICENSE TYPE : {{licenseType}} </div> 
+          <div  class="col-3 text-nowrap"><span class="ml-4 mr-4" style="color: white; font-weight: bolder;">||</span>ACTIVE LICENSE : {{activeLicenseCount}} </div>
+           <div  class="col-3 text-nowrap"><span class="ml-4 mr-4" style="color: white; font-weight: bolder;">||</span> ASSIGNED LICENSES: {{assignedLicenseCount}}</div>           
+      </div>
+
+      <div class="row top-rowEx" *ngIf="isManager" style="background-color:#305496; color:#fbb335; padding-left: 5px; text-transform: uppercase;">
+         <div class="col-4 text-nowrap">ACTIVE LICENSES: {{activeLicenseCount}}<span class="ml-4 mr-4" style="color: white; font-weight: bolder;">||</span>ASSIGNED LICENSES: {{assignedLicenseCount}}</div> 
+         <div class="col-3 text-nowrap"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{licenseValidity | date}}"  style = "min-width: 300px; max-height: 30px;  white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"><span class="ml-4 mr-4" style="color: white; font-weight: bolder;">||</span> LICENSE VALIDITY: {{licenseValidity | date}}</div>       
+         <div class="col-3 text-nowrap"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="CLAIMANT : {{claimant}}; DEFENDANT : {{defendant}}"> <span class="ml-4 mr-4" style="color: white; font-weight: bolder;">|| </span> SELECTED PROJECT: {{project}}</div>
+
+      </div>
+      
+      <div class="row top-rowEx" *ngIf="(isExecuter || isReviewer) && !project">
+        <div class="col" style="background-color:#305496; color:#fbb335; padding-left: 5px; text-transform: uppercase;">
+        DELAY AND DISRUPTION COST EVALUATION 
+        </div>
+      </div>
+      <div class="row top-rowEx" *ngIf="(isExecuter || isReviewer) && (claimant || defendant)" style="background-color:#305496; color:#fbb335; padding-left: 5px; text-transform: uppercase;">
+          <div class="col-3 text-nowrap" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{claimant}}"  style = "min-width: 300px; max-height: 30px;  white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">CLAIMANT : {{claimant}}</div>
+          <div class="col-3 text-nowrap"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{defendant}}" style = "min-width: 300px; max-height: 30px;  white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"> <span class="ml-4 mr-4" style="color: white; font-weight: bolder;">|| </span> DEFENDANT : {{defendant}}</div>
+          <div class="col-3 text-nowrap"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{project}}"  style = "min-width: 300px; max-height: 30px;  white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"> <span class="ml-4 mr-4" style="color: white; font-weight: bolder;">|| </span> PROJECT: {{project}} </div>
+        </div>
+
+    <div class="col top-row" style="margin-right: 10px; margin-top: -10px;">
+      <a type="button" class="btn btn-outline-warning btn-sm float-right" href="../../../assets/ClaimDD-Help.pdf" target="_blank">Help</a>
+    </div>
+  </div>
+
+
+</nav>
+
+<app-wasidenav></app-wasidenav>
+<div class="main-body">
+  <router-outlet></router-outlet>
+</div>
+
+<app-wafooter></app-wafooter>

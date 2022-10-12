@@ -1,0 +1,86 @@
+<div class=" main-card-heading" style="z-index: 2;">
+  <div style=" display: inline"></div>
+  <div class="row">
+    <div class="col-10">
+      <h5 class="h5-heading label-color" class=" card-header">QUANTUM</h5>
+    </div>
+    <!--<div class="col-2">
+      <button class="btn btn-outline-warning btn-sm float-right">Help</button>
+    </div>-->
+</div>
+</div><br>
+
+<div class="main-card card gf">
+      <!-- body elements -->
+      <div style="margin-left: 20px; margin-right: 20px;">
+
+      <div class="row" style="margin-bottom: 30px;">
+        <div class="col-sm">
+          <button type="button" class="btn btn-info btn-mg" (click)="onImport()"  [disabled]="userData['isManager']">IMPORT</button>
+          <button (click)="onSeeTemplate()" type="button" class="btn btn-info btn-mg" style="margin-left: 40px;">Download TEMPLATE</button>
+          <button (click)="onPreview()" type="button" class="btn btn-info btn-mg"
+            style="margin-left: 40px;">PREVIEW</button>
+        </div>
+        <div class="col-sm-2" style="text-align: right;">
+         <!-- <button type="button" class="btn btn-info btn-mg">EXPORT</button> -->
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+      </div>
+      <div><mark>Tips: Desired heading should be selected to perform the above functions.</mark><br></div>
+      <br>
+      
+
+      <div class="row">
+        <div class="col">
+          <h5 class="label-H3">SITE</h5>
+          <button (click)="selected = 'siteResourcesManpowerAdmin'" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Engaged Staffs such as Project Manager & Engineers">Resources -
+            Manpower (Admin/Staff)</button><br>
+          <button (click)="selected = 'siteResourcesEquipment'" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Temporary equipment such as crane, and JCB">Resources -
+            Equipment</button><br>
+          <button (click)="selected = 'siteResourcesTransport'" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="such as bus & car">Resources -
+            Transport</button>
+
+        </div>
+        <div class="col">
+          <h5 class="label-H3">WORK</h5>
+          <button (click)="selected = 'workResourcesManpowerWork'" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Labour such as Mason & Helper">Resources -
+            Manpower
+            (Labour)</button><br>
+          <button (click)="selected = 'workResourcesUtilities'" type="button" class="btn btn-primary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Monthly consumption of such as Water & Electricity">Resources -
+            Utilities</button><br>
+          <button (click)="selected = 'workResourcesMaterial'" type="button" class="btn btn-primary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Applicable for Escalation Claim">Resources -
+              Materials</button>
+  
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+        <div class="w-100" style="margin-top: 30px;"></div>
+        <div class="col">
+          <h5 class="label-H3">RESOURCE</h5>
+          <button (click)="selected = 'labourProductivity'" type="button"
+            class="btn btn-primary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Applicable for Disruption Claim">Productivity</button><br>
+          <button (click)="selected = 'labourDemobilisation'" type="button"
+            class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Demobilised details such as staffs, labours, equipment" >Demobilisation</button><br>
+          <button (click)="selected = 'labourRemobilisation'" type="button"
+            class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Remobilised details such as staffs, labours, equipment">Remobilisation</button>
+        </div>
+        <div class="col">
+          <h5 class="label-H3">OTHERS</h5>
+          <button (click)="selected = 'otherSubcontractorClaims'" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Claims made by the subcontractors">Subcontractor's
+            Claims</button><br>
+          <button (click)="selected = 'otherDamages'" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Any other damages such as fees and penalty">Damages</button><br>
+          <button (click)="selected = 'otherUnpaidClaim'" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Applicable for computing interest on delayed Payment/Claim">Unpaid/Delayed Claim/Payment</button>
+          <!--<button type="button" class="btn btn-secondary float-right">Next</button>-->
+
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+      </div>
+      <br>
+
+    </div>
+  </div>

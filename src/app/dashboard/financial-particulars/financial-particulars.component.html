@@ -1,0 +1,189 @@
+<div class=" main-card-heading" style="z-index: 2;">
+  <div style=" display: inline"></div>
+  <div class="row">
+    <div class="col-10">
+      <h5 class="h5-heading label-color" class=" card-header">FINANCIAL PARTICULARS</h5>
+    </div>
+    <!--<div class="col-2">
+      <button class="btn btn-outline-warning btn-sm float-right">Help</button>
+    </div>-->
+</div>
+</div><br>
+
+<div class="main-card card gf">
+  <form [formGroup]="submitForm" (ngSubmit)="onSubmitForm()">
+         <!-- body elements -->
+      <!-- overhead and profit -->
+      <div class = "divHStick"><label class="label-H1"><h5 class="h5-heading label-H2">Overhead and Profit</h5></label></div>
+     
+      <div class="form-row">
+
+        <div class="col" style="margin-top: 20px; margin-left: 30px;" >
+          <label for="inputEmail4" class="label-color">Head Office Overhead Percentage</label>
+          <div class="input-group mb-3">
+            <input formControlName="headOfficeOverheadPercentage" type="number" min="1" max="100" class="form-control value-color"
+              placeholder="Overhead Percentage" name="hoOverheadPercentage">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col" style="margin-top: 20px; margin-left: 30px;" >
+          <label for="inputEmail4" class="label-color">Profit Percentage</label>
+          <div class="input-group mb-3">
+            <input formControlName="profitPercentage" type="number" min="1" max="100" class="form-control value-color"
+              placeholder="Profit" name="profitPercentage">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+   
+      <div class = "divHStick"><label class="label-H1"><h5 class="h5-heading label-H2">Finance Charge</h5></label></div>
+
+      <div class="form-row">
+        <div class="col" style="margin-top: 20px; margin-left: 30px;" >
+          <label for="inputEmail4" class="label-color">Yearly Interest</label>
+          <div class="input-group mb-3">
+            <input formControlName="yearlyInterest" type="number" min="1" max="100" class="form-control value-color"
+              placeholder="Interest" name="yearlyInterest">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+
+
+          <div class="form-group" style="margin-top: 20px; margin-left: 30px;" >
+            <label for="exampleFormControlSelect1" class="label-color">Interest Type</label>
+            <select formControlName="interestType" class="form-control value-color" id="exampleFormControlSelect1"
+              name="interestType">
+              <option value="simple">Simple Interest</option>
+              <option value="compound">Compound Interest</option>
+            </select>
+          </div>
+
+          <br>
+
+          <div class="form-group" style="margin-top: 5px; margin-left: 30px;" >
+            <label for="exampleFormControlSelect1" class="label-color">Compounding Period</label>
+            <select formControlName="compoundingPeriod" class="form-control value-color" id="exampleFormControlSelect1"
+              name="compoundingPeriod">
+              <option value="Daily">Daily</option>
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Quarterly">Quarterly</option>
+              <option value="Half-yearly">Half-yearly</option>
+              <option value="Yearly">Yearly</option>
+              <option value="None">None</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    
+    <!-- audit information -->
+      <div class = "divHStick"><label class="label-H1"><h5 class="h5-heading label-H2">Audit Information in Currency *</h5></label></div>
+      <div class="row" style="margin-top: 20px; margin-left: 30px;">
+        <div class="col-sm" style="padding-right: 0; margin-left: 0px;">
+          <h6 class="h6-audit label-colorH">For Annual</h6>
+        </div>
+        <div class="col-sm" style="padding: 0; margin: 0;">
+          <h6 class="h6-audit label-colorH">For Actual Period of Performance</h6>
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-top: 10px; margin-left: 30px;" >
+
+        <div class="col">
+          <label for="inputEmail4" class = "label-color">Turnover of Company</label>
+          <div class="input-group mb-3">
+            <input formControlName="annualTurnoverOfCompany" type="text" min="1" max="100" class="form-control value-color"
+              placeholder="Turnover" name="annualTurnover">
+            <div class="input-group-append">
+              <!-- <span class="input-group-text" id="basic-addon2">$</span> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <label for="inputEmail4" class="label-color">Turnover of Company</label>
+          <div class="input-group mb-3">
+            <input formControlName="actualTurnoverOfCompany" type="text" min="1" max="100" class="form-control value-color"
+              placeholder="Turnover" name="actualTurnover">
+            <div class="input-group-append">
+              <!-- <span class="input-group-text" id="basic-addon2">$</span> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-row"style="margin-top: 5px; margin-left: 30px;" >
+
+        <div class="col">
+          <label for="inputEmail4" class="label-color">HO Overhead Cost</label>
+          <div class="input-group mb-3">
+            <input formControlName="annualHOOverheadCost" type="text" min="1" max="100" class="form-control value-color"
+              placeholder="Overhead Cost" name="annualHOOC">
+            <div class="input-group-append">
+              <!-- <span class="input-group-text" id="basic-addon2">$</span> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <label for="inputEmail4" class="label-color">HO Overhead Cost</label>
+          <div class="input-group mb-3">
+            <input formControlName="actualHOOverheadCost" type="text" min="1" max="100" class="form-control value-color"
+              placeholder="Overhead Cost" name="actualHOOC">
+            <div class="input-group-append">
+              <!-- <span class="input-group-text" id="basic-addon2">$</span> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-row" style="margin-top: 5px; margin-left: 30px;" >
+
+        <div class="col">
+          <label for="inputEmail4" class="label-color">Profit</label>
+          <div class="input-group mb-3">
+            <input formControlName="annualProfit" type="text" min="1" max="100" class="form-control value-color"
+              placeholder="Profit" name="annualProfit">
+            <div class="input-group-append">
+              <!-- <span class="input-group-text" id="basic-addon2">$</span> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <label for="inputEmail4" class="label-color">Profit</label>
+          <div class="input-group mb-3">
+            <input formControlName="actualProfit" type="text" min="1" max="100" class="form-control value-color"
+              placeholder="Profit" name="actualProfit">
+            <div class="input-group-append">
+              <!-- <span class="input-group-text" id="basic-addon2">$</span> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="" style="height: 100px;">
+      <button type="submit" class="btn btn-secondary float-right SaveStick"  [disabled]="userData['isManager']">Save</button>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+  </form>
+
+</div>

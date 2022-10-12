@@ -1,0 +1,152 @@
+/* Height for devices larger than 576px */
+@media (min-width: 992px) {
+  #intro {
+    margin-top: 0px;
+  }
+}
+
+#intro {
+  background-image: url("../../../assets/images/pricing-banner-2.jpg");
+  background-repeat: no-repeat;
+  height: auto;
+  background-size:cover;
+}
+
+.CA1 {
+ 
+  line-height: 1.8; 
+  margin-top: 40px;
+  margin-bottom: 15px;
+  float: left;
+  
+}
+
+.CA1 h2 {
+  margin-bottom: 25px;
+  margin-left: 7px;
+  /* margin-top: 2px; */
+  font-weight: bold;
+  /* color: #145da0; */
+  /* color: #003366; */
+  color: #104a90;
+  /* padding-left: 15px; */
+}
+
+.CA1 p {
+  margin-left: 10px;
+  padding-right: 15px;
+  margin-bottom: 20px;
+  font-size: 25px;
+  text-align: justify;
+  color: #104a90;
+}
+
+.CA1 p a {
+  text-decoration: underline;
+}
+
+.CA1 img {
+  width: 100vw;
+  padding-left: -10px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+}
+
+
+
+.selectpicker {
+  background-color: #fbb335;
+  float: right;
+}
+
+.pricing-form-area {
+  background: #2f5597;
+}
+
+.pricing-form-area h3 {
+  color: white;
+  margin-left: 3px;
+  padding-top: 5px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 26px;
+  padding: 15px 0px 0px 15px;
+}
+
+.pricing-form-area h4 {
+  color: white;
+  margin-left: 1px;
+  font-weight: 400;
+  margin-bottom: 13px;
+  font-size: 22px;
+  padding: 0px 0px 0px 15px;
+}
+
+.pricing-form-area p {
+  color: white;
+  margin-left: 1px;
+   margin-right: 10px;
+  margin-bottom: 15px;
+  font-size: 18px;
+	line-height: 1.6;
+	text-align: justify;
+  padding: 0px 0px 0px 15px;
+}
+
+.pricing-form-area .form-area {
+  color: white;
+  margin-left: 1px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  padding-left: 50px;
+  padding-right: 30px;
+}
+.pricing-form-area .form-area .input_field-1 {
+  border-radius: 1%;
+  text-align: center;
+}
+.pricing-form-area .form-area .input_field-2 {
+  border-radius: 1%;
+  text-align: right;
+}
+.pricing-form-area .form-area .input_fields {
+  border-radius: 1%;
+  text-align: left;
+}
+.pricing-form-area .form-area .compute_btn {
+  border-radius: 1%;
+  background: #fad02c;
+  color: white;
+  width: 100%;
+  border: none;
+}
+
+.pricing-form-area .form-area .compute_btn:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+/* top buttons */
+.btn-info {
+  width: 50%;
+  background-color: #fbb335;
+  color: #305496;
+  padding: 4px 5px 4px 5px;
+  margin-bottom: 40px;
+}
+
+.btn-info:hover,
+.btn-info:active,
+.btn-info:focus {
+  background-color: #305496 !important;
+  color: #fbb335 !important;
+}
+
+
+.pricing-form-area .form-area .label_p {
+  margin-top: 8px;
+  margin-left: -35px;
+}
+

@@ -1,0 +1,135 @@
+
+/* Height for devices larger than 576px */
+@media (min-width: 992px) {
+  #intro {
+    margin-top: 0px;
+  }
+}
+
+#intro {
+  background-image: url("../../../assets/images/BG-Demo.jpg");
+  background-repeat: no-repeat;
+  height: auto;
+  background-size:cover;
+}
+
+.CA1 {
+  font-family: Helvetica;
+  line-height: 1.8; 
+  margin-top: 40px;
+  margin-bottom: 15px;
+  float: left;
+  margin-top: 30px; 
+}
+.CA1 h2 {
+  margin-bottom: 25px;
+  margin-left: 7px;
+  /* margin-top: 2px; */
+  font-weight: bold;
+  /* color: #145da0; */
+  /* color: #003366; */
+  color: #104a90;
+  /* padding-left: 15px; */
+}
+.CA1 p {
+  margin-left: 10px;
+  padding-right: 15px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-align: justify;
+  /* color: #00003f; */
+  /* color: #003366; */
+  color: #104a90;
+}
+.CA1 p a {
+  text-decoration: underline;
+}
+
+.CA1 img {
+  width: 100vw;
+  padding-left: -10px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+}
+
+.form-area {
+  background: #104a90;
+  width: 100%;
+  float: left;
+  padding-bottom: 15px;
+}
+
+.input_fields {
+  border: 1px solid #104a90;
+  border-radius: 5px;
+  height: 45px;
+  color: #104a90;
+
+}
+.input:focus {
+  outline: #104a90;
+  box-shadow: none
+}
+.submit_btn {
+  border: 1px solid #104a90;
+  background: orange;
+  border-radius: 0px;
+  height: 45px;
+  width: 100%;
+  font-weight: bold;
+   margin-left: 50px;
+}
+.form-area h1 {
+  padding: 10px 0px 0px 10px;
+  margin-left: 10px;
+  margin-bottom: 35px;
+  color: white;
+  font-weight: bold;
+}
+
+.content-area img {
+  margin-top: 100px;
+}
+
+
+.input_fields {
+  border-radius: 5px;
+  height: 35px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.outer-div {
+  width: 85%;
+  height: 550px;
+  background: #2f5597;
+  position: absolute;
+}
+.img-bg-div {
+  width: 100%;
+  padding: 20px;
+  background: #2f5597;
+  position: relative;
+  top: 70px;
+  left: -13px;
+  border-radius: 10px;
+}
+
+
+/* next button */
+.btn-secondary {
+  background-color: #fbb335;
+  color: #305496;
+  margin: 7px 0px 0px 0px;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus {
+  background-color: #305496 !important;
+  color: #fbb335 !important;
+  margin: 7px 0px 0px 0px;
+}
+

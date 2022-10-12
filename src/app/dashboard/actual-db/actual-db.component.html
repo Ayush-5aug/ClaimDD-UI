@@ -1,0 +1,46 @@
+<div class=" main-card-heading" style="z-index: 2;">
+  <div style=" display: inline"></div>
+  <div class="row">
+    <div>
+      <h5 class="h5-heading label-color" class=" card-header">DASHBOARD</h5>
+    </div>
+</div>
+</div><br>
+
+<div  class="main-card card gf">
+  <div class="row" style="margin-left: 10px; height: 100px; min-width: 1000px">
+      <div class="col" style="background-color: #305496; max-height: 120px;">
+          <div class="fixSize text-nowrap"><h5 class="h5-heading label-H" >CONTRACT PRICE</h5></div>
+          <div class="fixSize text-nowrap"><h6 class="h6-heading label-HO">Original: {{projectData['originalContractPriceType']}} {{formatNumber(projectData['originalContractPrice'])}}</h6></div>
+          <div class="fixSize text-nowrap"><h6 class="h6-heading label-HO">Revised: {{projectData['originalContractPriceType']}} {{formatNumber(calculatedRevisedContractPrice)}}</h6></div>
+      </div>
+      <div class="col" style="background-color: #fbb335; max-height: 120px;">
+        <div class="fixSize text-nowrap"><h5 class="h5-heading label-H" >COMPLETION DATE</h5></div>
+        <div class="fixSize text-nowrap"><h6 class="h6-heading label-HB">Original: {{formatDate(originalCompletionDate)}}</h6></div>
+        <div class="fixSize text-nowrap"><h6 class="h6-heading label-HB">Revised: {{formatDate(revisedCOmpletionDate)}}</h6></div>
+    </div>
+      <div class="col" style="background-color: #305496; max-height: 120px;">
+        <div class="fixSize text-nowrap"><h5 class="h5-heading label-H" >CONTRACT DURATION</h5></div>
+        <div class="fixSize text-nowrap"><h6 class="h6-heading label-HO">Original: {{projectData['originalContractDurationvalue']}} {{projectData['originalContractDurationSelect']}} </h6></div>
+        <div class="fixSize text-nowrap"><h6 class="h6-heading label-HO">Revised: {{calculatedRevisedContractDuration}} {{projectData['originalContractDurationSelect']}} </h6></div>
+    </div>
+      <div class="col" style="background-color: #fbb335; max-height: 120px;">
+        <div class="fixSize text-nowrap"><h5 class="h5-heading label-H" >EVENTS & CLAIMS</h5></div>
+        <div class="fixSize text-nowrap"><h6 class="h6-heading label-HB">No. of Events: {{projectData['events'].length}}</h6></div>
+        <div class="fixSize text-nowrap"><h6 class="h6-heading label-HB">No. of Claims: {{projectData['claims'].length}}</h6></div>
+    </div>
+  </div>    
+
+<div style="width: 1000px; height:600px; margin-left: 10px; margin-right: 50px;">
+  <div class = "divHStick"><label class="label-H1"><h5 class="h5-heading label-H2">PERSISTENT DATA STATUS</h5></label></div>
+  <canvas id="myChart"></canvas>
+</div><br>
+
+<div style="width: 1000px; height:800px;  margin-left: 10px; margin-right: 50px;">
+  <div class = "divHStick"><label class="label-H1"><h5 class="h5-heading label-H2">HISTORICAL DATA STATUS</h5></label></div>
+  <div class="PDDuration">Data can be graphed from {{formatDate(commencementDate)}} to {{formatDate(licenseValidity)}} if imported.</div>
+  <canvas id="myChart2"></canvas>
+</div>
+<br>
+<br>
+</div>

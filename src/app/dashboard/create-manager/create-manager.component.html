@@ -1,0 +1,454 @@
+<div class=" main-card-heading" style="z-index: 2;">
+  <div style=" display: inline"></div>
+  <div class="row">
+    <div>
+      <h5 class="h5-heading label-color" class=" card-header">OWNER</h5>
+    </div>
+</div>
+</div><br>
+
+<div class="main-card card gf">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"
+      (click)="manageLicense = true; manageManager= false;licenseDetails =false" [ngStyle]="{'background-color': manageLicense ? '#305496' : '#fbb335', 'color': manageLicense ? '#fc9803' : '#305496'}">Manage Plan</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false"
+      (click)="licenseDetails = true; manageLicense= false;manageManager =false" [ngStyle]="{'background-color': licenseDetails ? '#305496' : '#fbb335', 'color': licenseDetails ? '#fc9803' : '#305496'}">License Details</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"
+      (click)="manageManager = true; manageLicense= false;licenseDetails =false" [ngStyle]="{'background-color': manageManager ? '#305496' : '#fbb335', 'color': manageManager ? '#fc9803' : '#305496'}">Manage Manager</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="main-card card">
+        <div class="main-card-body card-body">
+        <div class="form-group">
+            <div class="row" style="min-width: 800px;">
+              <div class="col-sm-4">
+                <div class="card" style="background-color:#104a90;">
+                  <div class="card-body">
+                    <h5 style="color: #fbb335">Number of Licenses</h5><br>
+                    <h3 style="color: white">{{numberOfProject}}</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card" style="background-color:#104a90;">
+                  <div class="card-body">
+                    <h5 style="color: #fbb335">Projects Value Limit</h5><br>
+                    <h3 style="color: white" *ngIf="projectValue != '-1.00'">{{currency}} {{projectValue}} </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card" style="background-color:#104a90;">
+                  <div class="card-body">
+                    <h5 style="color: #fbb335">License Validity</h5><br>
+                    <h3 style="color: white">{{licenseValidity}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div><br><br>
+            <button type="button" class="btn btn-secondary mr-2"  (click)="OpenTrailLicenseSettings(showHeaderModal3)" >Settings & Trial Plan</button>
+            <button type="button" class="btn btn-secondary ml-2"  (click)="licenseUpgrade(showHeaderModal2)">{{buttonText}}</button>
+          </div>
+          </div>
+          </div>
+    </div>
+
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="main-card card">
+            <div class="main-card-body card-body">
+                
+                <button type="button" (click)="openAddManagerModal(modalData)" class="btn btn-outline-success">Add
+                    Manager</button>
+                
+                <ng-template #modalData let-modal>
+                    <div class="modal-header" style="background-color: #fbb335; color: white;">
+                        <h4 *ngIf="!isEditingManager" class="modal-title" id="modal-basic-title">ADD MANAGER</h4>
+                        <h4 *ngIf="isEditingManager" class="modal-title" id="modal-basic-title">EDIT MANAGER</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #2f5597;">
+                        <form [formGroup]="addManagerForm" (ngSubmit)="onAddManagerSubmit()">
+                            <div class="mb-3">
+                                <label for="username" class="form-label" style="color: #fbb335">Username</label>
+                                <input formControlName="userName" type="text" class="form-control" id="username"
+                                    aria-describedby="emailHelp">
+                                <div *ngIf="
+                                !addManagerForm.get('userName').valid &&
+                                addManagerForm.get('userName').touched
+                              " class="text-danger">
+                                    Please choose a username.
+                                </div>
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label" style="color: #fbb335">Email address</label>
+                                <input formControlName="email" type="email" class="form-control" id="email"
+                                    aria-describedby="emailHelp">
+                                <div *ngIf="
+                                !addManagerForm.get('email').valid &&
+                                addManagerForm.get('email').touched
+                              " class="text-danger">
+                                    Please choose a email.
+                                </div>
+                            </div>
+                            <div *ngIf="!isEditingManager" class="mb-3">
+                            <!--  <div class="mb-3">-->
+                                <label for="exampleInputPassword1" class="form-label" style="color: #fbb335">Password</label>
+                                <input formControlName="password" type="password" class="form-control" id="password">
+                                <div *ngIf="
+                                !addManagerForm.get('password').valid &&
+                                addManagerForm.get('password').touched
+                              " class="text-danger">
+                                    Please type password.
+                                </div>
+                            </div>
+                            <div *ngIf="!isEditingManager" class="mb-3">
+                            <!--  <div class="mb-3">-->
+                                <label for="exampleInputPassword2" class="form-label" style="color: #fbb335">Confirm Password</label>
+                                <input formControlName="confirmPassword" type="password" class="form-control"
+                                    id="confirmPassword">
+                                <div *ngIf="
+                                !addManagerForm.get('confirmPassword').valid &&
+                                addManagerForm.get('confirmPassword').touched
+                              " class="text-danger">
+                                    Please type confirm password.
+                                </div>
+                                <div class="text-danger"
+                                    *ngIf="addManagerForm.get('confirmPassword').hasError('matching') && !addManagerForm.get('confirmPassword').valid && addManagerForm.get('confirmPassword').touched">
+                                    Password not matching.
+                                </div>
+                            </div>
+                            <button *ngIf="!isEditingManager" type="submit" class="btn btn-secondary mr-2">Add</button>
+                            <button *ngIf="isEditingManager" (click)="onManagerEditSubmit()" type="button"
+                                class="btn btn-secondary mr-2">Update</button>
+        
+                                <button (click)="modal.close('Save click')" type="button" class="btn btn-secondary btn-mg">Exit</button>
+        
+                        </form>
+                    </div>
+        
+                </ng-template>
+                
+        
+                
+                <div class="table-responsive tableHCFix"><br>
+                    <table class="table table-borderless" style="border:2px #305496 solid;">
+                        <thead style="color: white; background-color: #fbb335;border:2px #305496 solid;">
+                            <th></th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>No. of Claimants</th>
+                            <th>No. of Projects</th>
+                            <th>Controls</th>
+                            
+                        </thead>
+                        <tbody *ngIf="managerClaimantData">
+                            <tr *ngFor="let manager of managerList; let i = index" [ngStyle]="{'background-color': i%2==0 ? 'white' : '#effbfb'}">
+                                <td>{{i+1}}</td>
+                                <td>{{manager.userName}}</td>
+                                <td>{{manager.email}}</td>
+                                <td>{{managerClaimantData[i]['claimaintCount']}}</td>
+                                <td>{{managerClaimantData[i]['projectCount']}}</td>
+                                <td><button type="button" class="btn btn-outline-success btn-sm m-1" (click)="openManagerDetailModel(showHeaderModal1, i+1)">More Info</button>
+                                  <!--<button (click)="onManagerEdit(manager._id, modalData)" type="button"
+                                      class="btn btn-outline-warning btn-sm m-1">Edit</button>-->         
+                                  <button (click)="onManagerResetPwd(manager.email, ResetPwdmodal)" type="button"
+                                      class="btn btn-outline-primary btn-sm m-1">Reset Password</button>
+                                  <button (click)="onManagerDelete(manager._id)" type="button"
+                                      class="btn btn-outline-danger btn-sm m-1">Delete</button>
+                              </td>
+                          </tr>
+        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <div class="main-card card">
+        <div class="main-card-body card-body tableHCFix">
+      <table class="table table-borderless" style="border:2px #305496 solid;">
+        <thead style="color: white; background-color: #fbb335;border:2px #305496 solid;">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Key</th>
+            <!-- <th scope="col">Start Date</th>-->
+            <th scope="col">Valid Upto</th>
+            <th scope="col">Value Limit</th>
+            <th scope="col">Assigned Project</th>
+            <th scope="col">License Status</th>
+            <th scope="col">Controls</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="trailLicenseData">
+            <td>0</td>
+            <td>{{trailLicenseData['licenseKey']}}</td>
+            <!-- <td>{{trailLicenseData['trialLicenseStartDate']}}</td>-->
+            <td>{{trailLicenseData['validity']}}</td>
+            <td>{{trailLicenseData['currency']}} {{trailLicenseData['projectValue']}}</td>
+            <td>{{trailLicenseProjectName}}</td>
+            <td>{{trailLicenseData['licenseStatus']}}</td>
+            <td></td>
+          </tr>
+          <tr *ngFor="let licenseKey of licenseKeyData; let i = index" [ngStyle]="{'background-color': i%2==0 ? '#effbfb' :'white'}">
+            <td scope="row">{{i+1}}</td>
+            <td>{{licenseKey[0]}}</td>
+            <!-- <td>{{licenseKey[1]}}</td>-->
+            <td>{{licenseKey[2]}}</td>
+            <td>{{licenseData['currency']}} {{licenseKey[4]}}</td>
+            <td>{{licenseKey[3]}}</td>
+            <td>{{licenseKey[5]}}</td>
+            <td><button type="button" class="btn btn-outline-success btn-sm" (click)="openLicenseKeyDetailModel(showHeaderModal, i)">More Info</button>
+            <button type="button" class="btn btn-outline-warning btn-sm m-1" (click)="deactivateLicense(i)" [disabled]="licenseKey[5] == 'NOT ACTIVE'">Deactivate</button></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- LicenseKey Detail modal start here  -->
+<ng-template #showHeaderModal let-modal>
+  <div class="modal-header" style="background-color: #fbb335; color: white;">
+    <h4 class="modal-title" id="modal-basic-title">License, {{licenseKeyData[seletedRow][0]}}, Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3" style="width: 100%">
+      <ng-container>
+        <table class ="tablePopUp" style = "width: 100%">
+          <tbody>
+            <tr style="background-color: #effbfb"><td>Start Date</td><td></td>: <td>{{formatDate(licenseKeyData[seletedRow][1])}}</td></tr>
+            <tr><td>Manager</td><td></td>: <td>{{selectedManager}}</td></tr>
+            <tr style="background-color: #effbfb"><td>Executer</td><td></td>: <td>{{selectedExecutor}}</td></tr>
+            
+          </tbody>
+        </table>
+        <!--
+        <h5>Start Date :- {{licenseKeyData[seletedRow][1] | date}}</h5>
+        <h5>Validity Date :- {{licenseKeyData[seletedRow][2] | date}}</h5>  
+        <h5>Currency :- {{licenseData['currency']}}</h5>
+        <h5>Project Value Limit :- {{licenseKeyData[seletedRow][4]}}</h5>
+        <h5>Manager :- {{selectedManager}}</h5>
+        <h5>Executer :- {{selectedExecutor}}</h5> -->
+      </ng-container>
+    </div>
+  </div>
+  <div style="background-color: #2f5597;">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')" style="margin-left: 10px; margin-bottom: 5px">Exit</button>
+    </div>
+</ng-template>
+
+<!-- Manager Detail modal start here  -->
+<ng-template #showHeaderModal1 let-modal>
+  <div class="modal-header" style="background-color:#fbb335; color: white;">
+    <h4 class="modal-title" id="modal-basic-title">{{managerList[seletedRow-1].userName}}'s Projects</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3">
+      <ng-container>
+        <table class="table-light" style="border:2px #305496 solid; min-width: 100%;">
+          <thead  style="color:#fbb335; background-color: #305496; min-width: 100%; border:2px #305496 solid; min-height: 40px ">
+          <!--<div class ="row"  style = "min-width: 100%; border:none">
+            <div  class ="col-md-12" style = "border:none" >-->
+              <tr>
+                <div style="font-weight: bolder; min-height: 40px;margin-left: 15px;">Claimant; Project</div>
+              </tr>
+              <tr></tr>
+      
+          </thead>
+          <tbody style = "border:2px #305496 solid;"> 
+          <tr  *ngFor="let claimant of managerClaimantData[seletedRow-1]['claimantList']; let i = index"  style = "min-width: 100%; border:none;">
+            <div  class ="col" *ngFor="let project of managerClaimantData[seletedRow-1]['projectList']; let i = index"  style = "min-width: 100%; border:none" >
+                  <div *ngIf="project['claimantId'] == claimant['_id']"  style = "min-width: 100%">
+
+                    <div  style ="min-height: 40px" >{{claimant['name']}}; {{project['name']}}</div> 
+     
+                    <!--<td  style = "width: 50%">{{project['name']}}</td>-->
+                  </div>
+             </div>
+            </tr>
+          </tbody>
+         <!-- <tr *ngFor="let project of managerClaimantData[seletedRow-1]['projectList']; let i = index" [ngStyle]="{'background-color': i%2==0 ? 'white' : '#effbfb'}">
+            <td>{{project['name']}}</td>
+
+            <td *ngFor="let claimant of managerClaimantData[seletedRow-1]['claimantList']; let i = index">
+                  <div *ngIf="project['claimantId'] == claimant['_id']">
+                    {{claimant['name']}}
+                  </div>
+            </td>
+          </tr> -->
+          
+        </table>
+      </ng-container>
+    </div>
+    <div style="background-color:#305496">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')" style="margin-left:10px; margin-bottom: 5px">Exit</button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- License purchase modal start here  -->
+<ng-template #showHeaderModal2 let-modal>
+  <div class="modal-header" style="background-color:#fbb335; color:white">
+    <h4 class="modal-title" id="modal-basic-title">FLEXI PLAN ACTIVATION</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body" style="background-color:#305496; color:#fbb335">
+    <div class="mb-3">
+      <ng-container>
+        Flexi Plan must be activated via <span style="color:white">Pricing</span> page.<br><br>
+        <button type="button" class="btn btn-secondary mr-2" (click)="redirect()">Accept</button>
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Exit</button><br><br> 
+        <p style="color:white">Accept logouts and takes to <span style="color:#fbb335">Pricing </span>page.</p>
+      </ng-container>
+    </div>
+    
+  </div>
+</ng-template>
+
+<!-- Set Trail License modal start here  -->
+<ng-template #showHeaderModal3 let-modal>
+  <div class="modal-header" style="background-color:#fbb335; color:white">
+    <h4 class="modal-title" id="modal-basic-title">TRAIL PLAN SETTINGS</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body" style="background-color:#305496; color:#fbb335">
+    <div class="mb-3">
+      <ng-container>
+        <form [formGroup]="trailLicenseForm" (ngSubmit)="onTrailLicenseSubmit()">
+          <div class="mb-3">
+              <label for="projectRegion" class="form-label" style="color: #fbb335">Project Region</label>
+              <select class="form-control" id = "region" formControlName="projectRegion" value = "{{trailLicenseData['region']}}" >
+                <option value = "America (USA)">America (USA)</option>
+                <option value = "Asia (excluding Singapore & Hong Kong)">Asia (excluding Singapore & Hong Kong)</option>
+                <option value = "Australia">Australia</option>
+                <option value = "Central Africa">Central Africa</option>
+                <option value = "East Africa">East Africa</option>
+                <option value = "Europe">Europe</option>
+                <option value = "Hong Kong">Hong Kong</option>
+                <option value = "Middle East">Middle East</option>
+                <option value = "North Africa">North Africa</option>
+                <option value = "Singapore">Singapore</option>
+                <option value = "South Africa">South Africa</option>
+                <option value = "Western Africa">Western Africa</option>
+               </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="currency" class="form-label" style="color: #fbb335">Format (Date & Number) Type</label>
+            <select class="form-control" id = "local" formControlName="local" value = "{{trailLicenseData['local']}}" (change)="FormatPValue()">
+              <option value="en-CA">Canada (French)</option>
+              <option value="en-fi">Finnish</option>
+              <option value="en-DE">German</option>
+              <option value="en-IN">India</option>
+              <option value="en-IT">Italy</option>
+              <option value="en-ES">Spanish (Spain)</option>
+              <option value="en-GB">UK</option>
+              <option value="en-US">US</option>  
+            </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="currency" class="form-label" style="color: #fbb335">Currency</label>
+          <select class="form-control" id = "curr" formControlName="currency" value = "{{trailLicenseData['currency']}}">
+            <option value = "AED">AED</option>
+            <option value = "EUR">EUR</option>
+            <option value = "GBP">GBP</option>
+            <option value = "IND">IND</option>
+            <option value = "USD">USD</option>
+          </select>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="projectValue" class="form-label" style="color: #fbb335">Trial Value Limit in Currency is {{FormatedPV}}</label>
+          <input formControlName="projectValue" type="text" class="form-control" id="email" (keyup)="FormatPValue()">
+      </div>
+
+      <div class="mb-3">
+        <label for="Note" class="form-label" style="color: #fbb335">Trial License is valid for 3 months from the Starting Month</label>
+        <label for="startDate" class="form-label" style="color: #fbb335">Set Trial License Start Month</label>
+        <input formControlName="startDate" type="text" onfocus="(this.type='month')" class="form-control" id="startDate" value = "{{convertDatetoMonthYear(trailLicenseData['trialLicenseStartDate'])}}" (change)="getValidity($event)">
+    </div>
+
+    <div class="mb-3">
+      <label for="validity" class="form-label" style="color: #fbb335">Trial License is valid untill {{validity}}.</label>
+      <input  formControlName="validity" type="hidden" class="form-control" id="validity" value="{{validity}}">
+  </div>
+          
+          
+          <button type="submit" class="btn btn-secondary mr-2">Set</button>
+          <button (click)="modal.close('Save click')" type="button" class="btn btn-secondary btn-mg">Exit</button>
+
+              
+
+      </form>
+      </ng-container>
+    </div>
+    </div>
+</ng-template>
+</div>
+
+<!-- Reset pwd pop up-->
+<ng-template #ResetPwdmodal let-modal>
+  <div class="modal-header" style="background-color: #fbb335; color: white">
+      <h4 class="modal-title" id="modal-basic-title">RESET PASSWORD</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+      </button>
+  </div>
+  <div class="modal-body" style="background-color: #305496; color: #fbb335">
+      <form [formGroup]="resetPwdForm" (ngSubmit)="onResetPwdSubmit()">
+          <div class="mb-3">
+              <label for="username" class="form-label">New Password</label>
+              <input formControlName="newPwd" type="password" class="form-control" id="username"
+                  aria-describedby="emailHelp">
+              <div *ngIf="
+              !resetPwdForm.get('newPwd').valid &&
+              resetPwdForm.get('newPwd').touched
+            " class="text-danger">
+                  Please enter new password.
+              </div>
+          </div>
+
+          <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+              <input formControlName="cnfPwd" type="password" class="form-control" id="email"
+                  aria-describedby="emailHelp">
+              <div *ngIf="
+              !resetPwdForm.get('cnfPwd').valid &&
+              resetPwdForm.get('cnfPwd').touched
+            " class="text-danger">
+                  Please confirm your password.
+              </div>
+          </div>
+          <button  type="submit" class="btn btn-secondary mr-2">Reset Password</button>
+          <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Exit</button>
+
+      </form>
+  </div>
+
+</ng-template>

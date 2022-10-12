@@ -1,0 +1,906 @@
+<div class=" main-card-heading" style="z-index: 2;">
+  <div style=" display: inline"></div>
+  <div class="row">
+    <div>
+      <h5 class="h5-heading label-color" class="card-header" style="padding-top: 0">CLAIM : {{claimName}}</h5>
+    </div>
+  </div>
+</div>
+
+<div class="main-card card gf"> 
+ <!-- menu bar -->
+ <div class="row fDMenu" style="min-width: 1000px;">
+ 
+  <div *ngIf ="!Evaluation" class="row row-cols-4" style="min-width: 1000px;">
+    <div class = "col-5 text-nowrap" style="background-color: #fbb335; color:white; margin-top: 0px; padding-left: 28px; font-weight: bolder; max-height: 27px; min-width: 450px">
+    OPENING CLAIM
+    </div>
+  </div>
+
+  <div *ngIf ="!Evaluation" class="row row-cols-4" style="min-width: 1000px;">
+    <div class = "col-5 text-nowrap" style="background-color: #305496; color:white; margin-top: 0px; padding-left: 28px; font-weight: bolder; max-height: 27px; min-width: 450px">
+      <a *ngIf = "!userData['isReviewer']" style="color: #fbb335; text-decoration: double;" type="button" (click)="openClaimSelection(openSavedAppendix)" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Click here to open the saved claim, if any">Click Here</a>
+    </div>
+  </div>
+ 
+  <div  *ngIf ="Evaluation" class="row row-cols-4" style="min-width: 1000px;">
+    <div class = "col-5 text-nowrap" style="background-color: #fbb335; color:white; margin-top: 0px; padding-left: 28px; font-weight: bolder; max-height: 27px; min-width: 450px; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{currentAppendixHeader}}" >
+      {{currentAppendixHeader}}
+    </div>
+
+    <div class="colSeparater  float-left"></div>
+    
+    <div class="col-3 colInfoB text-nowrap" style="max-height: 25px; min-width: 250px; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">{{currentEventId}} - {{currentEventDes}}</div>
+    
+    <div *ngIf ="sumA && sumA[19]" class="col-3 colInfoO text-nowrap" style="max-height: 25px; min-width: 150px; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">COST IMPACT: {{originalContractPriceType}} {{formatNumber(sumA[19])}}</div>
+    <div class="colSeparater  float-left"></div>
+   
+  </div>
+
+  <div  *ngIf ="Evaluation" class="row row-cols-4 " style="min-width: 1000px;">
+    <div class = "col-5 text-nowrap" style="background-color: #305496; color:white; margin-top: 0px; padding-left: 28px; font-weight: bolder; max-height: 27px; min-width: 450px">
+      <div class = "row" style="width:100%; background-color: #305496; margin-left: -30px; margin-top: 0px; max-height: 25px">
+        <div class="colMenu" style="max-height: 25px">
+              <div class="dropup" style="background-color: #305496; max-width: 180px; margin-left:10px; margin-right: 30px;  max-height: 25px">
+                <button class="dropbtn" style="max-height: 25px; margin-left: 3px;" >Cost</button>
+                <div class="dropup-content" style="width: 400px;  height:400px; overflow-y: auto; margin-left:-10px; ">
+                  <a type="button" (click)="getSelectedAppendix('Cost Summary')" style="background-color:#305496; color: #fbb335;">Cost Summary</a>
+                  <a type="button" (click)="getSelectedAppendix(i)" *ngFor = "let appendix of listOfAppendixToBeDisplayed ; let i = index" style="background-color:#305496; color: #fbb335;">{{appendix}}</a>
+                </div>
+              </div>
+        </div>
+        <div class="colMenu float-left"   style="max-height: 25px">
+            <div class="dropup" style="max-height: 25px">
+              <button class="dropbtn" style="max-height: 25px">Controls</button>
+              <div class="dropup-content" style="width: 150px;">
+                <a *ngIf = "!userData['isReviewer']" type="button" (click)="saveAppendix(saveAppendixData)">Save Claim</a>
+                <a *ngIf = "!userData['isReviewer']" type="button" (click)="openClaimSelection(openSavedAppendix)" >Open Claim</a>
+                <a type="button" (click)="onExport('excel')" *ngIf="showExportLinks">Export As Excel</a>
+                <div class="dropup1">
+                  <button class="dropbtn1"  (click)="onPrint('AutoFix')" style="width: 150px; text-align: left; padding-left: 17px;">Print or PDF</button>
+                    <!--
+                    <div class="dropup1-content" style="width: 150px;">
+                      <a type="button" (click)="onPrint('AutoFix')">Auto Orientation</a>
+                      <a type="button" (click)="onPrint('Landscape')">Landscape</a>
+                    </div>
+                    -->
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="colMenu float-left"   style="max-height: 25px">
+          <div class="dropup" style="max-height: 25px">
+            <button class="dropbtn" style="max-height: 25px">Report</button>
+            <div  class="dropup-content"  style="width: 150px;">
+              <a type="button" (click)="viewReport($event)">Generate</a>
+              <a type="button" (click)="generateWordDoc($event)" *ngIf="showExportLinks">Export As Word</a>
+              <a type="button" (click)="onPrintWordReport()">Print or PDF</a>
+            </div>
+          </div>
+        </div>
+        <div class="colMenu float-left"   style="max-height: 25px">
+          <div class="dropup" style="max-height: 25px">
+            <button class="dropbtn" style="max-height: 25px" (click)="showAbbreviation(showAbbreviationData)" >Abbreviations</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="colSeparater  float-left"></div>
+    
+    <div *ngIf ="Evaluation" class="col-3 colInfoO text-nowrap" style="max-height: 25px; min-width: 250px; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">Event Period: From {{formatDate(EstartDate)}} To {{formatDate(EendDate)}}</div>
+    
+    <div *ngIf ="Evaluation" class="col-3 colInfoB text-nowrap" style="max-height: 25px; min-width: 150px; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">Delay: {{delayDuration}} Days</div>
+    
+    <div class="colSeparater float-left"></div>
+  </div>
+</div>
+    <!-- body elements -->
+    <div *ngIf="!reportView" class="search-table-outter tableHCFix ">
+      <table class = "table table-borderless" [ngClass] = "{tF0: 'tF0 lR', tF1: 'tF1  lR', tF2A: 'tF2A  lR', tF2B: 'tF2B1 tF2B2', tF3A: 'tF2A lR', tF3B: 'tF2B1 tF2B2', tF4A: 'tF2A lR', tF4B: 'tF2B1 tF4B2', tF5: 'tF1 lR', tF6A: 'tF2A lR', tF6B: 'tF2B1 tF2B2', tF7: 'tF7 lR', tF8A: 'tF8A lR', tF8B: 'tF2B1 tF4B2', tF8C: 'tF2B1 tF4B2', tF9A: 'tF2B1 tF4B2 lR', tF9B: 'tF2B1 tF9B2', tF9C: 'tF2B1 tF9B2', tF10: 'tF10 lR', tF11: 'tF10 lR', tF12: 'tF0 lR', tF13: 'tF13 lR', tF14: 'tF0 lR', tF15: 'tF0 lR', tF16: 'tF16 lR', tF17: 'tF0 lR', tF18: 'tF2B1 tF2B2 lR'}[AppN]"  style="border:2px #305496 solid;" id = "excel-table">
+      <!-- <table class = "table table-borderless" [ngClass] = "[AppN]"  style="border:2px #305496 solid;" id = "excel-table">-->
+        <thead>
+          <tr class='clickable-row'>
+            <th *ngFor="let cell of cuurentAppendixData[0]; let j = index">
+              <div>
+                {{cell}}
+              </div>
+          </th>
+          <th></th>         <!--empty column for resizing the table-->
+          </tr>
+          </thead>
+          <tbody>
+            <tr class='clickable-row' *ngFor="let row of cuurentAppendixData.slice(1); let i = index"  [ngClass] = "{Yes: 'forSHRow'}[SH]">
+                  <td *ngFor="let cell of row; let j = index">
+                      <div>
+                        {{cell}}
+                      </div>
+                  </td>
+                  <td></td>       <!--empty column for resizing the table-->
+                  {{identifySubHeading (i, AppN)}}
+              </tr>
+          </tbody>
+      </table>
+  </div>
+
+
+    <!--for showing the word report --> 
+    <div *ngIf="reportView" class="divReport">
+      <!--<h4>Working on Report </h4>
+      <iframe id = "RViewer" style = "height: 1200px; width:800px"></iframe>
+      <p id = "RViewer" class = "col-12"> Report Needs to show </p> -->
+  
+      <section class="fullSection">
+        <div id = "All" class="contentSection">
+          <div class="leftContent">
+         
+            <h1>CONTENTS</h1>			
+            
+            <h2><a fragment="1" (click)="navigateToSection('1')"><span></span>Introduction And Background</a></h2>
+              <a fragment ="11" (click)="navigateToSection('11')"><h3><span></span>{{contractAs}}</h3></a>
+              <a fragment="12" (click)="navigateToSection('12')"><h3><span></span>{{contractAs}} revision</h3></a>
+              <a fragment="13" (click)="navigateToSection('13')"><h3><span></span>event</h3></a>
+              <a fragment="14" (click)="navigateToSection('14')"><h3><span></span>Cost Claim</h3></a>
+              <a fragment="15" (click)="navigateToSection('15')"><h3><span></span>purpose of this document</h3></a>
+    
+            <h2><a fragment="2" (click)="navigateToSection('2')"><span></span>relevant {{contractAs}} particulars</a></h2>	
+              <a fragment="21" (click)="navigateToSection('21')"><h3><span></span>generally</h3></a>
+              <a fragment="22" (click)="navigateToSection('22')"><h3><span></span>{{contractAs}} provisions</h3></a>							
+  
+            <h2><a fragment="3" (click)="navigateToSection('3')"><span></span>financial impact</a></h2>
+              <a fragment="31" (click)="navigateToSection('31')"><h3><span></span>introduction</h3></a>
+              <a fragment="32" (click)="navigateToSection('32')"><h3><span></span>cost headings</h3></a>
+                <!-- if condition has to come-->
+             <ng-template [ngIf]="selectedOptions.includes('Site Preliminaries')">
+              <a fragment="33" (click)="navigateToSection('33')"><h3><span></span>Project/Site Overheads (Running Preliminary Cost)</h3></a>
+              </ng-template>
+              <ng-template [ngIf]="selectedOptions.includes('Escalation - Material') || selectedOptions.includes('Escalation - Labour')">
+              <a fragment="34" (click)="navigateToSection('34')"><h3><span></span>Escalation</h3></a>
+              </ng-template>
+              <ng-template [ngIf]="selectedOptions.includes('Loss of Productivity')">
+              <a fragment="35" (click)="navigateToSection('35')"><h3><span></span>Loss Of Productivity</h3></a>
+              </ng-template>
+              <ng-template [ngIf]="selectedOptions.includes('De-moblisation') || selectedOptions.includes('Re-moblisation')">
+              <a fragment="36" (click)="navigateToSection('36')"><h3><span></span>Mobilisation</h3></a>
+              </ng-template>
+             <ng-template [ngIf]="selectedOptions.includes('Head Office Overheads')">
+              <a fragment="37" (click)="navigateToSection('37')"><h3><span></span>Head Office Overheads</h3></a>
+              </ng-template>
+              <ng-template [ngIf]="selectedOptionSC">
+              <a fragment="38" (click)="navigateToSection('38')"><h3><span></span>Subcontractor's Claim</h3></a>
+              </ng-template>
+             <ng-template [ngIf]="selectedOptions.includes('Loss of Profit') || selectedOptions.includes('Profit on Claim')">
+              <a fragment="39" (click)="navigateToSection('39')"><h3><span></span>Profit</h3></a>
+              </ng-template>
+             <ng-template [ngIf]="selectedOptions.includes('Damages')">
+              <a fragment="310" (click)="navigateToSection('310')"><h3><span></span>Damages</h3></a>
+              </ng-template>
+             <ng-template [ngIf]="selectedOptions.includes('Financiaal Charge on Delayed Profit') || selectedOptions.includes('Financiaal Charge (Interest) on Unsettled Payment')">
+              <a fragment="311" (click)="navigateToSection('311')"><h3><span></span>Finance Charge</h3></a>
+              </ng-template>
+              <a fragment="312" (click)="navigateToSection('312')"><h3><span></span>Summary of Financial Impact</h3></a>
+            <h2><a fragment="4" (click)="navigateToSection('4')"><span></span>Conclusion</a></h2>
+            <h2><a fragment="5" (click)="navigateToSection('5')"><span></span>Appendices</a></h2>						
+          </div>
+  
+          
+          <div class="rightContent">
+            <div class = "pageBreak"></div>
+            <!--<section class="content-div">-->
+              <h2 id = "1" ><span></span>Introduction And Background</h2>
+              <!--<h3 id = "ayush"><span></span>{{contractAs}}</h3> -->
+              <h3 id = "11"><span></span>{{contractAs}}</h3>
+              
+                <p><span></span>A {{contractAs}} was entered into between M/s. {{claimantName}} (hereinafter referred to as “{{claimantAs}}”) and M/s. {{nameOfDefendant}} (hereinafter referred to as "{{defendantAs}}") for the {{projectName}} (the “Project”).</p>
+              
+                <p><span></span>Pursuant to the {{contractAs}}, the original {{contractAs}} Price is {{originalContractPriceType}} {{formatNumber(originalContractPrice)}}, and the original {{contractAs}} Duration is {{originalContractDurationvalue}} {{originalContractDurationSelect}}.</p>
+              
+                <p><span></span>The Project commencement date is {{commencementDate}}, and the original {{contractAs}} Completion date is {{formatDate(OCD)}}.</p>
+              
+              <h3 id = "12"><span></span>{{contractAs}} REVISION</h3>
+              
+              <p><span></span>{{contractUpdate}}</p>
+              
+              <h3 id = "13"><span></span>EVENT</h3>
+              
+              <p><span></span>{{EventDeclaration}}</p>
+              
+              <h3 id = "14"><span></span>COST CLAIM</h3>
+              
+              <p><span></span>{{claimJustification}}</p>
+              
+              <h3 id = "15"><span></span>PURPOSE OF THIS DOCUMENT</h3>
+              
+              <p><span></span>This report is generated from ClaimDD to justify the Cost Claim (which the {{claimantAs}} incurred and/or shall incur in addition to the {{StatusContract}} {{contractAs}} Price due to the Event) evaluated via ClaimDD.</p>
+             <br>                   
+             <h2 id = "2" class = "pageBreak"><span></span>Relevant {{contractAs}} Particulars</h2>
+             
+             <h3 id = "21"><span></span>GENERALLY</h3>
+             
+             <p><span></span>This Section identifies the {{contractAs}} provisions that are deemed relevant/pertinent to or are referred to in this document. The provisions, conditions, documents, and particulars set out hereunder are included in this Section for information and ease of reference only.</p>
+             
+             <h3 id = "22"><span></span>{{contractAs}} PROVISIONS</h3>
+             
+             <p><span></span>The {{claimantAss}} entitlement to claim an additional payment is stated in the {{contractAs}}. The Conditions of the {{contractAs}} state:</p>
+             
+             <p><i><span></span>"{{clauses}}"</i></p>
+
+             <br>
+             <br>
+             <h2 id = "3" class = "pageBreak"><span></span>Financial Impact</h2>
+           
+             <h3 id = "31"><span></span>INTRODUCTION</h3>
+           
+             <p><span></span>This Section details the various expenditure, costs, losses, and financial burdens incurred (shall be incurred) by the {{claimantAs}} due to the Event and justifies the additional payment (“Cost Claim”) that is entitled to receive from the {{defendantAs}}.</p>
+  
+             <h3 id = "32" class = "pageBreak"><span></span>COST HEADINGS</h3>
+         
+             <p><span></span>Pursuant to the {{contractAs}}, the Cost Claim is claimed under the following headings and subheadings:</p>
+         
+                <ul>
+                  <ng-template [ngIf]="selectedOptions.includes('Site Preliminaries')">         
+                  <li class = "fLiHUA"><span></span>Project/Site Overheads (Running Site Preliminary Cost)</li>
+                      <ul>
+                        <li class = "fLiD"><span></span>Contractual Securities such as bonds and insurances</li>
+                        <li class = "fLiD"><span></span>Resources – Project Administration Staffs</li>
+                        
+                        <li class = "fLiD"><span></span>Resources – Equipment</li>
+                        
+                        <li class = "fLiD"><span></span>Facility - Utilities</li>
+                        
+                        <li class = "fLiD"><span></span>Facility – Site Administration</li>
+                        
+                        <li class = "fLiD"><span></span>Facility – Transportation</li>
+                      </ul>  
+                  <h6></h6>
+                  </ng-template>
+                  <ng-template [ngIf]="selectedOptions.includes('Escalation - Material') || selectedOptions.includes('Escalation - Labour')">
+                  <li class = "fLiHUA"><span></span>ESCALATION</li>
+                    <ul>
+                    <ng-template [ngIf]="selectedOptions.includes('Escalation - Labour')">
+                    <li class = "fLiD"><span></span>Impact due to change in Labour cost</li>
+                    </ng-template>
+                    <ng-template [ngIf]="selectedOptions.includes('Escalation - Material')">
+                    <li class = "fLiD"><span></span>Impact due to change in Material cost</li>
+                    </ng-template>  
+                    </ul>
+                  <h6></h6>
+                </ng-template>
+                <ng-template [ngIf]="selectedOptions.includes('Loss of Productivity')">
+                  <li class = "fLiHUA"><span></span>Productivity</li>
+                    <ul>
+                    <li class = "fLiD"><span></span>Loss of productivity incurred due to disruption</li>
+                    </ul>
+                  <h6></h6>
+                </ng-template>
+                <ng-template [ngIf]="selectedOptions.includes('De-moblisation') || selectedOptions.includes('Re-moblisation')">
+                  <li class = "fLiHUA"><span></span>Mobilisation</li>
+                    <ul>                    
+                      <ng-template [ngIf]="selectedOptions.includes('De-moblisation')">
+                      <li class = "fLiD"><span></span>Demobilisation</li>
+                      </ng-template>
+                      <ng-template [ngIf]="selectedOptions.includes('Re-moblisation')">
+                      <li class = "fLiD"><span></span>Remobilisation</li>
+                      </ng-template>
+                    </ul>
+                  <h6></h6>
+                </ng-template>
+                <ng-template [ngIf]="selectedOptions.includes('Head Office Overheads')">
+                  <li class = "fLiHUA"><span></span>Head Office Overheads</li>
+                    <ul>
+                    <li class = "fLiD"><span></span>Head Office Overhead for the delay duration</li>
+                    </ul>
+                  <h6></h6>
+                </ng-template>
+                <ng-template [ngIf]="selectedOptionSC">
+                  <li class = "fLiHUA"><span></span>Subcontractor’s Claims</li>
+                    <ul>
+                    <li class = "fLiD"><span></span>Claim made by the Subcontractor</li>
+                    </ul>
+                  <h6></h6>
+                </ng-template>
+                <ng-template [ngIf]="selectedOptions.includes('Loss of Profit') || selectedOptions.includes('Profit on Claim')">
+                  <li class = "fLiHUA"><span></span>Profit</li>
+                    <ul>
+                      <ng-template [ngIf]="selectedOptions.includes('Profit on Claim')">
+                    <li class = "fLiD"><span></span>Profit on the cost</li>
+                    </ng-template>
+                    <ng-template [ngIf]="selectedOptions.includes('Loss of Profit')">
+                    <li class = "fLiD"><span></span>Loss of Profit or Loss of opportunity to earn profit</li>
+                    </ng-template>
+                    </ul>
+                  <h6></h6>
+                </ng-template>
+                <ng-template [ngIf]="selectedOptions.includes('Damages')">
+                  <li class = "fLiHUA"><span></span>Damages</li>
+                    <ul> 
+                    <li class = "fLiD"><span></span>Damages incurred in the business</li>
+                    </ul>
+                  <h6></h6>
+                </ng-template>
+                <ng-template [ngIf]="selectedOptions.includes('Financiaal Charge on Delayed Profit') || selectedOptions.includes('Financiaal Charge (Interest) on Unsettled Payment')">
+                  <li class = "fLiHUA"><span></span>Financial Charges</li>
+                    <ul>
+                    <ng-template [ngIf]="selectedOptions.includes('Financiaal Charge on Delayed Profit')">
+                    <li class = "fLiD"><span></span>Financial Charge on Delayed Profit</li>
+                    </ng-template>
+                    <ng-template [ngIf]="selectedOptions.includes('Financiaal Charge (Interest) on Unsettled Payment')">
+                    <li class = "fLiD"><span></span>Financial Charge on  Delayed or Unpaid Payment</li>
+                    </ng-template>  
+                  </ul>
+                  </ng-template>
+              </ul>
+                
+             <ng-template [ngIf]="selectedOptions.includes('Site Preliminaries')">    
+              <h3 id = "33" class = "pageBreak"><span></span>PROJECT/SITE OVERHEADS (RUNNING PRELIMINARY COST)</h3>
+              
+              <p><span></span>The “Site Overheads” cost is the cost incurred by the {{claimantAs}} on the site. It is also referred to as Running Preliminary Costs, Site Organisation Costs, Site Running Costs, or Site Preliminary Costs.</p>
+              
+              <p><span></span>The Event shall lead the {{claimantAs}} to retain its key staff and resources on the Project for the Asserted EOT of {{daysOnCompletion}} days, which is longer the than {{StatusPlan}} duration.</p>
+              
+              <p><span></span>The {{claimantAss}} Site Overheads costs shall increase considerably due to such extended presence on the site. The Site Overheads costs include, but are not necessarily limited to, the following categories:</p>
+                  <ul>
+                    <li class = "fLiLA"><span></span>Contractual Securities such as bonds and insurances;</li>                 
+                    <li class = "fLiLA"><span></span>Resources – Project Administration staffs</li>
+                    <li class = "fLiLA"><span></span>Resources - Equipment</li>          
+                    <li class = "fLiLA"><span></span>Facility - Utilities</li>
+                    <li class = "fLiLA"><span></span>Facility – Site Administration</li>
+                    <li class = "fLiLA"><span></span>Facility – Site Transport</li>      
+                  </ul>
+              
+              <h4><span></span>Contractual Securities</h4>
+              <p><span></span>Pursuant to the {{contractAs}}, the {{claimantAs}} has procured and submitted the bonds and insurances (“Contractual Securities”) for the original {{contractAs}} Duration{{StatusContractSecurities}}</p>
+              
+              <p><span></span>Moreover, the {{claimantAs}} has to maintain the validity of the Contractual Securities.  Thus, the {{claimantAs}} shall incur (incurred) additional cost for maintaining (extending) the validity of Contractual Securities for the Asserted EOT due to the Event. </p>
+              
+              <p><span></span>Accordingly, pursuant to the daily cost required for maintaining the Contractual Securities, it is evaluated that the {{claimantAs}} shall incur the cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[1])}}</b> for maintaining the Contractual Securities for the Asserted EOT of {{daysOnCompletion}} days.</p>
+              
+              <p><span></span>The principle adopted in calculating such cost is the daily rate for maintaining the Contractual Securities mutiplied by the Asserted EOT. The cost evaluation details are in Appendix 1 of Annexure B (Evaluation of Cost Claim).</p>
+              
+              
+              <h4 class = "pageBreak"><span></span>Resources – Project Administration Staff</h4>
+              
+              <p><span></span>Pursuant to the {{contractAs}}, the {{claimantAs}} provides the Project administration staff whom the {{claimantAs}} utilises on-site, who may include the staff and employees of each Subcontractor ("Resources – Manpower (Staff)") that are necessary to execute and complete the Works. </p>
+              
+              <p><span></span>The {{claimantAs}} has considered the Resources - Administrator cost required for the original {{contractAs}} Duration in the original {{contractAs}} Price. </p>
+              
+              <p><span></span>The Event shall lead the {{claimantAs}} to extend Resources – Manpower (Staff) for the Asserted EOT of {{daysOnCompletion}} days, which is longer the than {{StatusPlan}} duration. These extended Resources - Administrators shall incur additional costs to the {{claimantAs}}.</p>
+              
+              <p><span></span>Though the {{claimantAs}} shall extend the Resources - Administrator for {{daysOnCompletion}} days from the {{StatusContract}} {{contractAs}} Duration, the Event impacted the Resources – Manpower (Staff) engaged during the Event Period from {{EstartDate }} to {{EendDate}}. Thus, the quantum of Resources - Administrator engaged during the Event Period is considered when evaluating such additional cost.</p>
+              
+              <p><span></span>Accordingly, pursuant to the daily rate of Resources - Administrator, it is evaluated that the {{claimantAs}} shall incur the cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[2])}}</b> for extending the Resources - Administrator for the Asserted EOT of {{daysOnCompletion}} days.</p>
+              
+              <p><span></span>The principle adopted in calculating such cost is a daily rate of Resources - Administrator multiplied by total Resources - Administrator engaged during the Event Period and factor of impact (which is computed by Asserted EOT divided by Event Duration). </p>
+              
+              <p><span></span>The cost evaluation details are in Appendix 2 of Annexure B (Evaluation of Cost Claim).</p>
+              
+              
+              <h4 class = "pageBreak"><span></span>Resources – Equipment</h4>
+              
+              <p><span></span>Pursuant to the {{contractAs}}, the {{claimantAs}} provides equipment such as apparatus, machinery, vehicles, and other things (“Resources – Equipment”) that are required to execute and complete the Works.</p>
+              
+              <p><span></span>The {{claimantAs}} has considered the Resources - Equipment cost required for the original {{contractAs}} Duration in the original {{contractAs}} Price. </p>
+              
+              <p><span></span>The Event shall lead the {{claimantAs}} to extend Resources – Equipment for the Asserted EOT of {{daysOnCompletion}} days, which is longer the than {{StatusPlan}} duration. This extended Resources - Equipment shall incur additional cost to the {{claimantAs}}.</p>
+              
+              <p><span></span>Though the {{claimantAs}} shall extend the Resources - Equipment for {{daysOnCompletion}} days from the {{StatusContract}} {{contractAs}} Duration, the Event impacted the Resources – Equipment engaged during the Event Period from {{EstartDate }} to {{EendDate}}. Thus, the quantum of Resources – Equipment engaged during the Event Period is considered when evaluating such additional cost. </p>
+              
+              <p><span></span>Accordingly, pursuant to the daily rate of Resources - Equipment, it is evaluated that the {{claimantAs}} shall incur the cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[3])}}</b> for extending the Resources – Equipment for the Asserted EOT of {{daysOnCompletion}} days.</p>
+              
+              <p><span></span>The principle adopted in calculating such cost is the daily rate of Resources – Equipment multiplied by total Resources - Equipment engaged during the Event Period and factor of impact (which is computed by Asserted EOT divided by Event Duration). </p>
+              
+              <p><span></span>The cost evaluation details are in Appendix 3 of Annexure B (Evaluation of Cost Claim).</p>
+              
+              
+              <h4 class = "pageBreak"><span></span>Facility – Utilities</h4>
+              
+              <p><span></span>Pursuant to the {{contractAs}}, the {{claimantAs}} provides the facilities such as water, electricity, and gas (“Utility Facilities") that are necessary to execute and complete the Works. </p>
+              
+              <p><span></span>The {{claimantAs}} has considered the Utility Facilities for the original {{contractAs}} Duration in the original {{contractAs}} Price.</p>
+              
+              <p><span></span>The Event shall lead the {{claimantAs}} to provide the Utility Facilities for the Asserted EOT of {{daysOnCompletion}} days, which is longer the than {{StatusPlan}} duration. These extended Utility Facilities shall incur additional costs to the {{claimantAs}}.</p>
+              
+              <p><span></span>Though the {{claimantAs}} shall extend the Utility Facilities for {{daysOnCompletion}} days from the {{StatusContract}} {{contractAs}} Duration, the Event impacted the Utility Facilities provided during the Event Period from {{EstartDate }} to {{EendDate}}. Thus, the quantum of Utility Facilities provided during the Event Period is considered when evaluating such additional cost. </p>
+              
+              <p><span></span>Accordingly, pursuant to the daily cost required for providing the Utility Facilities, it is evaluated that the {{claimantAs}} shall incur the cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[4])}}</b> for providing the Utility Facilities for the Asserted EOT of {{daysOnCompletion}} days. </p>
+              
+              <p><span></span>The principle adopted in calculating such cost is the unit rate of Utility Facilities multiplied by the average monthly quantity during the Event Period and factor of impact (which is computed by Asserted EOT divided by 30, which is an average number of days in a month). </p>
+              
+              <p><span></span>The cost evaluation details are in Appendix 4 of Annexure B (Evaluation of Cost Claim).</p>
+              
+  
+              <h4 class = "pageBreak"><span></span>Facility – Site Administration</h4>
+              
+              <p><span></span>Pursuant to the {{contractAs}}, the {{claimantAs}} provides the facilities such as offices, office boy, securities, printing, and stationaries ("Site Facilities") that are necessary to execute and complete the Works.</p>
+              
+              <p><span></span>The {{claimantAs}} has considered the Site Facilities that are required for the original {{contractAs}} Duration in the original {{contractAs}} Price. </p>
+              
+              <p><span></span>The Event shall lead the {{claimantAs}} to provide the Site Facilities on the Project for the Asserted EOT of {{daysOnCompletion}} days, which is longer the than {{StatusPlan}} duration. These extended Utility Facilities shall incur additional costs to the {{claimantAs}}.</p>
+              
+              <p><span></span>Accordingly, pursuant to the daily cost required for providing the Site Facilities, it is evaluated that the {{claimantAs}} shall incur the cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[5])}}</b> for providing the Site Facilities for the Asserted EOT of {{daysOnCompletion}} days.</p>
+              
+              <p><span></span>The principle adopted in calculating such cost is the daily rate for providing the Site Facilities multiplied by the Asserted EOT. </p>
+              
+              <p><span></span>The cost evaluation details are in Appendix 5 of Annexure B (Evaluation of Cost Claim).</p>
+              
+              
+              <h4 class = "pageBreak"><span></span>Facility – Transport</h4>
+              
+              <p><span></span>Pursuant to the {{contractAs}}, the {{claimantAs}} provides transport facilities such as bus, minibus, and car (Transport Facilities) that are required to execute and complete the Works.</p>
+              
+              <p><span></span>The {{claimantAs}} has considered the Transport Facilities cost required for the original {{contractAs}} Duration only in the original {{contractAs}} Price. </p>
+              
+              <p><span></span>The Event shall lead the {{claimantAs}} to extend Transport Facilities on the Project for the Asserted EOT of {{daysOnCompletion}} days, which is longer the than {{StatusPlan}} duration. This extended Transport Facility shall incur additional cost to the {{claimantAs}}.</p>
+              
+              <p><span></span>Though the {{claimantAs}} extended the Transport Facilities for {{daysOnCompletion}} days from the {{StatusContract}} {{contractAs}} Duration, the Event impacted the Transport Facilities engaged during the Event Period from {{formatDate(EstartDate)}} to {{formatDate(EendDate)}}. Thus, the quantum of Transport Facilities engaged during the Event period is considered when evaluating such additional cost. </p>
+              
+              <p><span></span>Accordingly, pursuant to the daily rate of Transport Facilities, it is evaluated that the {{claimantAs}} shall incur the cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[6])}}</b> for providing the Transport Facilities for the Asserted EOT of {{daysOnCompletion}} days.</p>
+              
+              <p><span></span>The principle adopted in calculating such cost is the daily rate of Transport Facilities mutiplied by total Transport Facilities engaged during the Event Period and the factor of impact (which is computed by Asserted EOT divided by Event Duration).</p>
+              
+              <p><span></span>The cost evaluation details are in Appendix 6 of Annexure B (Evaluation of Cost Claim).</p>
+              
+              
+              <h4 class = "pageBreak"><span></span>Total – Site Overheads</h4>
+              
+              <p><span></span>Accordingly, it is evaluated that the {{claimantAs}} shall incur the cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[0])}}</b> due to prolonged Site Overheads. The cost summary is tabulated below:</p>
+              
+                 <table class = "tF0 ftR"  id = "excel-table">
+                      <tbody>
+                        <tr class='clickable-row'>
+                          <td *ngFor="let cell of summaryTable[0]; let j = index">
+                            <div>
+                              {{cell}}
+                            </div>
+                        </td>
+                        </tr>
+   
+                            <tr class='clickable-row' *ngFor="let row of summaryTable.slice(1,8); let i = index">
+                                <td *ngFor="let cell of row; let j = index">
+                                    <div>
+                                      {{cell}}
+                                    </div>
+                                </td>
+                            </tr>
+   
+                          <tr class='clickable-row' *ngFor="let row of summaryTable.slice(8,9)">
+                              <td *ngFor="let cell of row; let j = index">
+                                  <div>
+                                    {{cell}}
+                                  </div>
+                              </td>
+                        </tr>
+                      </tbody>                   
+                  </table>
+                
+              </ng-template>            
+              
+             <ng-template [ngIf]="selectedOptions.includes('Escalation - Material') || selectedOptions.includes('Escalation - Labour')">
+              
+              <h3 id = "34"  class = "pageBreak"><span></span>ESCALATION</h3>
+              
+              <p><span></span>Pursuant to the {{contractAs}}, irrespective of whether the {{claimantAs}} has the right to claim the cost of escalation of materials and labours, the {{claimantAs}} claims such cost escalation condition is applicable until the original {{contractAs}} Completion date of {{formatDate(OCD)}}.</p>
+             
+              <ng-template [ngIf]="selectedOptions.includes('Escalation - Material')">
+              <h4><span></span>Escalation - Materials</h4>
+              
+              <p><span></span>The Event has led the {{claimantAs}} to execute and complete the Works beyond the original {{contractAs}} Completion date. During such period, the Material costs are increased from the rate that the {{claimantAs}} considered in the tender (“Tender Rate”). This incurs additional cost to the {{claimantAs}}.</p>
+              
+              <p><span></span>Accordingly, pursuant to the Tender Rates and actual rates of materials, it is evaluated that the {{claimantAs}} incurred the cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[7])}}</b> due to escalation of the material cost during the extended/prolonged {{contractAs}} period. </p>
+              
+              <p><span></span>The principle adopted in calculating such cost is the difference in the rate of materials mutiplied by the quantum of materials procured during the extended {{contractAs}} period. </p>
+              
+              <p><span></span>The cost evaluation details are in Appendix {{AN[7]}} of Annexure B (Evaluation of Cost Claim).</p>
+              
+              </ng-template>
+             
+              <ng-template [ngIf]="selectedOptions.includes('Escalation - Labour')">
+              <h4><span></span>Escalation - Labour</h4>
+              
+              <p><span></span>The Event has led the {{claimantAs}} to execute and complete the Works beyond the original {{contractAs}} Completion date. During such period, the labour costs are increased from the rate the {{claimantAs}} considered in the tender (“Tender Rate”). This incurs additional cost to the {{claimantAs}}.</p>
+              
+              <p><span></span>Accordingly, pursuant to the Tender Rates and actual rates of labourers, it is evaluated that the {{claimantAs}} incurred the additional cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[8])}}</b> due to escalation of labour cost during the extended/prolonged {{contractAs}} period. </p>
+              
+              <p><span></span>The principle adopted in calculating such cost is the difference in the rate of labour mutiplied by the quantum of labour engaged during the extended period. </p>
+              
+              <p><span></span>The cost evaluation details are in Appendix {{AN[8]}}  of Annexure B (Evaluation of Cost Claim).</p>
+              
+              </ng-template>
+              </ng-template>
+              <ng-template [ngIf]="selectedOptions.includes('Loss of Productivity')">
+              <h3 id = "35" class = "pageBreak"><span></span>LOSS OF PRODUCTIVITY</h3>
+              
+              <p><span></span>Pursuant to the {{contractAs}} and planned resources, the {{claimantAs}} deploys the labour and equipment required to execute and complete the Works within the original {{contractAs}} Duration.</p>
+              
+              <p><span></span>The Event has impacted the productivity of the labours and equipment.  Irrespective of whether the Event shall delay the completion of the Project, such loss of productivity needs to be overcome by deploying more labour and equipment and/or deploying labour and equipment for the extended duration to complete the activities. This incurs additional cost to the {{claimantAs}}.</p>
+              
+              <p><span></span>The {{claimantAs}} evidences such loss of productivity by measured mile method (which is comparing productivity during undisturbed duration with disturbed duration) that is an internationally accepted method to prove the loss of productivity.</p>
+              
+              <p><span></span>Accordingly, pursuant to the tender rate of labourers, it is evaluated that the {{claimantAs}} shall incur the additional cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[9])}}</b> due to loss of productivity during the Event Period. </p>
+              
+              <p><span></span>The principle adopted in calculating such cost is the rate of labour multiplied by the loss of productivity during the Event Period, which is the difference in productivity during the Event Period and productivity during the undisturbed period. </p>
+              
+              <p><span></span>The cost evaluation details are in Appendix {{AN[9]}} of Annexure B (Evaluation of Cost Claim).</p>
+              
+              </ng-template>
+  
+             <ng-template [ngIf]="selectedOptions.includes('De-moblisation') || selectedOptions.includes('Re-moblisation')">
+              <h3 id = "36" class = "pageBreak"><span></span>MOBILISATION</h3>
+              
+              <p><span></span>Pursuant to the {{contractAs}} and planned resources, the {{claimantAs}} mobilises and demobilises the labours that are required to execute and complete the Works.</p>
+              
+             <ng-template [ngIf]="selectedOptions.includes('De-moblisation')">
+              <h4><span></span>Demobilisation</h4>
+              
+              <p><span></span>The Event has led the {{claimantAs}} to demobilise the labours at an unplanned stage. This incurs additional cost to the {{claimantAs}}.</p>
+              
+              <p><span></span>Pursuant to the labour engaged at the time of the Event and the cost of demobilisation, it is evaluated that the {{claimantAs}} incurred the cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[10])}}</b> for demobilising the labours due to the Event. </p>
+              
+              <p><span></span>The principle adopted in calculating such cost is the number of demobilised labour mutiplied by the cost of demobilisation.</p>
+              
+              <p><span></span>The cost evaluation details are in Appendix {{AN[10]}} of Annexure B (Evaluation of Cost Claim).</p>
+              </ng-template>
+             <ng-template [ngIf]="selectedOptions.includes('Re-moblisation')">
+              <h4><span></span>Remobilisation</h4>
+              
+              <p><span></span>The Event has led the {{claimantAs}} to remobilise the labours at an unplanned stage. This incurs additional cost to the {{claimantAs}}.</p>
+              
+              <p><span></span>Pursuant to the labour deployed after the Event and cost of remobilisation, it is evaluated that the {{claimantAs}} shall incur the cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[11])}}</b> for remobilising the labours due to the Event. </p>
+              
+              <p><span></span>The principle adopted in calculating such cost is a number of remobilised labour mutiplied by the cost of remobilisation. </p>
+              
+              <p><span></span>The cost evaluation details are in Appendix {{AN[11]}} of Annexure B (Evaluation of Cost Claim).</p>
+              
+              </ng-template>
+              </ng-template>
+             <ng-template [ngIf]="selectedOptions.includes('Head Office Overheads')">
+              <h3 id = "37" class = "pageBreak"><span></span>HEAD OFFICE OVERHEADS (OFF-SITE OVERHEADS)</h3>
+              
+              <p><span></span>Pursuant to the business principle, the {{claimantAss}} head office department, such as management, accounts, tender, procurement, and HR (“Head Office Support"), works to get the Project and supports the Project team to execute and complete the Works. </p>
+              
+              <p><span></span>Pursuant to the {{contractAs}}, the {{claimantAs}} has considered a portion of the cost/expenses of the Head Office Support in the original {{contractAs}} Price as a Head Office Overhead. Further, such Head Office Overhead cost is considered based on the original {{contractAs}} Duration. </p>
+              
+              <p><span></span>The Event shall lead the {{claimantAs}} to extend the Head Office Support to the Project for the Asserted EOT of {{daysOnCompletion}} days, which is longer the than {{StatusPlan}} duration. This extended Head Office support shall incur additional costs to the {{claimantAs}}.</p>
+              
+              <p><span></span>The Head Office Overhead cost is evaluated for the Asserted EOT of {{daysOnCompletion}} days.</p>
+              
+              <p><span></span>There are three internationally accepted formulas for calculating the additional/reimbursable Head Office Overhead costs. The formulas are:</p>
+                <ul>
+                  <li class = "fLiLA"><span></span>Hudson</li>            
+                  <li class = "fLiLA"><span></span>Emden</li>
+                  <li class = "fLiLA"><span></span>Eichleay</li>
+                </ul>
+              <p><span></span>Moreover, as the {{contractAs}} Price used in Hudson Formula includes Head Office Overheads and Profit, SCL corrected the Hudson formula by excluding Head office Overhead and Profit amounts from the {{contractAs}} Price. However, Good Faith has found an accounting error in such corrected SCL formula. Thus, Good Faith has corrected such errors and introduced new formula from the Hudson formula ("Good Faith Hudson") and Emden Formula (“Good Faith Emden”).</p>
+              
+              <p><span></span>The {{claimantAs}} finds that {{selectedFormula}} formula is the most suitable formula at this stage. Thus, the {{claimantAs}} has considered such formula in calculating Head Office Overhead cost resulting from the Event.</p>
+               
+               <!--// OH Formula is value replace kro -->
+  
+              <p><span></span>Accordingly, it is evaluated that the {{claimantAs}} shall incur the cost of <b>{{originalContractPriceType}} {{formatNumber(sumA[12])}}</b> for providing the Head Office Support due to the Event.</p>
+              
+              <p><span></span>The formula adopted in calculating such cost is detailed in the cost evaluation, which is found under Appendix {{AN[12]}} of Annexure B (Evaluation of Cost Claim).</p>
+              
+              </ng-template>
+              <ng-template [ngIf]="selectedOptionSC">
+              <h3 id = "38" class = "pageBreak"><span></span>SUBCONTRACTOR’S CLAIMS</h3>
+              
+              <p><span></span>Pursuant to the {{contractAs}}, the {{claimantAs}} has employed the subcontractors for various trade works that are necessary to execute and complete the Works.</p>
+              
+              <p><span></span>The Event has impacted the Subcontractors as like the impact faced by the {{claimantAs}}. Thus, the {{claimantAss}} Subcontractors incurred additional costs for which the {{claimantAs}} is liable. As this is the consequence of the Event, the {{claimantAs}} seeks reimbursement of such damages from the {{defendantAs}}.</p>
+              
+              <p><span></span>Accordingly, and pursuant to the various subcontractors’ claims received by the {{claimantAs}}, it is evaluated that the {{claimantAss}} reimbursable cost is <b>{{originalContractPriceType}} {{formatNumber(sumA[13])}}</b> due to the Event. </p>
+              
+              <p><span></span>The cost evaluation details are in Appendix {{AN[13]}} of Annexure B (Evaluation of Cost Claim).</p>
+            
+            </ng-template>
+  
+             <ng-template [ngIf]="selectedOptions.includes('Loss of Profit') || selectedOptions.includes('Profit on Claim')">
+              <h3 id = "39" class = "pageBreak"><span></span>PROFIT</h3>
+              
+              <p><span></span>Pursuant to the business principle, the {{claimantAs}} spends the money to earn the profit. Moreover, the profit depends on the cost and the duration it would take to generate the revenue. </p>
+              
+              <p><span></span>There are three internationally accepted formulas for calculating the additional/reimbursable Head Office Overhead costs. The formulas are:</p>
+              <ul>
+                <li class = "fLiLA"><span></span>Hudson</li>            
+                <li class = "fLiLA"><span></span>Emden</li>
+                <li class = "fLiLA"><span></span>Eichleay</li>
+              </ul>
+              <p><span></span>Moreover, as the {{contractAs}} Price used in Hudson Formula includes Head Office Overheads and Profit, SCL corrected the Hudson formula by excluding Head office Overhead and Profit amounts from the {{contractAs}} Price. However, Good Faith has found an accounting error in such corrected SCL formula. Thus, Good Faith has corrected such errors and introduced new formula from the Hudson formula ("Good Faith Hudson") and Emden Formula (“Good Faith Emden”).</p>
+
+             <ng-template [ngIf]="selectedOptions.includes('Profit on Claim')">
+              <h4><span></span>Profit on Cost</h4>
+              
+              <p><span></span>Thus, the {{claimantAs}} claims profit on the cost established hereinbefore due to the Event.</p>
+              
+              <p><span></span>The {{claimantAs}} finds that {{selectedFormula}} formula is the most suitable formula at this stage. Thus, the Profit percentage is computed/considered fundamental used in such formula. </p>
+              
+              <p><span></span>Accordingly, it is evaluated that the {{claimantAs}} is entitled <b>{{originalContractPriceType}} {{formatNumber(sumA[14])}}</b> as a profit on the costs evaluated due to the Event. </p>
+              
+              <p><span></span>The formula adopted in calculating such cost is the total cost/expenditure established hereinbefore due to the Event multiplied by Profit Percentage. </p>
+              
+              <p><span></span>The cost evaluation details are in Appendix {{AN[14]}} of Annexure B (Evaluation of Cost Claim).</p>
+              
+              </ng-template>
+             <ng-template [ngIf]="selectedOptions.includes('Loss of Profit')">
+              <h4><span></span>Loss of Profit or Loss of Opportunity to Earn Profit</h4>
+              
+              <p><span></span>The "Loss of Profit" or loss of opportunity to earn profit claim is the profit that would have been earned if the resources are utilised in similar projects that were prevented as the {{claimantAs}} was kept on the Project longer than the planned time due to the Event.</p>
+              
+              <p><span></span>The Loss of Profit is evaluated for the Asserted EOT of {{daysOnCompletion}}days.</p>
+              
+              <p><span></span>There are below three internationally accepted formulas for calculating the loss of profit.</p>
+              <ul>
+                <li class = "fLiLA"><span></span>Hudson</li>            
+                <li class = "fLiLA"><span></span>Emden</li>
+                <li class = "fLiLA"><span></span>Eichleay</li>
+              </ul>
+              <p><span></span>Moreover, as {{contractAs}} Price used in Hudson Formula includes Head Office Overheads and Profit, SCL corrected the Hudson formula by excluding Head office Overhead and Profit amounts from the {{contractAs}} Price. However, Good Faith has found that there is an accounting error in such corrected SCL formula. Thus, Good Faith has corrected such errors and introduced new formula from the Hudson formula ("Good Faith Hudson") and Emden Formula (“Good Faith Emden”).</p>
+              
+              <p><span></span>The {{claimantAs}} finds that {{selectedFormula}} formula is the most suitable formulae to evaluate the loss of profit. Thus, the {{claimantAs}} has considered such formula to calculate the loss of profit resulting from the Event.</p>
+              
+              <p><span></span>Accordingly, it is evaluated that the {{claimantAs}} shall have earned the profit of {{originalContractPriceType}} {{formatNumber(sumA[15])}} if the Event did not occur. </p>
+              
+              <p><span></span>The formula adopted in calculating such cost is detailed in the cost evaluation, found under Appendix {{AN[15]}} of Annexure B (Evaluation of Cost Claim).</p>
+              
+              </ng-template>
+              </ng-template>
+             <ng-template [ngIf]="selectedOptions.includes('Damages')">
+              <h3 id = "310" class = "pageBreak"><span></span>DAMAGES</h3>
+              
+              <p><span></span>The damage claim is the damage for which the cost and/or expenses is not claimed or considered or coverd in other cost heading but incurred by the {{claimantAs}} due to consequences of the Event.</p>
+              
+              <p><span></span>The Event has led the {{claimantAs}} to face various damages during the extended {{contractAs}} period. Thus, the {{claimantAs}} seeks reimbursement of such damages.</p>
+              
+              <p><span></span>Accordingly, and pursuant to the various damages incurred by the {{claimantAs}}, it is evaluated that the {{claimantAss}} reimbursable cost is <b>{{originalContractPriceType}} {{formatNumber(sumA[16])}}</b> due to the Event. </p>
+              
+              <p><span></span>The list of damages and cost evaluation details are in Appendix {{AN[16]}} of Annexure B (Evaluation of Cost Claim).</p>
+              
+              </ng-template>
+             <ng-template [ngIf]="selectedOptions.includes('Financiaal Charge on Delayed Profit') || selectedOptions.includes('Financiaal Charge (Interest) on Unsettled Payment')">
+              <h3 id = "311" class = "pageBreak"><span></span>FINANCE CHARGE</h3>
+              
+              <p><span></span>Pursuant to the business principle, the {{claimantAs}} shall incur a financial loss if the revenue is not earned and/or payment is not realised as planned.</p>
+
+              <p><span></span>There are three internationally accepted formulas for calculating the additional/reimbursable Head Office Overhead costs. The formulas are:</p>
+              <ul>
+                <li class = "fLiLA"><span></span>Hudson</li>            
+                <li class = "fLiLA"><span></span>Emden</li>
+                <li class = "fLiLA"><span></span>Eichleay</li>
+              </ul>
+              <p><span></span>Moreover, as the {{contractAs}} Price used in Hudson Formula includes Head Office Overheads and Profit, SCL corrected the Hudson formula by excluding Head office Overhead and Profit amounts from the {{contractAs}} Price. However, Good Faith has found an accounting error in such corrected SCL formula. Thus, Good Faith has corrected such errors and introduced new formula from the Hudson formula ("Good Faith Hudson") and Emden Formula (“Good Faith Emden”).</p>
+
+             <ng-template [ngIf]="selectedOptions.includes('Financiaal Charge on Delayed Profit')">
+              <h4><span></span>Financial Charge on Delayed Profit</h4>
+              
+              <p><span></span>The Event impacted the {{claimantAss}} earning value during the Event Period. Thus, it impacted the {{claimantAss}} profit earning during the Event Period. The {{claimantAs}} shall earn such profit one day. However, such delayed earnings shall result in loss of earnings (at least interest) from such profit. Thus, the {{claimantAs}} claims such loss of earnings (interest on delayed profit).</p>
+              
+              <p><span></span>The {{claimantAs}} has considered {{interestType}} Interest from the end date of the Event, {{StmtFreqCompoundInterest}}.</p>
+              
+              <p><span></span>The {{claimantAs}} finds that {{selectedFormula}} formula is the most suitable formula at this stage. Thus, Profit Percentage is computed/considered fundamental used in such formula.</p>
+              
+              <p><span></span>Accordingly, and pursuant to the planned and actual earned values at the start and end of the Event, it is evaluated that the {{claimantAss}} loss of earning is <b><b>{{originalContractPriceType}} {{formatNumber(sumA[17])}}</b></b> due to the Event.</p>
+              
+              <p><span></span>The formula adopted in calculating such cost is detailed in the cost evaluation, found in Appendix {{AN[17]}} of Annexure B (Evaluation of Cost Claim).</p>
+              
+              </ng-template>
+             <ng-template [ngIf]="selectedOptions.includes('Financiaal Charge (Interest) on Unsettled Payment')">
+              <h4><span></span>Financial Charge on Delayed or Unpaid Payment</h4>
+              
+              <p><span></span>The {{claimantAs}} is yet to receive various due payments from the {{defendantAs}}. Despite the {{claimantAss}} request to release such due payments, no financial relief in respect of such due payments was received from the {{defendantAs}}.</p>
+              
+              <p><span></span>The lack of financial relief resulted in the {{claimantAs}} being further burdened with additional financial charges. Thus, the {{claimantAs}} claims interest on delayed payment.</p>
+              
+              <p><span></span>The {{claimantAs}} has considered {{interestType}} Interest from the expiry of the due date of the payment to the date of this report, {{StmtFreqCompoundInterest}}.</p>
+              
+              <p><span></span>Further, the {{claimantAs}} finds that {{selectedFormula}} formula is the most suitable formula at this stage. Thus, Profit Percentage is computed/considered fundamental used in such formula.</p>
+              
+              <p><span></span>Accordingly, and pursuant to the various due payments, it is evaluated that the {{claimantAss}} incur a financial charge of <b>{{originalContractPriceType}} {{formatNumber(sumA[18])}}</b> due to delay in the payment. </p>
+              
+              <p><span></span>The formula adopted in calculating such cost is detailed in the cost evaluation, found under Appendix {{AN[18]}} of Annexure B (Evaluation of Cost Claim).</p>
+              
+              <!--page 25 tak done 
+              //this.annualProfit ? new Paragraph({}) : this.clauses // aise kr skte hai na -->
+              </ng-template>
+              </ng-template>
+              <h3 id = "312" class = "pageBreak"><span></span>SUMMARY OF FINANCIAL IMPACT</h3>
+              <p style="padding: 0px;"><span></span>As explained in the above Clauses of this submission, the {{claimantAss}} cost claim due to the Event amount to <b>{{originalContractPriceType}} {{formatNumber(sumA[19])}}</b> that summarised in the table below:</p>
+                  
+                <div class="search-table-outter">
+               
+                    <table  class = "rtpad" style="margin-bottom: 20px;" id = "SumTable"  [ngClass] = "'tF0 ftR'">
+                      <tbody>
+                        <tr class='clickable-row'>
+                          <td *ngFor="let cell of summaryTable[0]; let j = index">
+                            <div>
+                              {{cell}}
+                            </div>
+                        </td>
+                        </tr>
+                            <tr class='clickable-row' *ngFor="let row of summaryTable.slice(1, -1); let i = index" >
+                          
+                                <td *ngFor="let cell of row; let j = index" [ngClass] = "{Yes: 'forSHRow'}[SH]">
+                                    <div>
+                                      {{cell}}
+                                    </div>
+                          
+                                </td>
+                                  {{identifySubHeading (i-1, AppN)}}
+                            </tr>
+                          <tr class='clickable-row' *ngFor="let row of summaryTable.slice(-1)">
+                              <td *ngFor="let cell of row; let j = index">
+                                  <div>
+                                    {{cell}}
+                                  </div>
+                              </td>
+                        </tr>
+                      </tbody>
+                      
+                      </table>
+              
+                  </div>            
+             
+              <h2 id = "4"  class = "pageBreak"><span></span>Conclusion</h2>
+              
+              <h5><span></span>The {{claimantAs}} shall incur (or incurred) cost due to the Event for which neither {{claimantAs}} nor {{claimantAss}} Subcontractor is responsible.</h5>
+              
+              <h5><span></span>Pursuant to the {{contractAs}}, the {{claimantAs}} has evaluated the cost using ClaimDD due to the Event's impact and claims the cost amount to <b>{{originalContractPriceType}} {{formatNumber(sumA[19])}}</b>.</h5>
+              
+              <h5><span></span>The detailed evaluation is attached in Annexure B. Further, the {{claimantAs}} can provide access to the DefendantAs’s representative to review the submission in ClaimDD.</h5>
+              
+              <h5><span></span>As the evaluation is based on the report date, the {{claimantAs}} reserves its right to amend the evaluation if it incurs more cost and/or finds errors in the submissions.</h5>
+              
+              <h5><span></span>Moreover, the {{claimantAs}} shall raise the payment application (invoice) based on this Cost Claim unless amended or agreed otherwise.</h5>
+              <br>
+              <h2 id = "5"  class = "pageBreak"><span></span>Annexures</h2>
+              <div>
+                <!--
+                <table id = "AnnexureTable" class = "ftAnnexure"  style="border: 2pt solid #305496; color:#203764; padding:50px">
+                  <thead style="background-color: #305496; border: 1pt solid #305496; color:white; font-weight: bolder;">
+                -->
+                <table class = "ftAnnexure">
+                  <tbody>
+                    <tr>
+                      <td>ANNEXURE</td>
+                      <td>DESCRIPTION</td>
+                      <td>REMARKS</td>
+                    </tr>
+                    <tr>
+                        <td>Annexure B</td>
+                        <td>Cost Evaluation</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>Annexure C</td>
+                      <td>Contemporary Records</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>       
+              </div>    
+              <div style="height: 200px">
+                <h4 style="text-align: center; vertical-align: middle;"><span></span>End of the Report</h4>
+              </div>
+           
+           <!--</section class="content-div">-->
+  
+            </div>
+        </div>
+   
+      </section>
+  
+    </div>
+</div>
+
+<ng-template #saveAppendixData let-modal>
+    <div class="modal-header" style="background-color: #fbb335; color: white;">
+        <h4>SAVE CLAIM AS</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body" style="background-color: #305496; color: #fbb335;">
+      <div class="mb-3">
+        <label>Name the Claim</label>
+        <input class="form-control mr-sm-2" id="claimName" placeholder="ClaimX" aria-label="Search"><br>
+        <button type="button" class="btn btn-secondary mr-2" (click)="saveApp()">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Exit</button>
+      </div>
+    </div>
+  
+  </ng-template>
+
+  <ng-template #openSavedAppendix let-modal>
+    <div class="modal-header" style="background-color: #fbb335; color: white;">
+        <h4>OPEN CLAIM</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body" style="background-color:#305496; color: #fbb335;">
+      <div class="mb-3">
+
+        <label class="form-label">Select the Claim</label>
+        <!--<ng-container *ngFor="let claims of savedClaims; let i = index">-->
+          <select class="form-select" id="savedClaims">
+            <option  *ngFor="let claims of savedClaims; let i = index" value="{{i}}">{{claims.claimName}}</option>
+            </select>      
+        <!--</ng-container>-->
+        <br>
+        <label class="form-label">Choose Data History</label><br>
+        <input type="radio" id="onlyOptions" name="fav_language"  (click)="source = 'data'" checked = "checked" > As Saved
+
+        <input class="ml-5"type="radio" id="onlyOptions" name="fav_language" (click)="source = 'options'"> Current
+      </div>
+      <button type="button" class="btn btn-secondary mr-2" (click)="openClaim()">Open</button>
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Exit</button>
+  
+    </div>
+  
+  </ng-template>
+
+  <ng-template #exportAppendixData let-modal>
+    <div class="modal-header">
+        <h4>Export Appendix Data based on Below Option </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="mb-3">
+        <input type="radio" id="pdf" name="fav_language" value="onlyPdf">
+        <label for="pdf">Export As PDF</label><br>
+        <input type="radio" id="excel" name="fav_language" value="onlyExcel">
+        <label for="excel">Export As Excel</label><br>
+        <button type="button" class="btn btn-primary" (click)="onExport('pdf')">Export</button>
+      </div>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+  
+    </div>
+  
+  </ng-template>
+
+  <ng-template #showAbbreviationData let-modal>
+    <div class="modal-header" style="background-color:#fbb335; color: white;">
+        <h4 class="modal-title" id="modal-basic-title">ABBREVIATIONS</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body" >
+        <div class="mb-3">
+            <div class="table-responsive table table-striped" id="bordersAll">
+                <table class="table" style="border:2px #305496 solid;">
+                    <thead style="color: #fbb335; background-color: #305496; border:0px #305496 solid;">
+                      <tr class='clickable-row'>
+                        <th *ngFor="let cell of appendix_Abb_Data[0]; let j = index">
+                          <div>
+                            {{cell}}
+                          </div>
+                       </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class='clickable-row' *ngFor="let row of appendix_Abb_Data.slice(1); let i = index">
+                            <td *ngFor="let cell of row; let j = index">
+                                <div>
+                                  {{cell}}
+                                </div>
+                            </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <div>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="modal.close('Save click')" style="margin-left:5px; margin-bottom: 5px">Exit</button>
+        </div>
+    </div>
+
+</ng-template>
+
+

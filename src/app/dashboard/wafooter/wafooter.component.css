@@ -1,0 +1,25 @@
+.wafooter {
+  background-color: #305496;
+  height: 42px;
+  margin-left: 200px;
+  color: #fbb335;
+  font-size: 13px;
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 200px);
+}
+
+/* .row {
+} */
+
+.col {
+  text-align: center;
+}
+
+.footer-elements {
+  padding-top: 10px;
+}
+
+a{
+color: #fbb335;
+}

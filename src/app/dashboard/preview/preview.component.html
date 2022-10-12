@@ -1,0 +1,351 @@
+<div class=" main-card-heading" style="z-index: 2;">
+    <div style=" display: inline"></div>
+    <div class="row">
+      <div class="col-10 fixSize" style="min-width: 1000px" >
+        <h5 class="h5-heading label-color" class=" card-header">PREVIEW : {{selectedPage}} - {{selectedHead}}</h5>
+      </div>
+      <!--<div class="col-2">
+        <button class="btn btn-outline-warning btn-sm float-right">Help</button>
+      </div>-->
+  </div>
+</div><br>
+
+<div class="main-card card gf">
+      <!-- body elements -->
+      <div style="margin: 1px">
+        <nav class="navbar navbar-expand-lg navbar-light" style="margin-left: -13px;">
+          <div class="container-fluid">
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <button (click)="isDateField ? openAddModalCellRow(addModalCell) : isMonthFeild ? openAddModalUtility(showHeaderModalUtility) : openAddModal(showHeaderModal)" type="button" class="btn btn-outline-success"  [disabled]="userData['isManager'] || isSearch">Add</button>
+                  <button (click)="isDateField ? openEditCellModal(editCellModal) : isMonthFeild ? openEditModalUtility(editModalUtility) : openEditModal(editModal)" type="button" class="btn btn-outline-warning ml-2"  [disabled]="userData['isManager'] || isSearch">Edit</button>
+                  <button (click)="onDeleteButtonClicked(deleteModalCell)" type="button" class="btn btn-outline-danger ml-2"  [disabled]="userData['isManager'] || isSearch" >Delete</button>
+                  <button (click)="onExport()" type="button" class="btn btn-outline-info ml-2">Export</button>
+                </li>
+                <li class="nav-item">      
+                  <div *ngIf= "isDateField" style="max-width: 300px;">
+                    <button class="btn btn-outline-secondary ml-1" (click)="prevMonth()">Prev Month </button>       
+                  </div> 
+                </li>
+                <li class="nav-item">      
+                  <div *ngIf= "isDateField" style="max-width: 300px;">
+                    <button class="btn btn-outline-secondary ml-1" (click)="nextMonth()">Next Month </button>              
+                  </div> 
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input class="form-control me-2" id="searchItem" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit" (click)="isDateField ? onSearchWithDates() : onSearch()">Search</button>
+                <button class="btn btn-outline-primary ml-2" style="width:fit-content" type="button" (click)="showAllData()">Clear</button>
+                <button class="btn btn-outline-warning ml-2 float-right" type="button" (click)="goBack()">Exit</button>
+              </form>
+            </div>
+          </div>
+        </nav>
+        <!-- preview table  & spinner-->
+
+        <div class="d-flex justify-content-center">
+          <div *ngIf="!ViewProjectData" class="spinner-grow text-warning" role="status "style="margin-top: 180px">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <div *ngIf= "!isDateField" class="search-table-outter tableHCFix">
+          <table class=" table table-borderless" id="excel-table"  [ngClass] = "{FDT1: 'FDT1', FDT2: 'FDT2', FDT3: 'FDT3', PDT2: 'PDT2'}[TableType]" style="background-color: white; border:2px #305496 solid;">
+            <tbody>
+                  <tr class='clickable-row' *ngFor="let row of ViewProjectData; let i = index" (click)="selectedRow = row; selectedRowIndex = i" [ngStyle]="{'background-color' : i==0 ? '#fbb335' : i%2==1 ? 'white' : '#effbfb'}">
+                      <td class="smallCol" >
+                          {{i}}
+                          </td>
+                      <td *ngFor="let cell of row; let j = index" (click)="selectedCell = cell; selectedRowIndex = i; selectedColumnIndex = j; cellSelection(this)">
+                          <div>
+                            {{cell}}
+                          </div>
+                      </td>
+                      <td></td>      <!--empty column for resizing the table-->
+                  </tr>
+                  
+              </tbody>
+          </table>
+      </div> 
+
+        <div *ngIf= "isDateField" class="search-table-outter  tableHCFix">
+          <table class=" table table-borderless" id="excel-table" [ngClass] = "{PDT1: 'PDT1', PDT2: 'PDT2'}[TableType]" style="background-color: white; border:2px #305496 solid;">
+            <tbody>
+                <tr class='clickable-row' *ngFor="let row of ViewProjectData[selectedPreviewDataIndex]; let i = index" (click)="selectedRow = row; selectedRowIndex = i" [ngStyle]="{'background-color': i==0 ? '#fbb335' : i%2==1 ? 'white' : '#effbfb'}">
+                    <td class="smallCol">
+                        {{i}}
+                        </td>
+                    <td *ngFor="let cell of row; let j = index"  (click)="selectedCell = cell; selectedRowIndex = i; selectedColumnIndex = j; cellSelection(this)">
+                        <div>
+                          {{cell}}
+                        </div>
+                    </td>
+
+                    <td></td>      <!--empty column for resizing the table-->
+                </tr>
+            </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <!-- model for add new events -->
+    <ng-template #mymodal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Add New</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <form>
+
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="0">Resource ID</label>
+                        <input type="text" placeholder="Resource ID" class="form-control" id="resourceId"
+                            name="resourceId">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="0">Date</label>
+                        <input type="date" placeholder="Date" class="form-control" id="date" name="date">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="0">Value</label>
+                        <input type="text" placeholder="Value" class="form-control" id="value" name="value">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" (click)="modal.close('Save click')">Add Data</button>
+            </div>
+        </form>
+
+    </ng-template>
+
+
+
+<ng-template #showEditDeleteCellModal let-modal>
+    <div class="modal-header">
+        <h4 *ngIf="isEditCell" class="modal-title" id="modal-basic-title">Edit Cell</h4>
+        <h4 *ngIf="isDeleteCell" class="modal-title" id="modal-basic-title">Delete Cell</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="form-label">ID</label>
+            <input (ngModelChange)="selectedEditIdChange($event)" [(ngModel)]="selectedEditId" type="number"
+                class="form-control">
+            <ng-container *ngFor="let index of selectedConfig.edit">
+                <ng-container *ngIf="index === 'date'">
+                    <label class="form-label mt-2">Select Date</label>
+                    <input (ngModelChange)="onDateChange($event)" type="date" class="form-control">
+                    <label class="form-label mt-2">Value</label>
+                    <input [(ngModel)]="selectedEditValue" type="number" class="form-control">
+                </ng-container>
+
+                <ng-container *ngIf="index !== 'date'">
+                    <label class="form-label">{{returnSelectedEditHeader(index)}}</label>
+                    <input [(ngModel)]="selectedEditIndexValue[index]" type="number" class="form-control">
+                </ng-container>
+
+            </ng-container>
+
+        </div>
+        <button *ngIf="isEditCell" (click)="onEditDeleteSubmit()" type="button" class="btn btn-primary">Edit</button>
+        <button *ngIf="isDeleteCell" (click)="onEditDeleteSubmit()" type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+
+    </div>
+</ng-template>
+
+<!-- Add modal start here  -->
+<ng-template #showHeaderModal let-modal>
+    <div class="modal-header" style="background-color:#fbb335; color: white;">
+      <h4 class="modal-title" id="modal-basic-title">ADD DATA</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body" style="background-color:#305496; color:#fbb335;">
+      <div class="mb-3">
+        <h6 style="color: white">Note: Date, if any, should be in the format of M/D/YY</h6>
+        <ng-container *ngFor="let headers of selectedConfig.headers; let i = index">
+          <label class="form-label">{{headers}}</label>
+          <input type={{selectedConfig.type[i]}} id = "{{headers}}" class="form-control" placeholder='{{headers}}'><br>
+        </ng-container>
+  
+      </div>
+      <button (click)="onAdd()" type="button" class="btn btn-secondary mr-2">Add</button>
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Exit</button>
+  
+    </div>
+  
+  </ng-template>
+
+  <!-- Add modal start here for UTILITY -->
+<ng-template #showHeaderModalUtility let-modal>
+  <div class="modal-header" style="background-color:#fbb335; color: white;">
+    <h4 class="modal-title" id="modal-basic-title">ADD DATA</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body" style="background-color:#305496; color:#fbb335;">
+    <div class="mb-3">
+      <ng-container *ngFor="let headers of selectedConfig.headers; let i = index">
+        <label class="form-label">{{headers}}</label>
+        <input type={{selectedConfig.type[i]}} id = "{{headers}}" class="form-control" placeholder='{{headers}}'><br>
+      </ng-container>
+      <label class="form-label">Select Month</label><br>
+      <select class="form-control" id = "getMonth"> 
+          <option *ngFor = "let month of monthList; let i = index" value = {{i}}>
+            {{month}}
+          </option>
+      </select><br>
+      <label class="form-label">Value</label>
+      <input type="text" id = "utilityValue" class="form-control"><br>
+
+    </div>
+    <button (click)="onAddUtility()" type="button" class="btn btn-secondary mr-2">Add</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Exit</button>
+
+  </div>
+
+</ng-template>
+
+  <!-- Edit modal start here  -->
+<ng-template #editModal let-modal>
+    <div class="modal-header" style="background-color:#fbb335; color: white;">
+      <h4 class="modal-title" id="modal-basic-title">EDITOR</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body" style="background-color:#305496; color:#fbb335;">
+      <div class="mb-3">
+        <h6 style="color: white">Note: Date, if any, should be in the format of M/D/YY</h6>
+        <ng-container *ngFor="let headers of selectedConfig.headers; let i = index">
+          <label class="form-label">{{headers}}</label>
+          <!--<input type={{selectedConfig.type[i]}} id = "{{headers}}" class="form-control" value={{selectedRow[i]}}><br>-->
+          <input type={{selectedConfig.type[i]}} id = "{{headers}}" class="form-control" value={{projectData[selectedRowIndex][i]}}><br>
+
+        </ng-container>
+  
+      </div>
+      <button (click)="onEditRow()" type="button" class="btn btn-secondary mr-2">Update</button>
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Exit</button>
+  
+    </div>
+  
+  </ng-template>
+
+  <!--UTILITY Edit modal start here  -->
+<ng-template #editModalUtility let-modal>
+  <div class="modal-header" style="background-color:#fbb335; color: white;">
+    <h4 class="modal-title" id="modal-basic-title">EDITOR</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body" style="background-color:#305496; color:#fbb335;">
+    <div class="mb-3">
+      <ng-container *ngFor="let headers of selectedConfig.headers; let i = index">
+        <label class="form-label">{{headers}}</label>
+        <!--<input type={{selectedConfig.type[i]}} id = "{{headers}}" class="form-control" value={{selectedRow[i]}}><br>-->
+        <input type={{selectedConfig.type[i]}} id = "{{headers}}" class="form-control" value={{projectData[selectedRowIndex][i]}}><br>
+
+      </ng-container>
+      <label class="form-label">{{monthList[selectedColumnIndex - 2].split(' ').slice(1, 5).join(' ')}}</label>
+      <input type="text" id = "editedData" class="form-control" value={{projectData[selectedRowIndex][selectedColumnIndex]}}><br>
+
+    </div>
+    <button (click)="onEditUtility()" type="button" class="btn btn-secondary mr-2">Update</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Exit</button>
+
+  </div>
+
+</ng-template>
+
+  <!-- Edit Cell modal start here (for actual rates, and quantum) -->
+<ng-template #editCellModal let-modal>
+    <div class="modal-header" style="background-color:#fbb335; color: white;">
+      <h4 class="modal-title" id="modal-basic-title">EDITOR</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body"  style="background-color:#305496; color:#fbb335;">
+      <div class="mb-3">
+        <ng-container *ngFor="let headers of selectedConfig.headers; let i = index">
+          <label class="form-label">Selected {{headers}}</label>
+          <input type="text" id = "{{headers}}" class="form-control" value={{selectedRow[i]}} readonly><br>
+        </ng-container>
+        <label class="form-label">Editable Data for Date:-  {{projectData[selectedPreviewDataIndex][0][selectedColumnIndex]}}</label><br>
+        <input type="number" id="cellData" class="form-control" value={{projectData[selectedPreviewDataIndex][selectedRowIndex][selectedColumnIndex]}}>
+  
+      </div>
+      <button (click)="onEditCell()" type="button" class="btn btn-secondary mr-2">Update</button>
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Exit</button>
+  
+    </div>
+  
+  </ng-template>
+
+  <!-- Add modal for Cell start here (for New Row) -->
+<ng-template #addModalCell let-modal>
+    <div class="modal-header" style="background-color:#fbb335; color: white;">
+      <h4 class="modal-title" id="modal-basic-title">ADD DATA</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body"  style="background-color:#305496; color:#fbb335;">
+      <div class="mb-3">
+        <ng-container *ngFor="let headers of selectedConfig.headers">
+          <label class="form-label">{{headers}}</label>
+          <input type="text" id = "{{headers}}" class="form-control" placeholder='{{headers}}'><br>
+        </ng-container>
+        <label class="form-label">Select Date</label><br>
+        <input type="date" id="date"><br><br>
+        <label class="form-label">Data</label><br>
+        <input type="number" id= 'xyz' class="form-control" placeholder='Enter Data'><br>
+  
+      </div>
+      <button (click)="onAddCellNewRow()" type="button" class="btn btn-secondary mr-2">Add</button>
+      <button type="button" class="btn btn-secondary mr-2" (click)="modal.close('Save click')">Exit</button>
+  
+    </div>
+  
+  </ng-template>
+
+
+<!-- Delete confirm Modal -->
+<ng-template #deleteModalCell let-modal>
+  <div class="modal-header" style="background-color:#fbb335; color: white;">
+    <h4 class="modal-title" id="modal-basic-title">Delete DATA</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body"  style="background-color:#305496; color:#fbb335;">
+    <div class="mb-3">
+      Do you want to delete the Data ??
+
+    </div>
+    <button (click)="onDelete()" type="button" class="btn btn-secondary mr-2">Delete</button>
+    <button type="button" class="btn btn-secondary mr-2" (click)="modal.close('Save click')">Exit</button>
+
+  </div>
+
+</ng-template>

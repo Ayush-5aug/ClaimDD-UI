@@ -1,0 +1,90 @@
+<main class="mt-5">
+    <!--Section: Content 1-->
+    <div class="mask" style="background-color: rgba(48, 84, 150, 0);">
+    <section>
+      <div class="row">
+        <div class="col-md-2 gx-5 mb-4">
+        </div>
+        <div class="col-md-3 gx-5 mb-4">
+            <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5 CA1" data-mdb-ripple-color="light">
+              <img src="../../../assets/images/ClaimDDLogIn.png" class="img-fluid" />
+              <a href="#!">
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+              </a>
+            </div>
+        </div>
+        <div class="col-md-7 gx-5 mb-4 CA1" style = "color: #104a90; max-width: auto;">
+            <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+                <div class="row" style="margin-bottom: 50px;">
+                    <div class="col-md-10">
+                            <div class="col-lg-8" style="margin-top: 50px;">
+                                <div class="col-md-12">
+                                    <h3 style="color: #104a90;  font-weight: bold;  margin-bottom: 50px; font-size: 26px;">
+                                        Authenticate Your Account</h3>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <select name="cars" id="cars" class="form-control input_fields rounded" formControlName="userType">
+                                            <option value="isOwner">Owner</option>
+                                            <option value="isManager">Manager</option>
+                                            <option value="isExecuter">Executer</option>
+                                            <option value="isReviewer">Reviewer</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <input type="email" formControlName="email" class="form-control input_fields rounded"
+                                        style="width:100%;" placeholder="E-mail">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <input type="password" formControlName="password" class="form-control input_fields rounded"
+                                            placeholder="Password">
+                                        <p
+                                            style="font-weight:bold;font-size: 12px;margin-top: 10px;margin-left: 8px; color: #fbb335;">
+                                            <a (click)="forgotPwd(showHeaderModal2)" type="button">Forgot Password</a></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="form-group" style="margin-top: 30px;">
+                                        <button type="submit"
+                                            style="width:100%; border-radius: 5px; background: #104a90;  font-size: 13px; width: 100%;"
+                                            class="btn btn-primary" value="Log In">Log In</button>
+                                        <p style="font-size: 12px;margin-top: 15px; margin-left: 10px;">Don't have an account,
+                                            <a routerLink="../signup" style="color: #fbb335; font-weight: bold;">Sign Up</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </form>
+</div>
+</div>
+</section>
+</div>
+</main>
+
+<!-- Forgot pwd modal start here  -->
+<ng-template #showHeaderModal2 let-modal>
+    <div class="modal-header"  style="background-color: #fbb335; color: white;">
+      <h4 class="modal-title" id="modal-basic-title">Forgot Password</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body"  style="background-color: #305496; color: #fbb335;">
+      <div class="mb-3">
+        <ng-container>
+            <label class="form-label">Enter you email</label>
+            <input type="text" class="form-control" placeholder='Email' name="emailId" [(ngModel)]="emailId">
+        </ng-container>
+      </div>
+      <button type="button" class="btn btn-secondary mr-2" (click)="sendForgotPasswordLink()">send Verification Link</button>
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Exit</button>
+    </div>
+  </ng-template>

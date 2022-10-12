@@ -1,0 +1,141 @@
+/* Height for devices larger than 576px */
+@media (min-width: 992px) {
+  #intro {
+    margin-top: 0px;
+  }
+}
+
+#intro {
+  background-image: url("../../../assets/images/bg-SnapInterface-ClaimDD.jpeg");
+  background-repeat: no-repeat;
+  height: auto;
+  background-size:cover;
+}
+
+.CA1 {
+ 
+  line-height: 1.8; 
+  margin-top: 40px;
+  margin-bottom: 15px;
+  float: left;
+  
+}
+
+.CA1 h2 {
+  margin-bottom: 25px;
+  margin-left: 7px;
+  /* margin-top: 2px; */
+  font-weight: bold;
+  /* color: #145da0; */
+  /* color: #003366; */
+  color: #104a90;
+  /* padding-left: 15px; */
+}
+
+.CA1 p {
+  margin-left: 10px;
+  padding-right: 15px;
+  margin-bottom: 20px;
+  font-size: 25px;
+  text-align: justify;
+  color: #104a90;
+}
+
+.CA1 p a {
+  text-decoration: underline;
+}
+
+.CA1 img {
+  width: 100%;
+  padding-left: -10px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+}
+
+.CUAStop {
+  width: 100%;
+  float: left;
+  margin-bottom: 30px;
+  overflow: hidden;
+  background: orange;
+}
+
+.CUAStop h2 {
+  width: 100%;
+  float: left;
+  color: white;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.CUAShead {
+  width: 100%;
+  float: left;
+  color: white;
+  background: #2f5597;
+}
+
+.CUAShead h4 {
+  color: white;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.CUAShead h5 {
+  color: white;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.CUAS {
+  width: 100%;
+  float: left;
+  color: #104a90;
+  background: white
+}
+
+.CUAS p {
+  color: #104a90;
+  font-size: 22px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.CUAS .fa-check {
+  color: #003366;
+  font-size: 22px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+
+.CUASLBlue {
+  width: 100%;
+  float: left;
+  color: #104a90;
+  background: lightblue
+}
+
+.CUASLBlue p {
+  color: #104a90;
+  font-size: 22px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.CUASLBlue .fa-check {
+  color: #003366;
+  font-size: 22px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #104a90;
+}

@@ -1,0 +1,185 @@
+.main-card {
+  border: none;
+}
+.white-line {
+  background-color: white;
+  position: sticky;
+  top: 100px;
+  width: 100%;
+  height: 10px;
+}
+.main-card-heading {
+  color: white;
+  text-transform: uppercase;
+  background-color: #305496;
+  position: sticky;
+  top: 40px;
+  margin-left: -10px;
+  width: calc (100% + 10px)
+}
+
+.main-card-body {
+  min-height: 100vh;
+  background-color: white;
+
+}
+
+/* added by Sagaya */
+
+/* next button */
+.btn-secondary {
+background-color: #fbb335;
+color: #305496;
+margin: 15px 10px 0px 0px;
+width: 200px
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus {
+background-color: #305496 !important;
+color: #fbb335 !important;
+margin: 15px 10px 0px 0px;
+width: 200px;
+}
+
+
+.table-bgB-gf{
+  background-color:white;
+  color:#305496;
+  font-weight: bold;
+  margin-left: 0px
+  
+}
+.table-bgOr-gf{
+  background-color:#fbb335;
+  color:#305496;
+  font-weight: bold;
+  margin-left: 0px
+  
+}
+
+.table-cell-bgBtxtOrBUL-gf{
+  color:#fbb335;
+  background-color:white;
+  font-weight:bold;
+  text-decoration-line:underline;
+  text-decoration-style: double;
+  padding: 20px
+}
+
+.table-cell-bgBtxtOr-gf{
+    color: white;
+    background-color:#305496;
+    text-align: center;
+    border:#fbb335 double 5px;  
+}
+  
+.table-cell-bgLBtxtB-gf{
+  color:#305496;
+  background-color:  #effbfb; 
+  text-align: center
+}
+
+.table-cell-bgWtxtB-gf{
+  color:#305496;;
+  background-color:  white;
+  text-align: center;
+}
+.text-b-gf{
+  margin-left: 18px;
+  margin-right: 18px;
+  color:#305496;
+  font-weight: 400;
+
+
+}
+.table-cell-bOr-gf{
+  border:#fbb335 double 5px;
+  background-color:#305496;
+  color: white
+}
+.table-cell-bgLBbLB-gf{
+  background-color:  #effbfb; 
+  border:#effbfb solid 5px;
+  border-bottom: #305496;
+}
+.table-cell-bgLBsbLB-gf{
+  background-color:  #effbfb; 
+  border:#305496 solid 5px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 5px;
+  border-top: 0px;
+}
+
+  /*for dixing header */
+.fixHeader{
+top:220px;
+width: calc(100vw - 250px);
+height: calc(100vh - 220px);
+overflow:auto;
+position:sticky;
+z-index: 1;
+}
+
+.fixHeader th {
+position: sticky;
+top: 0px;
+color: white;
+background-color:#fbb335;
+z-index: 2;
+
+}
+
+.fixRow {
+position: sticky;
+top: 40px;
+color: white;
+z-index: 2;
+
+}
+
+.gfHeading {
+color:#fbb335;
+font-weight: bolder;
+width: fit-content;
+border-bottom:#fbb335;
+border-width: 3px;
+border-style: double;
+border-top:0;
+border-left: 0;
+border-right: 0;
+}
+.gfError {
+color:#fbb335;
+background-color: #effbfb;
+font-weight: bolder;
+width: fit-content;
+text-decoration: double;
+text-decoration-line: underline;
+}
+
+
+
+.gf {
+  max-height: calc(100vh - 125px);
+  overflow-x: auto;
+  overflow-y: auto;
+  margin-left: -10px;
+  margin-top: -21px;
+  border-radius: 0px;
+}
+
+/* scroll bar design */
+::-webkit-scrollbar{
+  width: 8px;
+  height: 8px
+}
+::-webkit-scrollbar-track-piece{
+  box-shadow: inset 0 0 5px #305496;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:#fbb335;
+}
