@@ -358,7 +358,7 @@ export class ClaimComponent implements OnInit {
               this.setWorkResourcesMaterial(res['workResourcesMaterial'])
               this.setWorkResourcesUtilities(res['workResourcesUtilities'])
             });
-      }, 500)
+      }, 1500)
     setTimeout(() => {
       
       if(this.selectedOptions.includes('Site Preliminaries') && initAppendixData != "false"){
@@ -431,8 +431,8 @@ export class ClaimComponent implements OnInit {
         this.listOfAppendixToBeDisplayed.push("Cost - Loss of Productivity")  //Appendix 9A
         this.listOfAppendixToBeDisplayed.push("Quantum (Impact) - Loss of Productivity")  //Appendix 9B
         this.listOfAppendixToBeDisplayed.push("Quantum (Max) - Loss of Productivity")  //Appendix 9C
-        this.generateAppendix9B()
         this.generateAppendix9C()
+        this.generateAppendix9B()
         this.generateAppendix9A()
         this.allClaimData.push({'appendixName': 'Appendix 9A', 'actualData': this.appendix_9A_Data})
         this.allClaimData.push({'appendixName': 'Appendix 9B', 'actualData': this.appendix_9B_Data})
@@ -505,7 +505,7 @@ export class ClaimComponent implements OnInit {
       }
       this.cuurentAppendixData = this.summaryTable
       
-    }, 2000);
+    }, 3000);
     if(initAppendixData === "false") {
       localStorage.setItem(
         "initAppendixData",
