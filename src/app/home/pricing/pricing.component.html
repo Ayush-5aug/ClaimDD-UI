@@ -40,11 +40,11 @@
       <div class="col-md-8 gx-5 mb-4 CA1" style = "color: #104a90; max-width: auto;">
         <h3>ENTER THE DESIRED PLAN DETAILS</h3>
         <div class="pricing-form-area">
-          <select class="selectpicker" id = "curr" (click)="currencyChange()">
+          <select class="selectpicker" id = "curr" (change)="currencyChange()">
             <option value = "AED">AED</option>
             <option value = "EUR">EUR</option>
             <option value = "GBP">GBP</option>
-            <option value = "IND">IND</option>
+            <option value = "IND">INR</option>
             <option value = "USD">USD</option>
           </select>
            <h3></h3>
@@ -67,7 +67,7 @@
               <div class="row">
               <label class="col-sm-6" style="color: #fbb335" for="email">Project Location (Region)</label>
               <div class="col-sm-6">
-                <select class="form-control rounded" style="text-align: center;" id = "region" (click) = "onRegionChange()">
+                <select class="form-control rounded" style="text-align: center;" id = "region" (change) = "onRegionChange()">
                  
                   <option value = "America (USA)">America (USA)</option>  
                   <option value = "Asia (excluding Singapore & Hong Kong)">Asia (excluding Singapore & Hong Kong)</option>

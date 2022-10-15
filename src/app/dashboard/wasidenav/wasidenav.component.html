@@ -3,7 +3,7 @@
     <img src=" /assets/images/ClaimDD.jpg" id="icon" alt="User Icon"
     style="margin: 4px 5px  0px  7px; max-height: 75px; max-width: 180px; position: sticky">
     <!--<button (click)="onLogout()" type="button" class="btn btn-warning" style="margin: 5px 5px  0px  7px; max-height: 50; width: 180px; max-width: 180px; border-radius: 0px; color: white; text-align: left; font-weight:bolder">USER: {{userData['userName']}}</button>-->
-    <select type="button" id="operations" (click)="operations(savePwd)" style="margin: 5px 5px  0px  7px; max-height: 50; width: 180px; max-width: 180px; border-radius: 0px; text-align: left; font-weight:bolder; background-color: #fbb335; color: white">
+    <select type="button" id="operations" (change)="operations(savePwd)" style="margin: 5px 5px  0px  7px; max-height: 50; width: 180px; max-width: 180px; border-radius: 0px; text-align: left; font-weight:bolder; background-color: #fbb335; color: white">
       <option selected value = "">{{userData['userName']}}</option>
       <option value="pwdChange">Change Password</option>
       <option value="logout">Logout</option>

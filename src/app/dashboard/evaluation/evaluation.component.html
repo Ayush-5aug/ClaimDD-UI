@@ -21,7 +21,7 @@
         
         <div style="margin-top: 20px; margin-left: 30px;" class="form-group">        
           <label for="inputEmail4" style="color:#fbb335">Choose a Event for which Evaluate the Cost</label>
-          <select class="form-control" id="exampleFormControlSelect1" (click)="setEventSelected()">
+          <select class="form-control" id="exampleFormControlSelect1" (change)="setEventSelected()">
             <option *ngFor = "let event of eventList;let i = index" value={{i}}>{{event.eventID}} - {{event.type}} caused due to {{event.description}} that occured from {{formatDate(event.startDate)}} to {{formatDate(event.endDate)}}</option>
           </select>
         </div>
@@ -109,7 +109,7 @@
           <div class = "divHStick"><label class="label-H1"><h5 class="h5-heading label-H2">HOOH and Profit Formula</h5></label></div>
           <div class="form-group"  style="margin-top: 20px; margin-left: 30px;">       
             <label for="inputEmail4"  style="color:#fbb335">Select a formula that needs to be considered when computing the HOOH and Profit</label>
-            <select class="form-control" id="exampleFormControlSelect2" (click)="changeOtherStatus()">
+            <select class="form-control" id="exampleFormControlSelect2" (change)="changeOtherStatus()">
               <option>Hudson</option>
               <option>Hudson - Corrected by SCL</option>
               <option>Emden</option>
