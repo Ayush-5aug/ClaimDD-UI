@@ -1,0 +1,117 @@
+/* common style */
+.main-card {
+    border: none;
+  }
+  
+  .main-card-heading {        /* slight modified */
+    color: white;
+    text-transform: uppercase;
+    background-color: #305496;
+    position: sticky;
+    top: 0px;
+    margin-left: -10px;
+    width: calc (100% + 10px);
+    max-height: 40px;
+  }
+  
+  .main-card-body {
+    min-height: 100vh;
+    background-color: white;
+  }
+  
+  /* common style */
+  
+  /* other */
+  .sub-headings {
+    color: #fbb335;
+  }
+  /* top buttons */
+  .btn-info {
+    background-color: #fbb335;
+    color: #305496;
+    padding: 5px 40px 5px 40px;
+  }
+  
+  .btn-info:hover,
+  .btn-info:active,
+  .btn-info:focus {
+    background-color: #305496 !important;
+    color: #fbb335 !important;
+  }
+  
+  /* list buttons */
+  .btn-primary {
+    background-color: white;
+    border-color: #305496;
+    color: #305496;
+    width: 100%;
+    margin-top: 10px;
+    text-align: left;
+  }
+  
+  /* list buttons */
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-primary:focus {
+    background-color: white !important;
+    border-color: #305496 !important;
+    color: #305496 !important;
+    width: 100%;
+    margin-top: 10px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  /* next button */
+  .btn-secondary {
+    background-color: #fbb335;
+    color: #305496;
+    margin: 40px 12px 0px 0px;
+  }
+  
+  .btn-secondary:hover,
+  .btn-secondary:active,
+  .btn-secondary:focus {
+    background-color: #305496 !important;
+    color: #fbb335 !important;
+  }
+    
+  /*add by Sagaya */
+  
+  .label-H3 {
+    color:#fbb335;
+    font-weight: bolder;
+    width: fit-content;
+    border-bottom:#fbb335;
+    border-width: 3px;
+    border-style: double;
+    border-top:0;
+    border-left: 0;
+    border-right: 0;
+    margin-left: 0px;
+    text-transform: uppercase;
+  }
+  
+  .gf {
+    max-height: calc(100vh - 135px);
+    overflow-x: auto;
+    overflow-y: auto;
+    margin-left: -10px;
+    margin-top: -21px;
+    border-radius: 0px;
+  }
+  
+  
+  /* scroll bar design */
+  ::-webkit-scrollbar{
+    width: 8px;
+    height: 8px
+  }
+  ::-webkit-scrollbar-track-piece{
+    box-shadow: inset 0 0 5px #305496;
+    border-radius: 0px;
+  }
+  ::-webkit-scrollbar-thumb:hover{
+    background:#fbb335;
+  }

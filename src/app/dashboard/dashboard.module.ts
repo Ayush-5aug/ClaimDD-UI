@@ -24,6 +24,7 @@ import { PreviewComponent } from "./preview/preview.component";
 import { LicenseUpgradeComponent } from './license-upgrade/license-upgrade.component';
 import { ReviewerDashboardComponent } from './reviewer-dashboard/reviewer-dashboard.component';
 import { ActualDbComponent } from './actual-db/actual-db.component';
+import { PreviewRecordsComponent } from './preview-records/preview-records.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ActualDbComponent } from './actual-db/actual-db.component';
     LicenseUpgradeComponent,
     ReviewerDashboardComponent,
     ActualDbComponent,
+    PreviewRecordsComponent,
   ],
   imports: [
     CommonModule,

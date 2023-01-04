@@ -18,6 +18,7 @@ import { PreviewComponent } from "./preview/preview.component";
 import { LicenseUpgradeComponent } from "./license-upgrade/license-upgrade.component";
 import {ReviewerDashboardComponent} from "./reviewer-dashboard/reviewer-dashboard.component";
 import {ActualDbComponent} from "./actual-db/actual-db.component";
+import {PreviewRecordsComponent} from "./preview-records/preview-records.component";
 const routes: Routes = [
   {
     path: "",
@@ -110,6 +111,11 @@ const routes: Routes = [
       {
         path: "actual-db",
         component: ActualDbComponent,
+        pathMatch: "full"
+      },
+      {
+        path: "preview-records",
+        component: PreviewRecordsComponent,
         pathMatch: "full"
       },
     ],

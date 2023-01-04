@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "https://claimdd-wa.herokuapp.com/api/",
+  apiBaseUrl: "http://localhost:5000/api/",
 };
 
-export const apiBaseUrl = "https://claimdd-wa.herokuapp.com/api/";
+export const apiBaseUrl = "http://localhost:5000/api/";
 
 /*
  * For easier debugging in development mode, you can import the following file

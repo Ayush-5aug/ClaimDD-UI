@@ -14,8 +14,8 @@
     <div>
       <div class="row" style="margin-bottom: 30px;">
         <div class="col-sm">
-          <button type="button" class="btn btn-info btn-mg">IMPORT</button>
-          <button type="button" class="btn btn-info btn-mg" style="margin-left: 40px;">PREVIEW</button>
+          <button type="button" class="btn btn-info btn-mg" (click)="openUploadForm(modalData)">UPLOAD</button>
+          <button type="button" class="btn btn-info btn-mg" style="margin-left: 40px;" (click)="onPreview()">PREVIEW</button>
         </div>
         <div class="col-sm-2" style="text-align: right;">
          <!-- <button type="button" class="btn btn-info btn-mg">EXPORT</button> -->
@@ -28,8 +28,8 @@
       <div class="row">
         <div class="col-sm" style="padding-left: 0;">
           <div class="col-sm">
-            <h5 class="label-H3">NOTICES/LETTERS</h5>
-            <button type="button" class="btn btn-primary">Sent by Claimant</button><br>
+            <h5 class="label-H3">NOTICES/LETTERS (FORMAL DOCUMENTS ONLY)</h5>
+            <button type="button" class="btn btn-primary" (click)="selected = 'sentByClaimant'">Sent by Claimant</button><br>
             <button type="button" class="btn btn-primary">Received by Claimant</button><br>
           </div>
           <div class="col-sm" style="margin-top: 30px;">
@@ -73,3 +73,46 @@
     </div>
   </div>
 </div>
+
+<!-- Upload Form-->
+<ng-template #modalData let-modal>
+  <div class="modal-header" style="background-color: #fbb335; color: white">
+      <h4 class="modal-title" id="modal-basic-title">Upload Document</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+      </button>
+  </div>
+  <div class="modal-body" style="background-color: #305496; color: #fbb335">
+      <form [formGroup]="uploadDocForm" (ngSubmit)="onUpload()">
+          <div class="mb-3">
+              <label for="documentDate" class="form-label">Document Date</label>
+              <input formControlName="documentDate" type="date" class="form-control" id="documentDate"
+                  aria-describedby="documentDate">
+              <div *ngIf="
+              !uploadDocForm.get('documentDate').valid &&
+              uploadDocForm.get('documentDate').touched
+            " class="text-danger">
+                  Please choose a username.
+              </div>
+          </div>
+
+          <div class="mb-3">
+              <label for="file" class="form-label">File</label>
+              <input formControlName="email" type="file" class="form-control" id="file"
+                  aria-describedby="file">
+              <div *ngIf="
+              !uploadDocForm.get('file').valid &&
+              uploadDocForm.get('file').touched
+            " class="text-danger">
+                  Please choose a email.
+              </div>
+          </div>
+          <button type="submit"
+              class="btn btn-secondary mr-2">Update</button>
+
+          <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Exit</button>
+
+      </form>
+  </div>
+
+</ng-template>
